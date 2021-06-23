@@ -68,7 +68,7 @@ public class EditClientAction implements Action{
                 client.setEmail(ConsoleUtility.getScanner().nextLine());
                 break;
             default:
-                System.out.println("There is no such item in the menu");
+                System.out.println("There is no such item in the menu.");
         }
     }
 }

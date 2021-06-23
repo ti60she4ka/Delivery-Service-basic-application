@@ -6,5 +6,6 @@ public class DataInitializer implements Initializer{
     @Override
     public void init() {
         Json.deserializeClientDataStorage();
+        Json.deserializeShopDataStorage();
     }
 }

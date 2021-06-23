@@ -18,7 +18,7 @@ public class Client extends BaseEntity{
 
     @Override
     public String toString() {
-        return  "Id — " + id + '\n'
+        return  "ID — " + id + '\n'
                 + "First name — " + firstName + '\n'
                 + "Last name — " + lastName + '\n'
                 + "Email — " + email;

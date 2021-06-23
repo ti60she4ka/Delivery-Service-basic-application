@@ -11,6 +11,6 @@ public class EntityNotFoundException extends Exception {
 
     @Override
     public String getMessage() {
-        return entityType + " with id = " + id + " was not found.";
+        return entityType + " with ID = " + id + " was not found.";
     }
 }
