@@ -1,7 +1,8 @@
-package menu.actions;
+package menu.actions.shop;
 
 import controllers.ShopController;
 import exceptions.EntityNotFoundException;
+import menu.actions.Action;
 import model.entities.Shop;
 import utilities.ConsoleUtility;
 import utilities.Json;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class DeleteShopAction implements Action {
     @Override
-    public void doAction(int index) {
+    public void doAction(int index) throws EntityNotFoundException {
         List<Shop> shops = ShopController.getInstance().getShops();
 
         if (shops.size() == 0) {
@@ -22,16 +23,11 @@ public class DeleteShopAction implements Action {
         printListOfShops(shops);
 
         System.out.print("Enter ID of the shop which you want to delete: ");
-        try {
-            long id = Long.parseLong(ConsoleUtility.getScanner().nextLine());
-            ShopController.getInstance().deleteShop(id);
 
-            System.out.println("\nShop with the specified id was successfully deleted.");
-        } catch (NumberFormatException exception) {
-            System.out.println("\nInvalid data entered.");
-        } catch (EntityNotFoundException exception) {
-            System.out.println('\n' + exception.getMessage());
-        }
+        long id = Long.parseLong(ConsoleUtility.getScanner().nextLine());
+        ShopController.getInstance().deleteShop(id);
+
+        System.out.println("\nShop with the specified ID was successfully deleted.");
 
         System.out.println();
         Json.serializeShopDataStorage();

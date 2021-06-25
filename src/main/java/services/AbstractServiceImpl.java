@@ -2,6 +2,7 @@ package services;
 
 import api.repositories.AbstractRepository;
 import api.services.AbstractService;
+import exceptions.EntityListIsEmptyException;
 import exceptions.EntityNotFoundException;
 import model.entities.BaseEntity;
 
@@ -20,7 +21,7 @@ public abstract class AbstractServiceImpl<T extends BaseEntity> implements Abstr
     }
 
     @Override
-    public List<T> getAll(){
+    public List<T> getAll() {
         return abstractRepository.getAll();
     }
 

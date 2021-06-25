@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ClientController {
     private static ClientController instance;
-    private ClientService clientService;
+    private final ClientService clientService;
 
     private ClientController(){
         clientService = ClientServiceImpl.getInstance();

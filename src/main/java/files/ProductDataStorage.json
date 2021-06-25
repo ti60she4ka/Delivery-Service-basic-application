@@ -1,0 +1,51 @@
+{
+  "entityIdSequence": 7,
+  "entities": [
+    {
+      "name": "Apple",
+      "categories": [
+        "FRUIT"
+      ],
+      "price": 0.0,
+      "id": 1
+    },
+    {
+      "name": "Grusha",
+      "categories": [],
+      "price": 0.0,
+      "id": 2
+    },
+    {
+      "name": "Karas\u0027",
+      "categories": [
+        "FISH"
+      ],
+      "price": 0.0,
+      "id": 3
+    },
+    {
+      "name": "Baranina",
+      "categories": [
+        "MEAT"
+      ],
+      "price": 0.0,
+      "id": 4
+    },
+    {
+      "name": "Svinina",
+      "categories": [
+        "MEAT"
+      ],
+      "price": 0.0,
+      "id": 5
+    },
+    {
+      "name": "Govyadina",
+      "categories": [
+        "MEAT"
+      ],
+      "price": 0.0,
+      "id": 6
+    }
+  ]
+}

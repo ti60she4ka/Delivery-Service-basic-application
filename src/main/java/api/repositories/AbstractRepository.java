@@ -1,5 +1,6 @@
 package api.repositories;
 
+import exceptions.EntityListIsEmptyException;
 import exceptions.EntityNotFoundException;
 import model.entities.BaseEntity;
 

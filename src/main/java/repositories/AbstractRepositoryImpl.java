@@ -1,6 +1,7 @@
 package repositories;
 
 import api.repositories.AbstractRepository;
+import exceptions.EntityListIsEmptyException;
 import exceptions.EntityNotFoundException;
 import model.entities.BaseEntity;
 import storages.AbstractDataStorage;
@@ -22,7 +23,7 @@ public abstract class AbstractRepositoryImpl<T extends BaseEntity> implements Ab
     }
 
     @Override
-    public List<T> getAll(){
+    public List<T> getAll() {
         return abstractDataStorage.getEntities();
     }
 

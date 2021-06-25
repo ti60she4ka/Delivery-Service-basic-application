@@ -1,16 +1,17 @@
-package menu.actions;
+package menu.actions.shop;
 
 import controllers.ShopController;
 import exceptions.EntityNotFoundException;
+import menu.actions.Action;
 import model.entities.Shop;
 import utilities.ConsoleUtility;
 import utilities.Json;
 
 import java.util.List;
 
-public class EditShopAction implements Action{
+public class EditShopAction implements Action {
     @Override
-    public void doAction(int index) {
+    public void doAction(int index) throws EntityNotFoundException {
         List<Shop> shops = ShopController.getInstance().getShops();
 
         if (shops.size() == 0) {
@@ -22,17 +23,11 @@ public class EditShopAction implements Action{
         printListOfShops(shops);
 
         System.out.print("Enter ID of the client which you want to edit: ");
-        try {
-            long id = Long.parseLong(ConsoleUtility.getScanner().nextLine());
-            Shop shop = ShopController.getInstance().getShop(id);
 
-            editShop(shop);
+        long id = Long.parseLong(ConsoleUtility.getScanner().nextLine());
+        Shop shop = ShopController.getInstance().getShop(id);
 
-        } catch (NumberFormatException exception) {
-            System.out.println("\nInvalid data entered.");
-        } catch (EntityNotFoundException exception) {
-            System.out.println('\n' + exception.getMessage());
-        }
+        editShop(shop);
 
         System.out.println();
         Json.serializeShopDataStorage();

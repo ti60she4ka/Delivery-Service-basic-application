@@ -1,7 +1,8 @@
-package menu.actions;
+package menu.actions.shop;
 
 import controllers.ClientController;
 import controllers.ShopController;
+import menu.actions.Action;
 import model.entities.Client;
 import model.entities.Shop;
 

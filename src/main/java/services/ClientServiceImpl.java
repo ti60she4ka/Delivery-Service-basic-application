@@ -7,7 +7,7 @@ import repositories.ClientRepositoryImpl;
 
 public class ClientServiceImpl extends AbstractServiceImpl<Client> implements ClientService {
     private static ClientServiceImpl instance;
-    private ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
 
     private ClientServiceImpl(){
         super(ClientRepositoryImpl.getInstance());

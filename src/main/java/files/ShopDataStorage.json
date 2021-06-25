@@ -1,20 +1,89 @@
 {
-  "entityIdSequence": 3,
+  "entityIdSequence": 2,
   "entities": [
     {
       "name": "Almi",
       "city": "Grodno",
+      "productStorages": [
+        {
+          "product": {
+            "name": "Govyadina",
+            "categories": [
+              "MEAT"
+            ],
+            "price": 100.0,
+            "nameOfShop": "Almi",
+            "id": 0
+          },
+          "quantity": 150
+        },
+        {
+          "product": {
+            "name": "Svinina",
+            "categories": [
+              "MEAT"
+            ],
+            "price": 150.0,
+            "nameOfShop": "Almi",
+            "id": 0
+          },
+          "quantity": 1500
+        },
+        {
+          "product": {
+            "name": "Baranina",
+            "categories": [
+              "MEAT"
+            ],
+            "price": 109.0,
+            "nameOfShop": "Almi",
+            "id": 0
+          },
+          "quantity": 1000
+        },
+        {
+          "product": {
+            "name": "Apple",
+            "categories": [
+              "FRUIT"
+            ],
+            "price": 1000.0,
+            "nameOfShop": "Almi",
+            "id": 0
+          },
+          "quantity": 500
+        }
+      ],
       "id": 0
     },
     {
-      "name": "Evroopt",
-      "city": "Grondo",
-      "id": 1
-    },
-    {
       "name": "OldCity",
-      "city": "Grodno",
-      "id": 2
+      "city": "Minsk",
+      "productStorages": [
+        {
+          "product": {
+            "name": "Svinina",
+            "categories": [
+              "MEAT"
+            ],
+            "price": 50.0,
+            "nameOfShop": "OldCity",
+            "id": 0
+          },
+          "quantity": 100
+        },
+        {
+          "product": {
+            "name": "Grusha",
+            "categories": [],
+            "price": 100.0,
+            "nameOfShop": "OldCity",
+            "id": 0
+          },
+          "quantity": 1000
+        }
+      ],
+      "id": 1
     }
   ]
 }

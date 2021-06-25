@@ -6,7 +6,7 @@ import storages.ClientDataStorage;
 
 public class ClientRepositoryImpl extends AbstractRepositoryImpl<Client> implements ClientRepository {
     private static ClientRepositoryImpl instance;
-    private ClientDataStorage clientDataStorage;
+    private final ClientDataStorage clientDataStorage;
 
     private ClientRepositoryImpl(){
         super(ClientDataStorage.getInstance());

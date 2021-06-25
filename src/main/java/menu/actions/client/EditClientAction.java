@@ -1,16 +1,17 @@
-package menu.actions;
+package menu.actions.client;
 
 import controllers.ClientController;
 import exceptions.EntityNotFoundException;
+import menu.actions.Action;
 import model.entities.Client;
 import utilities.ConsoleUtility;
 import utilities.Json;
 
 import java.util.List;
 
-public class EditClientAction implements Action{
+public class EditClientAction implements Action {
     @Override
-    public void doAction(int index) {
+    public void doAction(int index) throws EntityNotFoundException {
         List<Client> clients = ClientController.getInstance().getClients();
 
         if (clients.size() == 0) {
@@ -22,17 +23,11 @@ public class EditClientAction implements Action{
         printListOfClients(clients);
 
         System.out.print("Enter ID of the client who you want to edit: ");
-        try {
-            long id = Long.parseLong(ConsoleUtility.getScanner().nextLine());
-            Client client = ClientController.getInstance().getClient(id);
 
-            editClient(client);
+        long id = Long.parseLong(ConsoleUtility.getScanner().nextLine());
+        Client client = ClientController.getInstance().getClient(id);
 
-        } catch (NumberFormatException exception) {
-            System.out.println("\nInvalid data entered.");
-        } catch (EntityNotFoundException exception) {
-            System.out.println('\n' + exception.getMessage());
-        }
+        editClient(client);
 
         System.out.println();
         Json.serializeClientDataStorage();

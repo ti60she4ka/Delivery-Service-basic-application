@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import storages.AbstractDataStorage;
 import storages.ClientDataStorage;
+import storages.ProductDataStorage;
 import storages.ShopDataStorage;
 
 import java.io.*;
@@ -12,6 +13,7 @@ import java.nio.charset.StandardCharsets;
 public class Json {
     private static final String CLIENT_DATA_STORAGE_PATH = "src/main/java/files/ClientDataStorage.json";
     private static final String SHOP_DATA_STORAGE_PATH = "src/main/java/files/ShopDataStorage.json";
+    private static final String PRODUCT_DATA_STORAGE_PATH = "src/main/java/files/ProductDataStorage.json";
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     private Json() {}
@@ -22,6 +24,10 @@ public class Json {
 
     public static void serializeShopDataStorage(){
         serializeDataStorage(ShopDataStorage.getInstance(), SHOP_DATA_STORAGE_PATH);
+    }
+
+    public static void serializeProductDataStorage(){
+        serializeDataStorage(ProductDataStorage.getInstance(), PRODUCT_DATA_STORAGE_PATH);
     }
 
     public static void deserializeClientDataStorage(){
@@ -38,6 +44,16 @@ public class Json {
         try(FileReader fileReader = new FileReader(SHOP_DATA_STORAGE_PATH)){
 
             ShopDataStorage.setInstance(gson.fromJson(fileReader, ShopDataStorage.class));
+
+        } catch (IOException e) {
+            System.out.println(e.toString());
+        }
+    }
+
+    public static void deserializeProductDataStorage(){
+        try(FileReader fileReader = new FileReader(PRODUCT_DATA_STORAGE_PATH)){
+
+            ProductDataStorage.setInstance(gson.fromJson(fileReader, ProductDataStorage.class));
 
         } catch (IOException e) {
             System.out.println(e.toString());

@@ -1,6 +1,7 @@
-package menu.actions;
+package menu.actions.client;
 
 import controllers.ClientController;
+import menu.actions.Action;
 import model.entities.Client;
 import storages.ClientDataStorage;
 import utilities.ConsoleUtility;

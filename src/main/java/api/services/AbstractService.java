@@ -1,5 +1,6 @@
 package api.services;
 
+import exceptions.EntityListIsEmptyException;
 import exceptions.EntityNotFoundException;
 import model.entities.BaseEntity;
 

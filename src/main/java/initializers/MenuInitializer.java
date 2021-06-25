@@ -3,7 +3,15 @@ package initializers;
 import menu.Menu;
 import menu.MenuContext;
 import menu.MenuItem;
-import menu.actions.*;
+import menu.actions.client.AddNewClientAction;
+import menu.actions.client.DeleteClientAction;
+import menu.actions.client.EditClientAction;
+import menu.actions.client.ShowAllClientsAction;
+import menu.actions.menu.ExitProgramAction;
+import menu.actions.menu.GoToPreviousMenuAction;
+import menu.actions.menu.GoToSubmenuAction;
+import menu.actions.product.*;
+import menu.actions.shop.*;
 
 import java.util.ArrayList;
 
@@ -19,9 +27,13 @@ public class MenuInitializer implements Initializer{
                 initializeClientServiceMenu(MenuContext.getMenu()), new GoToSubmenuAction());
         MenuContext.getMenu().getMenuItems().add(clientService);
 
-        MenuItem shopService = new MenuItem("Shop service",
+        MenuItem shopService = new MenuItem("Shop service.",
                 initializeShopServiceMenu(MenuContext.getMenu()), new GoToSubmenuAction());
         MenuContext.getMenu().getMenuItems().add(shopService);
+
+        MenuItem productService = new MenuItem("Product service.",
+                initializeProductServiceMenu(MenuContext.getMenu()), new GoToSubmenuAction());
+        MenuContext.getMenu().getMenuItems().add(productService);
 
         MenuItem exitProgram = new MenuItem("Exit.",
                 null, new ExitProgramAction());
@@ -77,10 +89,54 @@ public class MenuInitializer implements Initializer{
                 null, new EditShopAction());
         shopServiceMenu.getMenuItems().add(editShop);
 
+        MenuItem addProductToShop = new MenuItem("Add product to shop.",
+                null, new AddProductToShopAction());
+        shopServiceMenu.getMenuItems().add(addProductToShop);
+
+        MenuItem upgradeProductInfo = new MenuItem("Upgrade product info in shop.",
+                null, new UpdateProductInfoInShopAction());
+        shopServiceMenu.getMenuItems().add(upgradeProductInfo);
+
         MenuItem backToPreviousMenu = new MenuItem("Back.",
                 null, new GoToPreviousMenuAction());
         shopServiceMenu.getMenuItems().add(backToPreviousMenu);
 
         return shopServiceMenu;
+    }
+
+    private static Menu initializeProductServiceMenu(Menu previousMenu){
+        Menu productServiceMenu = new Menu();
+        productServiceMenu.setMenuItems(new ArrayList<>());
+        productServiceMenu.setPreviousMenu(previousMenu);
+
+        MenuItem addNewProduct = new MenuItem("Add a new product.",
+                null, new AddNewProductAction());
+        productServiceMenu.getMenuItems().add(addNewProduct);
+
+        MenuItem deleteProduct = new MenuItem("Delete product.",
+                null, new DeleteProductAction());
+        productServiceMenu.getMenuItems().add(deleteProduct);
+
+        MenuItem editProduct = new MenuItem("Edit product.",
+                null, new EditProductAction());
+        productServiceMenu.getMenuItems().add(editProduct);
+
+        MenuItem showProductsByCategory = new MenuItem("Show products by categories.",
+                null, new ShowProductsByCategoriesAction());
+        productServiceMenu.getMenuItems().add(showProductsByCategory);
+
+        MenuItem showProductsSortedByPrice = new MenuItem("Show products sorted by price.",
+                null, new ShowProductsSortedByPriceAction());
+        productServiceMenu.getMenuItems().add(showProductsSortedByPrice);
+
+        MenuItem showProductsByAttributes = new MenuItem("Show products by attributes.",
+                null, new ShowProductsByAttributesAction());
+        productServiceMenu.getMenuItems().add(showProductsByAttributes);
+
+        MenuItem backToPreviousMenu = new MenuItem("Back.",
+                null, new GoToPreviousMenuAction());
+        productServiceMenu.getMenuItems().add(backToPreviousMenu);
+
+        return productServiceMenu;
     }
 }
