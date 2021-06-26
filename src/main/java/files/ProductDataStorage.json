@@ -1,22 +1,32 @@
 {
-  "entityIdSequence": 7,
+  "entityIdSequence": 6,
   "entities": [
     {
-      "name": "Apple",
+      "name": "Beef",
       "categories": [
-        "FRUIT"
+        "MEAT"
+      ],
+      "price": 0.0,
+      "id": 0
+    },
+    {
+      "name": "Chicken",
+      "categories": [
+        "MEAT"
       ],
       "price": 0.0,
       "id": 1
     },
     {
-      "name": "Grusha",
-      "categories": [],
+      "name": "Carp",
+      "categories": [
+        "FISH"
+      ],
       "price": 0.0,
       "id": 2
     },
     {
-      "name": "Karas\u0027",
+      "name": "Goldfish",
       "categories": [
         "FISH"
       ],
@@ -24,28 +34,20 @@
       "id": 3
     },
     {
-      "name": "Baranina",
+      "name": "Apple",
       "categories": [
-        "MEAT"
+        "FRUIT"
       ],
       "price": 0.0,
       "id": 4
     },
     {
-      "name": "Svinina",
+      "name": "Potato",
       "categories": [
-        "MEAT"
+        "VEGETABLES"
       ],
       "price": 0.0,
       "id": 5
-    },
-    {
-      "name": "Govyadina",
-      "categories": [
-        "MEAT"
-      ],
-      "price": 0.0,
-      "id": 6
     }
   ]
 }

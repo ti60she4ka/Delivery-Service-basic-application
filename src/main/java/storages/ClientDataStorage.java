@@ -1,9 +1,10 @@
 package storages;
 
+import lombok.Setter;
 import model.entities.Client;
-import utilities.Json;
 
 public class ClientDataStorage extends AbstractDataStorage<Client> {
+    @Setter
     private static ClientDataStorage instance;
 
     private ClientDataStorage(){}
@@ -14,9 +15,5 @@ public class ClientDataStorage extends AbstractDataStorage<Client> {
         }
 
         return instance;
-    }
-
-    public static void setInstance(ClientDataStorage instance) {
-        ClientDataStorage.instance = instance;
     }
 }

@@ -1,8 +1,9 @@
 package repositories;
 
 import api.repositories.ProductRepository;
+import exceptions.EntityCannotBeAddedException;
+import exceptions.ProductCannotBeAddedException;
 import model.entities.Product;
-import storages.ClientDataStorage;
 import storages.ProductDataStorage;
 
 public class ProductRepositoryImpl extends AbstractRepositoryImpl<Product> implements ProductRepository {
@@ -21,5 +22,16 @@ public class ProductRepositoryImpl extends AbstractRepositoryImpl<Product> imple
         }
 
         return instance;
+    }
+
+    @Override
+    public void create(Product entity) throws EntityCannotBeAddedException {
+        if(productDataStorage.getEntities().stream()
+                .anyMatch(item -> item.getName().equalsIgnoreCase(entity.getName()))){
+
+            throw new ProductCannotBeAddedException(entity.getName());
+        }
+
+        super.create(entity);
     }
 }

@@ -1,0 +1,78 @@
+{
+  "entityIdSequence": 1,
+  "entities": [
+    {
+      "client": {
+        "firstName": "Pavel",
+        "lastName": "Avtaev",
+        "email": "pavel.avtaev02@mail.ru",
+        "id": 0
+      },
+      "address": "address",
+      "productStorages": [
+        {
+          "product": {
+            "name": "Beef",
+            "categories": [
+              "MEAT"
+            ],
+            "price": 250.0,
+            "nameOfShop": "Almi",
+            "id": 0
+          },
+          "quantity": 10
+        },
+        {
+          "product": {
+            "name": "Goldfish",
+            "categories": [
+              "FISH"
+            ],
+            "price": 100.0,
+            "nameOfShop": "Almi",
+            "id": 3
+          },
+          "quantity": 20
+        },
+        {
+          "product": {
+            "name": "Carp",
+            "categories": [
+              "FISH"
+            ],
+            "price": 90.5,
+            "nameOfShop": "OldCity",
+            "id": 2
+          },
+          "quantity": 25
+        },
+        {
+          "product": {
+            "name": "Potato",
+            "categories": [
+              "VEGETABLES"
+            ],
+            "price": 70.0,
+            "nameOfShop": "OldCity",
+            "id": 5
+          },
+          "quantity": 5
+        },
+        {
+          "product": {
+            "name": "Potato",
+            "categories": [
+              "VEGETABLES"
+            ],
+            "price": 50.0,
+            "nameOfShop": "Evroopt",
+            "id": 5
+          },
+          "quantity": 15
+        }
+      ],
+      "price": 7862.5,
+      "id": 0
+    }
+  ]
+}

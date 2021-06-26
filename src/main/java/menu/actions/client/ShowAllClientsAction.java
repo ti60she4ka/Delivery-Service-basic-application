@@ -9,7 +9,7 @@ import java.util.List;
 public class ShowAllClientsAction implements Action {
     @Override
     public void doAction(int index) {
-        List<Client> clients = ClientController.getInstance().getClients();
+        List<Client> clients = ClientController.getInstance().getAll();
 
         if (clients.size() != 0) {
             for (Client client : clients) {

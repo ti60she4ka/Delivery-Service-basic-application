@@ -1,6 +1,7 @@
 package menu.actions.product;
 
 import controllers.ProductController;
+import exceptions.EntityCannotBeAddedException;
 import menu.actions.Action;
 import model.entities.Product;
 import model.enums.Category;
@@ -9,12 +10,12 @@ import utilities.Json;
 
 import java.util.EnumSet;
 
-public class AddNewProductAction implements Action {
+public class CreateNewProductAction implements Action {
     @Override
-    public void doAction(int index) {
+    public void doAction(int index) throws EntityCannotBeAddedException {
         Product product = getNewProduct();
 
-        ProductController.getInstance().createProduct(product);
+        ProductController.getInstance().create(product);
         System.out.println("\nNew product added successfully!\n");
 
         Json.serializeProductDataStorage();

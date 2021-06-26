@@ -1,9 +1,7 @@
 package menu.actions.shop;
 
-import controllers.ProductController;
 import controllers.ShopController;
 import menu.actions.Action;
-import model.entities.Product;
 import model.entities.ProductStorage;
 import model.entities.Shop;
 import utilities.ConsoleUtility;
@@ -14,7 +12,7 @@ import java.util.List;
 public class UpdateProductInfoInShopAction implements Action {
     @Override
     public void doAction(int index) throws Exception {
-        List<Shop> shops = ShopController.getInstance().getShops();
+        List<Shop> shops = ShopController.getInstance().getAll();
 
         if(shops.size() == 0){
             System.out.println("The shop list is empty.");

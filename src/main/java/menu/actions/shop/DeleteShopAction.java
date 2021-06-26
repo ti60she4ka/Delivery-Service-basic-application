@@ -12,7 +12,7 @@ import java.util.List;
 public class DeleteShopAction implements Action {
     @Override
     public void doAction(int index) throws EntityNotFoundException {
-        List<Shop> shops = ShopController.getInstance().getShops();
+        List<Shop> shops = ShopController.getInstance().getAll();
 
         if (shops.size() == 0) {
             System.out.println("The shop list is empty.");
@@ -25,7 +25,7 @@ public class DeleteShopAction implements Action {
         System.out.print("Enter ID of the shop which you want to delete: ");
 
         long id = Long.parseLong(ConsoleUtility.getScanner().nextLine());
-        ShopController.getInstance().deleteShop(id);
+        ShopController.getInstance().deleteById(id);
 
         System.out.println("\nShop with the specified ID was successfully deleted.");
 

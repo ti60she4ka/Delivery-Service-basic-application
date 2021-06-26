@@ -3,6 +3,7 @@ package menu.actions.product;
 import controllers.ProductController;
 import controllers.ShopController;
 import exceptions.EntityNotFoundException;
+import exceptions.ProductCannotBeAddedException;
 import menu.actions.Action;
 import model.entities.Product;
 import model.enums.Category;
@@ -14,8 +15,8 @@ import java.util.List;
 
 public class EditProductAction implements Action {
     @Override
-    public void doAction(int index) throws EntityNotFoundException {
-        List<Product> products = ProductController.getInstance().getProducts();
+    public void doAction(int index) throws EntityNotFoundException, ProductCannotBeAddedException {
+        List<Product> products = ProductController.getInstance().getAll();
 
         if (products.size() == 0) {
             System.out.println("The product list is empty.");
@@ -28,7 +29,7 @@ public class EditProductAction implements Action {
         System.out.print("Enter ID of the product which you want to edit: ");
 
         long id = Long.parseLong(ConsoleUtility.getScanner().nextLine());
-        Product product = ProductController.getInstance().getProduct(id);
+        Product product = ProductController.getInstance().getById(id);
 
         editProduct(product);
 
@@ -46,7 +47,7 @@ public class EditProductAction implements Action {
         }
     }
 
-    private void editProduct(Product product){
+    private void editProduct(Product product) throws ProductCannotBeAddedException {
         System.out.print("1) Name\n"
                 + "2) Categories\n"
                 + "Select the field you want to edit: ");
@@ -57,7 +58,7 @@ public class EditProductAction implements Action {
         switch (choice){
             case 1:
                 System.out.print("Enter a new name: ");
-                product.setName(ConsoleUtility.getScanner().nextLine());
+                product.setName(getNewName());
                 break;
             case 2:
                 product.setCategories(getNewCategories());
@@ -92,5 +93,16 @@ public class EditProductAction implements Action {
             System.out.println((i + 1) + ". " + categories[i].getName());
         }
         System.out.println((categories.length + 1) + ". Finish selection");
+    }
+
+    private String getNewName() throws ProductCannotBeAddedException {
+        String name = ConsoleUtility.getScanner().nextLine();
+        if(ProductController.getInstance().getAll().stream()
+                .anyMatch(product -> product.getName().equalsIgnoreCase(name))){
+
+            throw new ProductCannotBeAddedException(name);
+        }
+
+        return name;
     }
 }

@@ -2,7 +2,7 @@ package services;
 
 import api.repositories.AbstractRepository;
 import api.services.AbstractService;
-import exceptions.EntityListIsEmptyException;
+import exceptions.EntityCannotBeAddedException;
 import exceptions.EntityNotFoundException;
 import model.entities.BaseEntity;
 
@@ -11,12 +11,12 @@ import java.util.List;
 public abstract class AbstractServiceImpl<T extends BaseEntity> implements AbstractService<T> {
     protected AbstractRepository<T> abstractRepository;
 
-    AbstractServiceImpl(AbstractRepository<T> abstractRepository){
+    protected AbstractServiceImpl(AbstractRepository<T> abstractRepository){
         this.abstractRepository = abstractRepository;
     }
 
     @Override
-    public void create(T entity){
+    public void create(T entity) throws EntityCannotBeAddedException {
         abstractRepository.create(entity);
     }
 
@@ -26,12 +26,12 @@ public abstract class AbstractServiceImpl<T extends BaseEntity> implements Abstr
     }
 
     @Override
-    public void delete(long id) throws EntityNotFoundException {
-        abstractRepository.delete(id);
+    public void deleteById(long id) throws EntityNotFoundException {
+        abstractRepository.deleteById(id);
     }
 
     @Override
-    public T get(long id) throws EntityNotFoundException {
-        return abstractRepository.get(id);
+    public T getById(long id) throws EntityNotFoundException {
+        return abstractRepository.getById(id);
     }
 }

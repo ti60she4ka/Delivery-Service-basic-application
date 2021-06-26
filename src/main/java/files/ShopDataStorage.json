@@ -1,5 +1,5 @@
 {
-  "entityIdSequence": 2,
+  "entityIdSequence": 3,
   "entities": [
     {
       "name": "Almi",
@@ -7,39 +7,137 @@
       "productStorages": [
         {
           "product": {
-            "name": "Govyadina",
+            "name": "Goldfish",
             "categories": [
-              "MEAT"
+              "FISH"
             ],
             "price": 100.0,
             "nameOfShop": "Almi",
-            "id": 0
+            "id": 3
           },
-          "quantity": 150
+          "quantity": 130
         },
         {
           "product": {
-            "name": "Svinina",
+            "name": "Beef",
             "categories": [
               "MEAT"
             ],
-            "price": 150.0,
+            "price": 250.0,
             "nameOfShop": "Almi",
             "id": 0
           },
-          "quantity": 1500
+          "quantity": 90
         },
         {
           "product": {
-            "name": "Baranina",
+            "name": "Potato",
+            "categories": [
+              "VEGETABLES"
+            ],
+            "price": 77.0,
+            "nameOfShop": "Almi",
+            "id": 5
+          },
+          "quantity": 123
+        },
+        {
+          "product": {
+            "name": "Carp",
+            "categories": [
+              "FISH"
+            ],
+            "price": 200.0,
+            "nameOfShop": "Almi",
+            "id": 2
+          },
+          "quantity": 65
+        }
+      ],
+      "id": 0
+    },
+    {
+      "name": "OldCity",
+      "city": "Grodno",
+      "productStorages": [
+        {
+          "product": {
+            "name": "Beef",
             "categories": [
               "MEAT"
             ],
-            "price": 109.0,
-            "nameOfShop": "Almi",
+            "price": 120.0,
+            "nameOfShop": "OldCity",
             "id": 0
           },
-          "quantity": 1000
+          "quantity": 125
+        },
+        {
+          "product": {
+            "name": "Chicken",
+            "categories": [
+              "MEAT"
+            ],
+            "price": 95.0,
+            "nameOfShop": "OldCity",
+            "id": 1
+          },
+          "quantity": 100
+        },
+        {
+          "product": {
+            "name": "Carp",
+            "categories": [
+              "FISH"
+            ],
+            "price": 90.5,
+            "nameOfShop": "OldCity",
+            "id": 2
+          },
+          "quantity": 175
+        },
+        {
+          "product": {
+            "name": "Goldfish",
+            "categories": [
+              "FISH"
+            ],
+            "price": 199.99,
+            "nameOfShop": "OldCity",
+            "id": 3
+          },
+          "quantity": 95
+        },
+        {
+          "product": {
+            "name": "Potato",
+            "categories": [
+              "VEGETABLES"
+            ],
+            "price": 70.0,
+            "nameOfShop": "OldCity",
+            "id": 5
+          },
+          "quantity": 20
+        }
+      ],
+      "id": 0
+    },
+    {
+      "name": "Evroopt",
+      "city": "Grodno",
+      "productStorages": [
+        {
+          "product": {
+            "name": "Potato",
+            "categories": [
+              "VEGETABLES"
+            ],
+            "price": 50.0,
+            "nameOfShop": "Evroopt",
+            "id": 5
+          },
+          "quantity": 105
         },
         {
           "product": {
@@ -47,43 +145,38 @@
             "categories": [
               "FRUIT"
             ],
-            "price": 1000.0,
-            "nameOfShop": "Almi",
-            "id": 0
+            "price": 200.0,
+            "nameOfShop": "Evroopt",
+            "id": 4
           },
-          "quantity": 500
-        }
-      ],
-      "id": 0
-    },
-    {
-      "name": "OldCity",
-      "city": "Minsk",
-      "productStorages": [
-        {
-          "product": {
-            "name": "Svinina",
-            "categories": [
-              "MEAT"
-            ],
-            "price": 50.0,
-            "nameOfShop": "OldCity",
-            "id": 0
-          },
-          "quantity": 100
+          "quantity": 125
         },
         {
           "product": {
-            "name": "Grusha",
-            "categories": [],
-            "price": 100.0,
-            "nameOfShop": "OldCity",
-            "id": 0
+            "name": "Goldfish",
+            "categories": [
+              "FISH"
+            ],
+            "price": 165.0,
+            "nameOfShop": "Evroopt",
+            "id": 3
           },
-          "quantity": 1000
+          "quantity": 97
+        },
+        {
+          "product": {
+            "name": "Chicken",
+            "categories": [
+              "MEAT"
+            ],
+            "price": 65.0,
+            "nameOfShop": "Evroopt",
+            "id": 1
+          },
+          "quantity": 250
         }
       ],
-      "id": 1
+      "id": 0
     }
   ]
 }

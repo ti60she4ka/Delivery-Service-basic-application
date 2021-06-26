@@ -2,7 +2,6 @@ package menu.actions.shop;
 
 import controllers.ProductController;
 import controllers.ShopController;
-import exceptions.EntityNotFoundException;
 import menu.actions.Action;
 import model.entities.Product;
 import model.entities.ProductStorage;
@@ -15,7 +14,7 @@ import java.util.List;
 public class AddProductToShopAction implements Action {
     @Override
     public void doAction(int index) {
-        List<Shop> shops = ShopController.getInstance().getShops();
+        List<Shop> shops = ShopController.getInstance().getAll();
 
         if(shops.size() == 0){
             System.out.println("The shop list is empty.");
@@ -30,7 +29,7 @@ public class AddProductToShopAction implements Action {
         int shopIndex = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
         shop = shops.get(shopIndex - 1);
 
-        List<Product> products = ProductController.getInstance().getProducts();
+        List<Product> products = ProductController.getInstance().getAll();
 
         if(products.size() == 0){
             System.out.println("The product list is empty.");

@@ -3,15 +3,18 @@ package initializers;
 import menu.Menu;
 import menu.MenuContext;
 import menu.MenuItem;
-import menu.actions.client.AddNewClientAction;
+import menu.actions.client.CreateNewClientAction;
 import menu.actions.client.DeleteClientAction;
 import menu.actions.client.EditClientAction;
 import menu.actions.client.ShowAllClientsAction;
 import menu.actions.menu.ExitProgramAction;
 import menu.actions.menu.GoToPreviousMenuAction;
 import menu.actions.menu.GoToSubmenuAction;
+import menu.actions.order.CreateNewOrderAction;
+import menu.actions.order.ShowAllOrdersAction;
 import menu.actions.product.*;
 import menu.actions.shop.*;
+import model.enums.SortType;
 
 import java.util.ArrayList;
 
@@ -35,6 +38,14 @@ public class MenuInitializer implements Initializer{
                 initializeProductServiceMenu(MenuContext.getMenu()), new GoToSubmenuAction());
         MenuContext.getMenu().getMenuItems().add(productService);
 
+        MenuItem productSearchService = new MenuItem("Product search service.",
+                initializeProductSearchServiceMenu(MenuContext.getMenu()), new GoToSubmenuAction());
+        MenuContext.getMenu().getMenuItems().add(productSearchService);
+
+        MenuItem orderService = new MenuItem("Order service.",
+                initializeOrderServiceMenu(MenuContext.getMenu()), new GoToSubmenuAction());
+        MenuContext.getMenu().getMenuItems().add(orderService);
+
         MenuItem exitProgram = new MenuItem("Exit.",
                 null, new ExitProgramAction());
         MenuContext.getMenu().getMenuItems().add(exitProgram);
@@ -46,7 +57,7 @@ public class MenuInitializer implements Initializer{
         clientServiceMenu.setPreviousMenu(previousMenu);
 
         MenuItem addNewClient = new MenuItem("Add a new client.",
-                null, new AddNewClientAction());
+                null, new CreateNewClientAction());
         clientServiceMenu.getMenuItems().add(addNewClient);
 
         MenuItem showAllClients = new MenuItem("Show all clients.",
@@ -74,7 +85,7 @@ public class MenuInitializer implements Initializer{
         shopServiceMenu.setPreviousMenu(previousMenu);
 
         MenuItem addNewShop = new MenuItem("Add a new shop.",
-                null, new AddNewShopAction());
+                null, new CreateNewShopAction());
         shopServiceMenu.getMenuItems().add(addNewShop);
 
         MenuItem showAllShops = new MenuItem("Show all shops.",
@@ -110,8 +121,12 @@ public class MenuInitializer implements Initializer{
         productServiceMenu.setPreviousMenu(previousMenu);
 
         MenuItem addNewProduct = new MenuItem("Add a new product.",
-                null, new AddNewProductAction());
+                null, new CreateNewProductAction());
         productServiceMenu.getMenuItems().add(addNewProduct);
+
+        MenuItem showAllProducts = new MenuItem("Show all products.",
+                null, new ShowAllProductsAction());
+        productServiceMenu.getMenuItems().add(showAllProducts);
 
         MenuItem deleteProduct = new MenuItem("Delete product.",
                 null, new DeleteProductAction());
@@ -121,22 +136,58 @@ public class MenuInitializer implements Initializer{
                 null, new EditProductAction());
         productServiceMenu.getMenuItems().add(editProduct);
 
-        MenuItem showProductsByCategory = new MenuItem("Show products by categories.",
-                null, new ShowProductsByCategoriesAction());
-        productServiceMenu.getMenuItems().add(showProductsByCategory);
-
-        MenuItem showProductsSortedByPrice = new MenuItem("Show products sorted by price.",
-                null, new ShowProductsSortedByPriceAction());
-        productServiceMenu.getMenuItems().add(showProductsSortedByPrice);
-
-        MenuItem showProductsByAttributes = new MenuItem("Show products by attributes.",
-                null, new ShowProductsByAttributesAction());
-        productServiceMenu.getMenuItems().add(showProductsByAttributes);
-
         MenuItem backToPreviousMenu = new MenuItem("Back.",
                 null, new GoToPreviousMenuAction());
         productServiceMenu.getMenuItems().add(backToPreviousMenu);
 
         return productServiceMenu;
+    }
+
+    private static Menu initializeProductSearchServiceMenu(Menu previousMenu){
+        Menu productSearchServiceMenu = new Menu();
+        productSearchServiceMenu.setMenuItems(new ArrayList<>());
+        productSearchServiceMenu.setPreviousMenu(previousMenu);
+
+        MenuItem showProductsByCategory = new MenuItem("Show products by categories.",
+                null, new ShowProductsByCategoriesAction());
+        productSearchServiceMenu.getMenuItems().add(showProductsByCategory);
+
+        MenuItem showProductsByAttributes = new MenuItem("Show products by attributes.",
+                null, new ShowProductsByAttributesAction());
+        productSearchServiceMenu.getMenuItems().add(showProductsByAttributes);
+
+        MenuItem showProductsSortedByPrice = new MenuItem("Show products sorted by price.",
+                null, new ShowProductsSortedByPriceAction(SortType.ASCENDING));
+        productSearchServiceMenu.getMenuItems().add(showProductsSortedByPrice);
+
+        MenuItem showProductsSortedByPriceDesc = new MenuItem("Show products sorted by price (descending).",
+                null, new ShowProductsSortedByPriceAction(SortType.DESCENDING));
+        productSearchServiceMenu.getMenuItems().add(showProductsSortedByPriceDesc);
+
+        MenuItem backToPreviousMenu = new MenuItem("Back.",
+                null, new GoToPreviousMenuAction());
+        productSearchServiceMenu.getMenuItems().add(backToPreviousMenu);
+
+        return productSearchServiceMenu;
+    }
+
+    private static Menu initializeOrderServiceMenu(Menu previousMenu){
+        Menu orderServiceMenu = new Menu();
+        orderServiceMenu.setMenuItems(new ArrayList<>());
+        orderServiceMenu.setPreviousMenu(previousMenu);
+
+        MenuItem createNewOrder = new MenuItem("Create new order.",
+                null, new CreateNewOrderAction());
+        orderServiceMenu.getMenuItems().add(createNewOrder);
+
+        MenuItem showAllOrders = new MenuItem("Show all orders.",
+                null, new ShowAllOrdersAction());
+        orderServiceMenu.getMenuItems().add(showAllOrders);
+
+        MenuItem backToPreviousMenu = new MenuItem("Back.",
+                null, new GoToPreviousMenuAction());
+        orderServiceMenu.getMenuItems().add(backToPreviousMenu);
+
+        return orderServiceMenu;
     }
 }

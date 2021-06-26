@@ -1,6 +1,7 @@
 package menu.actions.client;
 
 import controllers.ClientController;
+import exceptions.ClientCannotBeAddedException;
 import exceptions.EntityNotFoundException;
 import menu.actions.Action;
 import model.entities.Client;
@@ -11,8 +12,8 @@ import java.util.List;
 
 public class EditClientAction implements Action {
     @Override
-    public void doAction(int index) throws EntityNotFoundException {
-        List<Client> clients = ClientController.getInstance().getClients();
+    public void doAction(int index) throws EntityNotFoundException, ClientCannotBeAddedException {
+        List<Client> clients = ClientController.getInstance().getAll();
 
         if (clients.size() == 0) {
             System.out.println("The client list is empty.");
@@ -25,7 +26,7 @@ public class EditClientAction implements Action {
         System.out.print("Enter ID of the client who you want to edit: ");
 
         long id = Long.parseLong(ConsoleUtility.getScanner().nextLine());
-        Client client = ClientController.getInstance().getClient(id);
+        Client client = ClientController.getInstance().getById(id);
 
         editClient(client);
 
@@ -40,7 +41,7 @@ public class EditClientAction implements Action {
         }
     }
 
-    private void editClient(Client client){
+    private void editClient(Client client) throws ClientCannotBeAddedException {
         System.out.print("1) First name\n"
                 + "2) Last name\n"
                 + "3) Email\n"
@@ -60,10 +61,21 @@ public class EditClientAction implements Action {
                 break;
             case 3:
                 System.out.print("Enter a new email: ");
-                client.setEmail(ConsoleUtility.getScanner().nextLine());
+                client.setEmail(getNewEmail());
                 break;
             default:
                 System.out.println("There is no such item in the menu.");
         }
+    }
+
+    private String getNewEmail() throws ClientCannotBeAddedException {
+        String email = ConsoleUtility.getScanner().nextLine();
+        if(ClientController.getInstance().getAll().stream()
+                .anyMatch(client -> client.getEmail().equalsIgnoreCase(email))){
+
+            throw new ClientCannotBeAddedException(email);
+        }
+
+        return email;
     }
 }

@@ -1,26 +1,28 @@
 package model.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Client extends BaseEntity{
+@AllArgsConstructor
+public class Client extends BaseEntity implements Cloneable {
     private String firstName;
     private String lastName;
     private String email;
 
-    public Client(String firstName, String lastName, String email){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+    public Client(Client client) {
+        firstName = client.getFirstName();
+        lastName = client.getLastName();
+        email = client.getEmail();
     }
 
     @Override
     public String toString() {
-        return  "ID — " + id + '\n'
-                + "First name — " + firstName + '\n'
-                + "Last name — " + lastName + '\n'
-                + "Email — " + email;
+        return "ID — " + id +
+                "\nFirst name — " + firstName +
+                "\nLast name — " + lastName +
+                "\nEmail — " + email;
     }
 }

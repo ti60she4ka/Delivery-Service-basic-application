@@ -1,13 +1,11 @@
 package services;
 
-import api.repositories.ClientRepository;
 import api.repositories.ShopRepository;
 import api.services.ShopService;
 import model.entities.Product;
 import model.entities.ProductStorage;
 import model.entities.Shop;
 import model.enums.Category;
-import repositories.ClientRepositoryImpl;
 import repositories.ShopRepositoryImpl;
 
 import java.util.ArrayList;
@@ -53,15 +51,28 @@ public class ShopServiceImpl extends AbstractServiceImpl<Shop> implements ShopSe
     }
 
     @Override
-    public List<ProductStorage> getProductStoragesFromAllShops() {
-        return getAllProductStorages();
+    public List<ProductStorage> getAllProductStorages() {
+        List<ProductStorage> productStorages = new ArrayList<>();
+        shopRepository.getAll().forEach(shop -> productStorages.addAll(shop.getProductStorages()));
+
+        return  productStorages;
     }
 
     @Override
-    public List<ProductStorage> getAllProductStoragesByCategoriesContains(EnumSet<Category> categories) {
+    public List<ProductStorage> getAllProductStoragesByCategoriesContainsOneOf(EnumSet<Category> categories) {
         return getAllProductStorages().stream()
-                .filter(productStorage -> productStorage.getProduct().getCategories().containsAll(categories))
+                .filter(item -> isProductContainsOneOfCategory(item.getProduct(), categories))
                 .collect(Collectors.toList());
+    }
+
+    private boolean isProductContainsOneOfCategory(Product product, EnumSet<Category> categories){
+        for (Category category : categories){
+            if(product.getCategories().contains(category)){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
@@ -78,12 +89,8 @@ public class ShopServiceImpl extends AbstractServiceImpl<Shop> implements ShopSe
                 .collect(Collectors.toList());
     }
 
-    private List<ProductStorage> getAllProductStorages(){
-        List<ProductStorage> productStorages = new ArrayList<>();
-        List<Shop> shops = shopRepository.getAll();
-
-        shops.forEach(shop -> productStorages.addAll(shop.getProductStorages()));
-
-        return  productStorages;
+    @Override
+    public void setAll(List<Shop> shops) {
+        shopRepository.setAll(shops);
     }
 }

@@ -1,0 +1,24 @@
+package menu.actions.product;
+
+import controllers.ProductController;
+import menu.actions.Action;
+import model.entities.Product;
+
+import java.util.List;
+
+public class ShowAllProductsAction implements Action {
+    @Override
+    public void doAction(int index) {
+        List<Product> products = ProductController.getInstance().getAll();
+
+        if (products.size() != 0) {
+            for (Product product : products) {
+                System.out.println(product.toString());
+                System.out.println();
+            }
+        } else {
+            System.out.println("The product list is empty.");
+            System.out.println();
+        }
+    }
+}

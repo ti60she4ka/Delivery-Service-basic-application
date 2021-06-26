@@ -13,11 +13,13 @@ public interface ShopService extends AbstractService<Shop> {
 
     void deleteProductFromShops(Product product);
 
-    List<ProductStorage> getProductStoragesFromAllShops();
+    List<ProductStorage> getAllProductStorages();
 
-    List<ProductStorage> getAllProductStoragesByCategoriesContains(EnumSet<Category> categories);
+    List<ProductStorage> getAllProductStoragesByCategoriesContainsOneOf(EnumSet<Category> categories);
 
     List<ProductStorage> getAllProductStoragesOrderByPrice();
 
     List<ProductStorage> getAllProductStoragesOrderByPriceDesc();
+
+    void setAll(List<Shop> shops);
 }

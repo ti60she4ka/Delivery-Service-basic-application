@@ -14,27 +14,30 @@ public class Product extends BaseEntity {
     private double price;
     private String nameOfShop; // Name of the shop where the product is located
 
-    public Product(String name, EnumSet<Category> categories){
+    public Product(String name, EnumSet<Category> categories) {
         this.name = name;
         this.categories = categories;
     }
 
-    public Product(Product product){
-        name = product.name;
-        categories = EnumSet.copyOf(product.categories);
+    public Product(Product product) {
+        this.id = product.getId();
+        this.name = product.getName();
+        this.categories = EnumSet.copyOf(product.getCategories());
+        this.price = product.getPrice();
+        this.nameOfShop = product.getNameOfShop();
     }
 
     @Override
     public String toString() {
-        return "ID — " + id + '\n'
-                + "Name — " + name + '\n'
-                + "Categories:" + categoriesToString();
+        return "ID — " + id +
+                "\nName — " + name +
+                "\nCategories:" + categoriesToString();
     }
 
-    private String categoriesToString(){
+    private String categoriesToString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for(Category category : categories){
-            stringBuilder.append('\n').append("\t— ").append(category.toString());
+        for (Category category : categories) {
+            stringBuilder.append("\n\t— ").append(category.toString());
         }
 
         return stringBuilder.toString();

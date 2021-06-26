@@ -1,6 +1,8 @@
 package controllers;
 
 import api.services.ClientService;
+import exceptions.ClientNotFoundException;
+import exceptions.EntityCannotBeAddedException;
 import exceptions.EntityNotFoundException;
 import model.entities.Client;
 import services.ClientServiceImpl;
@@ -23,19 +25,23 @@ public class ClientController {
         return instance;
     }
 
-    public void createClient(Client client){
+    public void create(Client client) throws EntityCannotBeAddedException {
         clientService.create(client);
     }
 
-    public List<Client> getClients(){
+    public List<Client> getAll(){
         return clientService.getAll();
     }
 
-    public void deleteClient(long id) throws EntityNotFoundException {
-        clientService.delete(id);
+    public void deleteById(long id) throws EntityNotFoundException {
+        clientService.deleteById(id);
     }
 
-    public Client getClient(long id) throws EntityNotFoundException {
-        return clientService.get(id);
+    public Client getById(long id) throws EntityNotFoundException {
+        return clientService.getById(id);
+    }
+
+    public Client get(Client client) throws ClientNotFoundException {
+        return clientService.get(client);
     }
 }

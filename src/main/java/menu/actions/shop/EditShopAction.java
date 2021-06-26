@@ -3,6 +3,7 @@ package menu.actions.shop;
 import controllers.ShopController;
 import exceptions.EntityNotFoundException;
 import menu.actions.Action;
+import model.entities.ProductStorage;
 import model.entities.Shop;
 import utilities.ConsoleUtility;
 import utilities.Json;
@@ -12,7 +13,7 @@ import java.util.List;
 public class EditShopAction implements Action {
     @Override
     public void doAction(int index) throws EntityNotFoundException {
-        List<Shop> shops = ShopController.getInstance().getShops();
+        List<Shop> shops = ShopController.getInstance().getAll();
 
         if (shops.size() == 0) {
             System.out.println("The shop list is empty.");
@@ -25,7 +26,7 @@ public class EditShopAction implements Action {
         System.out.print("Enter ID of the client which you want to edit: ");
 
         long id = Long.parseLong(ConsoleUtility.getScanner().nextLine());
-        Shop shop = ShopController.getInstance().getShop(id);
+        Shop shop = ShopController.getInstance().getById(id);
 
         editShop(shop);
 
@@ -52,6 +53,7 @@ public class EditShopAction implements Action {
             case 1:
                 System.out.print("Enter a new name: ");
                 shop.setName(ConsoleUtility.getScanner().nextLine());
+                updateProductsInShop(shop);
                 break;
             case 2:
                 System.out.print("Enter a new city: ");
@@ -59,6 +61,12 @@ public class EditShopAction implements Action {
                 break;
             default:
                 System.out.println("There is no such item in the menu.");
+        }
+    }
+
+    private void updateProductsInShop(Shop shop){
+        for (ProductStorage item : shop.getProductStorages()){
+            item.getProduct().setNameOfShop(shop.getName());
         }
     }
 }

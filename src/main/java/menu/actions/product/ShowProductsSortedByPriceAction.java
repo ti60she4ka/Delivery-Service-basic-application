@@ -1,16 +1,22 @@
 package menu.actions.product;
 
-import api.services.ProductService;
 import controllers.ShopController;
 import menu.actions.Action;
 import model.entities.ProductStorage;
+import model.enums.SortType;
 
 import java.util.List;
 
 public class ShowProductsSortedByPriceAction implements Action {
+    private final SortType sortType;
+
+    public ShowProductsSortedByPriceAction(SortType sortType){
+        this.sortType = sortType;
+    }
+
     @Override
     public void doAction(int index) throws Exception {
-        List<ProductStorage> productStorages = ShopController.getInstance().getAllProductStoragesOrderByPrice();
+        List<ProductStorage> productStorages = ShopController.getInstance().getAllProductStoragesOrderByPrice(sortType);
 
         if(productStorages.size() == 0){
             System.out.println("The product list is empty");

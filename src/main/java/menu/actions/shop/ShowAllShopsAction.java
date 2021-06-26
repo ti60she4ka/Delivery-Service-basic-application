@@ -1,9 +1,7 @@
 package menu.actions.shop;
 
-import controllers.ClientController;
 import controllers.ShopController;
 import menu.actions.Action;
-import model.entities.Client;
 import model.entities.Shop;
 
 import java.util.List;
@@ -11,7 +9,7 @@ import java.util.List;
 public class ShowAllShopsAction implements Action {
     @Override
     public void doAction(int index) {
-        List<Shop> shops = ShopController.getInstance().getShops();
+        List<Shop> shops = ShopController.getInstance().getAll();
 
         if (shops.size() != 0) {
             for (Shop shop : shops) {

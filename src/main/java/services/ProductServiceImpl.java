@@ -1,10 +1,8 @@
 package services;
 
-import api.repositories.ClientRepository;
 import api.repositories.ProductRepository;
 import api.services.ProductService;
 import model.entities.Product;
-import repositories.ClientRepositoryImpl;
 import repositories.ProductRepositoryImpl;
 
 public class ProductServiceImpl extends AbstractServiceImpl<Product> implements ProductService {

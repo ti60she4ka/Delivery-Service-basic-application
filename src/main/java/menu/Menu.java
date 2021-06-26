@@ -1,6 +1,5 @@
 package menu;
 
-import exceptions.EntityNotFoundException;
 import lombok.Getter;
 import lombok.Setter;
 import utilities.ConsoleUtility;

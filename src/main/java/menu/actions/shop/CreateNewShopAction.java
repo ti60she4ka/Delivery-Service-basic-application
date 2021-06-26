@@ -1,17 +1,18 @@
 package menu.actions.shop;
 
 import controllers.ShopController;
+import exceptions.EntityCannotBeAddedException;
 import menu.actions.Action;
 import model.entities.Shop;
 import utilities.ConsoleUtility;
 import utilities.Json;
 
-public class AddNewShopAction implements Action {
+public class CreateNewShopAction implements Action {
     @Override
-    public void doAction(int index) {
+    public void doAction(int index) throws EntityCannotBeAddedException {
         Shop shop = getNewShop();
 
-        ShopController.getInstance().createShop(shop);
+        ShopController.getInstance().create(shop);
         System.out.println("\nNew shop added successfully!\n");
 
         Json.serializeShopDataStorage();

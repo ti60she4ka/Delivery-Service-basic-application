@@ -1,17 +1,21 @@
 package model.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductStorage {
     private Product product;
     private int quantity;
 
-    public ProductStorage(Product product, int quantity){
-        this.product = product;
-        this.quantity = quantity;
+    public ProductStorage(ProductStorage productStorage){
+        this.product = new Product(productStorage.getProduct());
+        this.quantity = productStorage.getQuantity();
     }
 
     @Override

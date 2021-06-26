@@ -1,11 +1,9 @@
 package controllers;
 
-import api.services.ClientService;
 import api.services.ProductService;
+import exceptions.EntityCannotBeAddedException;
 import exceptions.EntityNotFoundException;
-import model.entities.Client;
 import model.entities.Product;
-import services.ClientServiceImpl;
 import services.ProductServiceImpl;
 
 import java.util.List;
@@ -26,19 +24,19 @@ public class ProductController {
         return instance;
     }
 
-    public void createProduct(Product product){
+    public void create(Product product) throws EntityCannotBeAddedException {
         productService.create(product);
     }
 
-    public List<Product> getProducts(){
+    public List<Product> getAll(){
         return productService.getAll();
     }
 
-    public void deleteProduct(long id) throws EntityNotFoundException {
-        productService.delete(id);
+    public void deleteById(long id) throws EntityNotFoundException {
+        productService.deleteById(id);
     }
 
-    public Product getProduct(long id) throws EntityNotFoundException {
-        return productService.get(id);
+    public Product getById(long id) throws EntityNotFoundException {
+        return productService.getById(id);
     }
 }

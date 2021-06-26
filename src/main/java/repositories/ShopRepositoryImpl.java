@@ -3,7 +3,6 @@ package repositories;
 import api.repositories.ShopRepository;
 import model.entities.Product;
 import model.entities.Shop;
-import storages.ClientDataStorage;
 import storages.ShopDataStorage;
 
 import java.util.List;
@@ -31,5 +30,10 @@ public class ShopRepositoryImpl extends AbstractRepositoryImpl<Shop> implements 
         for (Shop shop : shopDataStorage.getEntities()){
             shop.getProductStorages().removeIf(productStorage -> productStorage.getProduct().equals(product));
         }
+    }
+
+    @Override
+    public void setAll(List<Shop> shops) {
+        shopDataStorage.setEntities(shops);
     }
 }

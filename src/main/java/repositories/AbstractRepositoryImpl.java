@@ -1,7 +1,7 @@
 package repositories;
 
 import api.repositories.AbstractRepository;
-import exceptions.EntityListIsEmptyException;
+import exceptions.EntityCannotBeAddedException;
 import exceptions.EntityNotFoundException;
 import model.entities.BaseEntity;
 import storages.AbstractDataStorage;
@@ -12,12 +12,12 @@ public abstract class AbstractRepositoryImpl<T extends BaseEntity> implements Ab
     protected AbstractDataStorage<T> abstractDataStorage;
     protected String entityType;
 
-    AbstractRepositoryImpl(AbstractDataStorage<T> dataStorage){
+    protected AbstractRepositoryImpl(AbstractDataStorage<T> dataStorage){
         abstractDataStorage = dataStorage;
     }
 
     @Override
-    public void create(T entity){
+    public void create(T entity) throws EntityCannotBeAddedException {
         entity.setId(abstractDataStorage.generateEntityId());
         abstractDataStorage.getEntities().add(entity);
     }
@@ -28,7 +28,7 @@ public abstract class AbstractRepositoryImpl<T extends BaseEntity> implements Ab
     }
 
     @Override
-    public void delete(long id) throws EntityNotFoundException {
+    public void deleteById(long id) throws EntityNotFoundException {
         T entityForDelete = abstractDataStorage.getEntities()
                 .stream()
                 .filter(entity -> entity.getId() == id)
@@ -39,7 +39,7 @@ public abstract class AbstractRepositoryImpl<T extends BaseEntity> implements Ab
     }
 
     @Override
-    public T get(long id) throws EntityNotFoundException {
+    public T getById(long id) throws EntityNotFoundException {
         return abstractDataStorage.getEntities()
                 .stream()
                 .filter(entity -> entity.getId() == id)

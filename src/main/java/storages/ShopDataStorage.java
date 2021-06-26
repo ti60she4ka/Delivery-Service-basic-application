@@ -1,8 +1,10 @@
 package storages;
 
+import lombok.Setter;
 import model.entities.Shop;
 
 public class ShopDataStorage extends AbstractDataStorage<Shop> {
+    @Setter
     private static ShopDataStorage instance;
 
     private ShopDataStorage(){}
@@ -13,9 +15,5 @@ public class ShopDataStorage extends AbstractDataStorage<Shop> {
         }
 
         return instance;
-    }
-
-    public static void setInstance(ShopDataStorage instance) {
-        ShopDataStorage.instance = instance;
     }
 }

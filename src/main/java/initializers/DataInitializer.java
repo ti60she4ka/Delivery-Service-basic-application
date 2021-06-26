@@ -8,5 +8,6 @@ public class DataInitializer implements Initializer{
         Json.deserializeClientDataStorage();
         Json.deserializeShopDataStorage();
         Json.deserializeProductDataStorage();
+        Json.deserializeOrderDataStorage();
     }
 }

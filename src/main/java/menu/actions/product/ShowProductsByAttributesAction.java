@@ -77,7 +77,7 @@ public class ShowProductsByAttributesAction implements Action {
     }
 
     private void filterByShops(List<ProductStorage> productStorages){
-        List<Shop> allShops = ShopController.getInstance().getShops();
+        List<Shop> allShops = ShopController.getInstance().getAll();
         List<Shop> shopsForSearch = new ArrayList<>();
         while (true) {
             printShops(allShops);

@@ -1,18 +1,18 @@
 package menu.actions.client;
 
 import controllers.ClientController;
+import exceptions.EntityCannotBeAddedException;
 import menu.actions.Action;
 import model.entities.Client;
-import storages.ClientDataStorage;
 import utilities.ConsoleUtility;
 import utilities.Json;
 
-public class AddNewClientAction implements Action {
+public class CreateNewClientAction implements Action {
     @Override
-    public void doAction(int index) {
+    public void doAction(int index) throws EntityCannotBeAddedException {
         Client client = getNewClient();
 
-        ClientController.getInstance().createClient(client);
+        ClientController.getInstance().create(client);
         System.out.println("\nNew client added successfully!\n");
 
         Json.serializeClientDataStorage();
