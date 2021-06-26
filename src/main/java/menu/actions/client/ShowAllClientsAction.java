@@ -13,12 +13,10 @@ public class ShowAllClientsAction implements Action {
 
         if (clients.size() != 0) {
             for (Client client : clients) {
-                System.out.println(client.toString());
-                System.out.println();
+                System.out.println(client.toString() + '\n');
             }
         } else {
-            System.out.println("The client list is empty.");
-            System.out.println();
+            System.out.println("The client list is empty.\n");
         }
     }
 }

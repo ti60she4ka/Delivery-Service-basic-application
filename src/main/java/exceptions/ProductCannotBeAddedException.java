@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class ProductCannotBeAddedException extends EntityCannotBeAddedException {
-    String name;
+    private final String name;
 
     @Override
     public String getMessage() {

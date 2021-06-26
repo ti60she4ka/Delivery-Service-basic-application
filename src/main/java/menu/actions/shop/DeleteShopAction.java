@@ -15,8 +15,7 @@ public class DeleteShopAction implements Action {
         List<Shop> shops = ShopController.getInstance().getAll();
 
         if (shops.size() == 0) {
-            System.out.println("The shop list is empty.");
-            System.out.println();
+            System.out.println("The shop list is empty.\n");
             return;
         }
 
@@ -27,16 +26,14 @@ public class DeleteShopAction implements Action {
         long id = Long.parseLong(ConsoleUtility.getScanner().nextLine());
         ShopController.getInstance().deleteById(id);
 
-        System.out.println("\nShop with the specified ID was successfully deleted.");
+        System.out.println("\nShop with the specified ID was successfully deleted.\n");
 
-        System.out.println();
         Json.serializeShopDataStorage();
     }
 
     private void printListOfShops(List<Shop> shops) {
         for (Shop shop : shops) {
-            System.out.println(shop.toString());
-            System.out.println();
+            System.out.println(shop.toString() + '\n');
         }
     }
 }

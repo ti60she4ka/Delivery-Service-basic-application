@@ -19,8 +19,7 @@ public class EditProductAction implements Action {
         List<Product> products = ProductController.getInstance().getAll();
 
         if (products.size() == 0) {
-            System.out.println("The product list is empty.");
-            System.out.println();
+            System.out.println("The product list is empty.\n");
             return;
         }
 
@@ -42,8 +41,7 @@ public class EditProductAction implements Action {
 
     private void printListOfProducts(List<Product> products) {
         for (Product product : products) {
-            System.out.println(product.toString());
-            System.out.println();
+            System.out.println(product.toString() + '\n');
         }
     }
 

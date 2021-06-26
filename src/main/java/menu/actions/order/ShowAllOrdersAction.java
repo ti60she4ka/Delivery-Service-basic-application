@@ -13,12 +13,10 @@ public class ShowAllOrdersAction implements Action {
 
         if (orders.size() != 0) {
             for (Order order : orders) {
-                System.out.println(order.toString());
-                System.out.println();
+                System.out.println(order.toString() + '\n');
             }
         } else {
-            System.out.println("The order list is empty.");
-            System.out.println();
+            System.out.println("The order list is empty.\n");
         }
     }
 }

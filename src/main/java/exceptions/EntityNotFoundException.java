@@ -6,8 +6,8 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class EntityNotFoundException extends Exception {
-    String entityType;
-    Long id;
+    private final String entityType;
+    private final Long id;
 
     @Override
     public String getMessage() {

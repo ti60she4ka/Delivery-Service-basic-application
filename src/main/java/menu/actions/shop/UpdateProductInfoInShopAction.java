@@ -15,38 +15,29 @@ public class UpdateProductInfoInShopAction implements Action {
         List<Shop> shops = ShopController.getInstance().getAll();
 
         if(shops.size() == 0){
-            System.out.println("The shop list is empty.");
-            System.out.println();
+            System.out.println("The shop list is empty.\n");
             return;
         }
 
         printShopNames(shops);
 
-        Shop shop;
         System.out.print("Enter the shop: ");
-        int shopIndex = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
-        shop = shops.get(shopIndex - 1);
-
-        List<ProductStorage> productStorages = shop.getProductStorages();
+        int entityIndex = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
+        List<ProductStorage> productStorages = shops.get(entityIndex - 1).getProductStorages();
 
         if(productStorages.size() == 0){
-            System.out.println("\nThere are no products in the shop.");
-            System.out.println();
+            System.out.println("\nThere are no products in the shop.\n");
             return;
         }
 
         printProductStorages(productStorages);
 
         System.out.print("Enter the product which you want to edit: ");
+        entityIndex = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
+        editProductStorage(productStorages.get(entityIndex - 1));
 
-        int productStorageIndex = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
-        ProductStorage productStorage = productStorages.get(productStorageIndex - 1);
+        System.out.println("\nThe product information was successfully changed.\n");
 
-        editProductStorage(productStorage);
-
-        System.out.println("\nThe product information was successfully changed.");
-
-        System.out.println();
         Json.serializeShopDataStorage();
     }
 

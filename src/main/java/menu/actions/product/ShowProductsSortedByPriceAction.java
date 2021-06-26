@@ -19,8 +19,7 @@ public class ShowProductsSortedByPriceAction implements Action {
         List<ProductStorage> productStorages = ShopController.getInstance().getAllProductStoragesOrderByPrice(sortType);
 
         if(productStorages.size() == 0){
-            System.out.println("The product list is empty");
-            System.out.println();
+            System.out.println("The product list is empty.\n");
         }
 
         printProductStorages(productStorages);

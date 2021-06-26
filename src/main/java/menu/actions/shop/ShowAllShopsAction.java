@@ -13,12 +13,10 @@ public class ShowAllShopsAction implements Action {
 
         if (shops.size() != 0) {
             for (Shop shop : shops) {
-                System.out.println(shop.toString());
-                System.out.println();
+                System.out.println(shop.toString() + '\n');
             }
         } else {
-            System.out.println("The shop list is empty.");
-            System.out.println();
+            System.out.println("The shop list is empty.\n");
         }
     }
 }

@@ -16,8 +16,7 @@ public class DeleteProductAction implements Action {
         List<Product> products = ProductController.getInstance().getAll();
 
         if (products.size() == 0) {
-            System.out.println("The product list is empty.");
-            System.out.println();
+            System.out.println("The product list is empty.\n");
             return;
         }
 
@@ -31,17 +30,15 @@ public class DeleteProductAction implements Action {
 
         ProductController.getInstance().deleteById(id);
 
-        System.out.println("\nProduct with the specified ID was successfully deleted.");
+        System.out.println("\nProduct with the specified ID was successfully deleted.\n");
 
-        System.out.println();
         Json.serializeProductDataStorage();
         Json.serializeShopDataStorage();
     }
 
     private void printListOfProducts(List<Product> products) {
         for (Product product : products) {
-            System.out.println(product.toString());
-            System.out.println();
+            System.out.println(product.toString() + '\n');
         }
     }
 }

@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class ClientCannotBeAddedException extends EntityCannotBeAddedException {
-    String email;
+    private final String email;
 
     @Override
     public String getMessage() {

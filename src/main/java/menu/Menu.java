@@ -15,10 +15,9 @@ public class Menu {
     public void executeMenuItem(){
         try {
             int choice = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
-
-            MenuItem item = menuItems.get(choice - 1);
             System.out.println();
-            item.getAction().doAction(choice - 1);
+
+            menuItems.get(choice - 1).getAction().doAction(choice - 1);
         } catch (NumberFormatException exception) {
             System.out.println("\nInvalid data entered.\n");
         } catch (IndexOutOfBoundsException exception) {

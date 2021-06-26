@@ -17,23 +17,20 @@ public class AddProductToShopAction implements Action {
         List<Shop> shops = ShopController.getInstance().getAll();
 
         if(shops.size() == 0){
-            System.out.println("The shop list is empty.");
-            System.out.println();
+            System.out.println("The shop list is empty.\n");
             return;
         }
 
         printShopNames(shops);
 
-        Shop shop;
         System.out.print("Enter the shop to which you want to add the product: ");
-        int shopIndex = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
-        shop = shops.get(shopIndex - 1);
+        int entityIndex = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
+        Shop shop = shops.get(entityIndex - 1);
 
         List<Product> products = ProductController.getInstance().getAll();
 
         if(products.size() == 0){
-            System.out.println("The product list is empty.");
-            System.out.println();
+            System.out.println("The product list is empty.\n");
             return;
         }
 
@@ -41,8 +38,8 @@ public class AddProductToShopAction implements Action {
 
         System.out.print("Enter the product which you want to add to the shop: ");
 
-        int productIndex = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
-        Product product = new Product(products.get(productIndex - 1));
+        entityIndex = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
+        Product product = new Product(products.get(entityIndex - 1));
 
         System.out.print("\nPrice — ");
         double price = Double.parseDouble(ConsoleUtility.getScanner().nextLine());
@@ -54,9 +51,8 @@ public class AddProductToShopAction implements Action {
         product.setNameOfShop(shop.getName());
 
         shop.getProductStorages().add(new ProductStorage(product, quantity));
-        System.out.println("\nThe product was successfully added to the shop.");
+        System.out.println("\nThe product was successfully added to the shop.\n");
 
-        System.out.println();
         Json.serializeShopDataStorage();
     }
 

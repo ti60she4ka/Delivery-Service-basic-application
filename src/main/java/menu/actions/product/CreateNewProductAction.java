@@ -22,13 +22,11 @@ public class CreateNewProductAction implements Action {
     }
 
     private Product getNewProduct() {
-        String name;
         EnumSet<Category> categories = EnumSet.noneOf(Category.class);
         Category[] allTheCategories = Category.values();
-        System.out.println("Enter the product information:");
 
-        System.out.print("Name — ");
-        name = ConsoleUtility.getScanner().nextLine();
+        System.out.print("Enter the product information:\nName — ");
+        String name = ConsoleUtility.getScanner().nextLine();
 
         while (true) {
             System.out.println();

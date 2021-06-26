@@ -15,8 +15,7 @@ public class DeleteClientAction implements Action {
         List<Client> clients = ClientController.getInstance().getAll();
 
         if (clients.size() == 0) {
-            System.out.println("The client list is empty.");
-            System.out.println();
+            System.out.println("The client list is empty.\n");
             return;
         }
 
@@ -26,16 +25,14 @@ public class DeleteClientAction implements Action {
         long id = Long.parseLong(ConsoleUtility.getScanner().nextLine());
         ClientController.getInstance().deleteById(id);
 
-        System.out.println("\nClient with the specified ID was successfully deleted.");
+        System.out.println("\nClient with the specified ID was successfully deleted.\n");
 
-        System.out.println();
         Json.serializeClientDataStorage();
     }
 
     private void printListOfClients(List<Client> clients) {
         for (Client client : clients) {
-            System.out.println(client.toString());
-            System.out.println();
+            System.out.println(client.toString() + '\n');
         }
     }
 }

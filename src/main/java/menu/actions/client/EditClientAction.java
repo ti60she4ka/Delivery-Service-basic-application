@@ -16,8 +16,7 @@ public class EditClientAction implements Action {
         List<Client> clients = ClientController.getInstance().getAll();
 
         if (clients.size() == 0) {
-            System.out.println("The client list is empty.");
-            System.out.println();
+            System.out.println("The client list is empty.\n");
             return;
         }
 
@@ -30,14 +29,12 @@ public class EditClientAction implements Action {
 
         editClient(client);
 
-        System.out.println();
         Json.serializeClientDataStorage();
     }
 
     private void printListOfClients(List<Client> clients) {
         for (Client client : clients) {
-            System.out.println(client.toString());
-            System.out.println();
+            System.out.println(client.toString() + '\n');
         }
     }
 
@@ -66,6 +63,7 @@ public class EditClientAction implements Action {
             default:
                 System.out.println("There is no such item in the menu.");
         }
+        System.out.println();
     }
 
     private String getNewEmail() throws ClientCannotBeAddedException {

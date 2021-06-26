@@ -13,12 +13,10 @@ public class ShowAllProductsAction implements Action {
 
         if (products.size() != 0) {
             for (Product product : products) {
-                System.out.println(product.toString());
-                System.out.println();
+                System.out.println(product.toString() + '\n');
             }
         } else {
-            System.out.println("The product list is empty.");
-            System.out.println();
+            System.out.println("The product list is empty.\n");
         }
     }
 }
