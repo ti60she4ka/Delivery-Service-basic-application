@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 public class Order extends BaseEntity {
-    private Client client;
+    private User user;
     private String address;
     private List<ProductStorage> productStorages;
     private double price;
@@ -18,7 +18,7 @@ public class Order extends BaseEntity {
     @Override
     public String toString() {
         return "Id = " + id +
-                "\nClient: " + client.getFirstName() + " " + client.getLastName() + ", " + client.getEmail() +
+                "\nClient: " + user.getFirstName() + " " + user.getLastName() + ", " + user.getEmail() +
                 "\nAddress: " + address +
                 "\nTotal price = " + price +
                 "\nProducts:" + ProductStoragesToString();

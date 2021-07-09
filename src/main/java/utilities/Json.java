@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Json {
-    private static final String CLIENT_DATA_STORAGE_PATH = "src/main/java/files/ClientDataStorage.json";
+    private static final String USER_DATA_STORAGE_PATH = "src/main/java/files/UserDataStorage.json";
     private static final String SHOP_DATA_STORAGE_PATH = "src/main/java/files/ShopDataStorage.json";
     private static final String PRODUCT_DATA_STORAGE_PATH = "src/main/java/files/ProductDataStorage.json";
     private static final String ORDER_DATA_STORAGE_PATH = "src/main/java/files/OrderDataStorage.json";
@@ -18,8 +18,8 @@ public class Json {
     private Json() {
     }
 
-    public static void serializeClientDataStorage() {
-        serializeDataStorage(ClientDataStorage.getInstance(), CLIENT_DATA_STORAGE_PATH);
+    public static void serializeUserDataStorage() {
+        serializeDataStorage(UserDataStorage.getInstance(), USER_DATA_STORAGE_PATH);
     }
 
     public static void serializeShopDataStorage() {
@@ -34,10 +34,10 @@ public class Json {
         serializeDataStorage(OrderDataStorage.getInstance(), ORDER_DATA_STORAGE_PATH);
     }
 
-    public static void deserializeClientDataStorage() {
-        try (FileReader fileReader = new FileReader(CLIENT_DATA_STORAGE_PATH)) {
+    public static void deserializeUserDataStorage() {
+        try (FileReader fileReader = new FileReader(USER_DATA_STORAGE_PATH)) {
 
-            ClientDataStorage.setInstance(gson.fromJson(fileReader, ClientDataStorage.class));
+            UserDataStorage.setInstance(gson.fromJson(fileReader, UserDataStorage.class));
 
         } catch (IOException e) {
             System.out.println(e.toString());

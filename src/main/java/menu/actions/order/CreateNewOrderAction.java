@@ -1,9 +1,9 @@
 package menu.actions.order;
 
-import controllers.ClientController;
+import controllers.UserController;
 import controllers.OrderController;
 import controllers.ShopController;
-import exceptions.ClientNotFoundException;
+import exceptions.UserNotFoundException;
 import exceptions.NotEnoughProductException;
 import menu.actions.Action;
 import model.entities.*;
@@ -22,13 +22,13 @@ public class CreateNewOrderAction implements Action {
 
         List<ProductStorage> orderedProductStorages = getOrderedProductStorages();
         double price = getPrice(orderedProductStorages);
-        Client client = getClient();
+        User user = getClient();
         String address;
 
         System.out.print("\nEnter the delivery address: ");
         address = ConsoleUtility.getScanner().nextLine();
 
-        OrderController.getInstance().create(new Order(client, address, orderedProductStorages, price));
+        OrderController.getInstance().create(new Order(user, address, orderedProductStorages, price));
 
         System.out.println("\nThe order was successfully added.\n");
         ShopController.getInstance().setAll(shops);
@@ -97,7 +97,7 @@ public class CreateNewOrderAction implements Action {
         return productStorage;
     }
 
-    private Client getClient() throws ClientNotFoundException {
+    private User getClient() throws UserNotFoundException {
         String firstName;
         String lastName;
         String email;
@@ -111,9 +111,10 @@ public class CreateNewOrderAction implements Action {
         System.out.print("Enter your email: ");
         email = ConsoleUtility.getScanner().nextLine();
 
-        Client client = ClientController.getInstance().get(new Client(firstName, lastName, email));
+        User user = UserController.getInstance()
+                .get(User.builder().firstName(firstName).lastName(lastName).email(email).build());
 
-        return new Client(client);
+        return new User(user);
     }
 
     private double getPrice(List<ProductStorage> productStorages){

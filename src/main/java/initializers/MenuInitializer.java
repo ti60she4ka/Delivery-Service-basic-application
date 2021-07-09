@@ -3,10 +3,10 @@ package initializers;
 import menu.Menu;
 import menu.MenuContext;
 import menu.MenuItem;
-import menu.actions.client.CreateNewClientAction;
-import menu.actions.client.DeleteClientAction;
-import menu.actions.client.EditClientAction;
-import menu.actions.client.ShowAllClientsAction;
+import menu.actions.user.CreateNewUserAction;
+import menu.actions.user.DeleteUserAction;
+import menu.actions.user.EditUserAction;
+import menu.actions.user.ShowAllClientsAction;
 import menu.actions.menu.ExitProgramAction;
 import menu.actions.menu.GoToPreviousMenuAction;
 import menu.actions.menu.GoToSubmenuAction;
@@ -57,7 +57,7 @@ public class MenuInitializer implements Initializer{
         clientServiceMenu.setPreviousMenu(previousMenu);
 
         MenuItem addNewClient = new MenuItem("Add a new client.",
-                null, new CreateNewClientAction());
+                null, new CreateNewUserAction());
         clientServiceMenu.getMenuItems().add(addNewClient);
 
         MenuItem showAllClients = new MenuItem("Show all clients.",
@@ -65,11 +65,11 @@ public class MenuInitializer implements Initializer{
         clientServiceMenu.getMenuItems().add(showAllClients);
 
         MenuItem deleteClient = new MenuItem("Delete client.",
-                null, new DeleteClientAction());
+                null, new DeleteUserAction());
         clientServiceMenu.getMenuItems().add(deleteClient);
 
         MenuItem editClient = new MenuItem("Edit client.",
-                null, new EditClientAction());
+                null, new EditUserAction());
         clientServiceMenu.getMenuItems().add(editClient);
 
         MenuItem backToPreviousMenu = new MenuItem("Back.",

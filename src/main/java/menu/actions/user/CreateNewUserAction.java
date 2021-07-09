@@ -1,28 +1,28 @@
-package menu.actions.client;
+package menu.actions.user;
 
-import controllers.ClientController;
+import controllers.UserController;
 import exceptions.EntityCannotBeAddedException;
 import menu.actions.Action;
-import model.entities.Client;
+import model.entities.User;
 import utilities.ConsoleUtility;
 import utilities.Json;
 
-public class CreateNewClientAction implements Action {
+public class CreateNewUserAction implements Action {
     @Override
     public void doAction(int index) throws EntityCannotBeAddedException {
-        Client client = getNewClient();
+        User user = getNewUser();
 
-        ClientController.getInstance().create(client);
-        System.out.println("\nNew client added successfully!\n");
+        UserController.getInstance().create(user);
+        System.out.println("\nNew user added successfully!\n");
 
-        Json.serializeClientDataStorage();
+        Json.serializeUserDataStorage();
     }
 
-    private Client getNewClient() {
+    private User getNewUser() {
         String firstName;
         String secondName;
         String email;
-        System.out.println("Enter the client information:");
+        System.out.println("Enter the user information:");
 
         System.out.print("First name — ");
         firstName = ConsoleUtility.getScanner().nextLine();
@@ -33,6 +33,6 @@ public class CreateNewClientAction implements Action {
         System.out.print("Email — ");
         email = ConsoleUtility.getScanner().nextLine();
 
-        return new Client(firstName, secondName, email);
+        return User.builder().firstName(firstName).lastName(secondName).email(email).build();
     }
 }
