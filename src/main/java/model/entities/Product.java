@@ -1,37 +1,34 @@
 package model.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import model.enums.Category;
 
-import java.util.EnumSet;
+import java.util.*;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@Builder
 public class Product extends BaseEntity {
     private String name;
-    private EnumSet<Category> categories;
-    private double price;
-    private String nameOfShop; // Name of the shop where the product is located
-
-    public Product(String name, EnumSet<Category> categories) {
-        this.name = name;
-        this.categories = categories;
-    }
+    private List<Category> categories;
+    private Map<String, String> features;
 
     public Product(Product product) {
         this.id = product.getId();
         this.name = product.getName();
-        this.categories = EnumSet.copyOf(product.getCategories());
-        this.price = product.getPrice();
-        this.nameOfShop = product.getNameOfShop();
+        this.categories = new ArrayList<>(product.getCategories());
+        this.features = new HashMap<>(product.getFeatures());
     }
 
     @Override
     public String toString() {
         return "ID — " + id +
                 "\nName — " + name +
-                "\nCategories:" + categoriesToString();
+                "\nCategories:" + categoriesToString() +
+                "\nFeatures:" + featuresToString();
     }
 
     private String categoriesToString() {
@@ -42,4 +39,14 @@ public class Product extends BaseEntity {
 
         return stringBuilder.toString();
     }
+
+    private String featuresToString(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Map.Entry<String, String> entry : features.entrySet()) {
+            stringBuilder.append("\n\t— ").append(entry.getKey()).append(": ").append(entry.getValue());
+        }
+
+        return stringBuilder.toString();
+    }
+
 }
