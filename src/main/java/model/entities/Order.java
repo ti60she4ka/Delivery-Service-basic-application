@@ -3,7 +3,10 @@ package model.entities;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import model.enums.status.OrderStatus;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -11,24 +14,28 @@ import java.util.List;
 @AllArgsConstructor
 public class Order extends BaseEntity {
     private User user;
-    private String address;
-    private List<ProductStorage> productStorages;
-    private double price;
+    private List<Product> products;
+    private double totalPrice;
+    private OrderStatus status;
+    private LocalDate creationDate;
+    private LocalDate updateDate;
+    private LocalDate completionDate;
 
     @Override
     public String toString() {
         return "Id = " + id +
                 "\nClient: " + user.getFirstName() + " " + user.getLastName() + ", " + user.getEmail() +
-                "\nAddress: " + address +
-                "\nTotal price = " + price +
-                "\nProducts:" + ProductStoragesToString();
+                "\nTotal price = " + totalPrice +
+                "\nStatus: " + status +
+                "\nCreation date: " + creationDate +
+                "\nCompletion date: " + completionDate +
+                "\nProducts:" + articlesToString();
     }
 
-    private String ProductStoragesToString(){
+    private String articlesToString(){
         StringBuilder stringBuilder = new StringBuilder();
-        for(ProductStorage item : productStorages){
-            stringBuilder.append("\n\t— ").append(item.toString())
-                    .append(" in ").append(item.getProduct().getNameOfShop());
+        for(Product product : products){
+            stringBuilder.append("\n\t— ").append(product.toString());
         }
 
         return stringBuilder.toString();

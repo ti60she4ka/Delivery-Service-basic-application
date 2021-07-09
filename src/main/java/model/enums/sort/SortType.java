@@ -1,4 +1,4 @@
-package model.enums;
+package model.enums.sort;
 
 public enum SortType {
     DESCENDING,
