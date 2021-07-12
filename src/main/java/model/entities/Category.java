@@ -2,14 +2,14 @@ package model.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import java.util.List;
+import lombok.Setter;
 
 @Getter
+@Setter
 @AllArgsConstructor
 public class Category extends BaseEntity {
     String name;
-    List<Category> subcategories;
+    Category parentCategory;
 
     @Override
     public String toString() {

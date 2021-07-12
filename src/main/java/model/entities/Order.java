@@ -6,6 +6,7 @@ import lombok.Setter;
 import model.enums.status.OrderStatus;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Order extends BaseEntity {
     private User user;
-    private List<Product> products;
+    private Collection<OrderItem> orderItems;
     private double totalPrice;
     private OrderStatus status;
     private LocalDate creationDate;
@@ -29,13 +30,13 @@ public class Order extends BaseEntity {
                 "\nStatus: " + status +
                 "\nCreation date: " + creationDate +
                 "\nCompletion date: " + completionDate +
-                "\nProducts:" + articlesToString();
+                "\nOrder items:" + orderItemsToString();
     }
 
-    private String articlesToString(){
+    private String orderItemsToString(){
         StringBuilder stringBuilder = new StringBuilder();
-        for(Product product : products){
-            stringBuilder.append("\n\t— ").append(product.toString());
+        for(OrderItem item : orderItems){
+            stringBuilder.append("\n\t— ").append(item.toString());
         }
 
         return stringBuilder.toString();

@@ -13,22 +13,15 @@ import java.util.*;
 @Builder
 public class Product extends BaseEntity {
     private String name;
-    private List<Category> categories;
-    private Map<String, String> features;
-
-    public Product(Product product) {
-        this.id = product.getId();
-        this.name = product.getName();
-        this.categories = new ArrayList<>(product.getCategories());
-        this.features = new HashMap<>(product.getFeatures());
-    }
+    private Collection<Category> categories;
+    private Collection<Attribute> attributes;
 
     @Override
     public String toString() {
         return "ID — " + id +
                 "\nName — " + name +
                 "\nCategories:" + categoriesToString() +
-                "\nFeatures:" + featuresToString();
+                "\nAttributes:" + attributesToString();
     }
 
     private String categoriesToString() {
@@ -40,10 +33,10 @@ public class Product extends BaseEntity {
         return stringBuilder.toString();
     }
 
-    private String featuresToString(){
+    private String attributesToString(){
         StringBuilder stringBuilder = new StringBuilder();
-        for (Map.Entry<String, String> entry : features.entrySet()) {
-            stringBuilder.append("\n\t— ").append(entry.getKey()).append(": ").append(entry.getValue());
+        for (Attribute attribute : attributes) {
+            stringBuilder.append("\n\t— ").append(attribute.getName()).append(": ").append(attribute.getValue());
         }
 
         return stringBuilder.toString();
