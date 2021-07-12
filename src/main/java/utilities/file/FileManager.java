@@ -1,18 +1,23 @@
 package utilities.file;
 
+import exceptions.FileIsNotValidException;
+import exceptions.FilePathIsNotValidException;
 import lombok.Setter;
+import model.entities.BaseEntity;
 import storages.AbstractDataStorage;
 import utilities.parsers.Parser;
 import utilities.reader.TextReader;
+import utilities.validators.Validator;
 import utilities.writer.TextWriter;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 
 public class FileManager {
-    private static FileManager instance;
     @Setter
     private static Parser parser;
+    @Setter
+    private static Validator validator;
 
     private FileManager(){
 
@@ -24,9 +29,14 @@ public class FileManager {
     }
 
     public static AbstractDataStorage<?> deserializeDataStorage(String path, Type type) throws IOException {
-        String data = TextReader.readFromFile(path);
-        //validation
+        try {
+            validator.validate(path);
+            String data = TextReader.readFromFile(path);
+            return parser.deserializeDataStorage(data, type);
+        } catch (FileIsNotValidException | FilePathIsNotValidException e) {
+            System.out.println(e.getMessage());
+        }
 
-        return parser.deserializeDataStorage(data, type);
+        return null;
     }
 }
