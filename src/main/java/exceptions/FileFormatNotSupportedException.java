@@ -3,11 +3,11 @@ package exceptions;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class FileIsNotValidException extends RuntimeException {
+public class FileFormatNotSupportedException extends RuntimeException {
     private final String path;
 
     @Override
     public String getMessage() {
-        return "File with path = '" + path + "' isn't valid.";
+        return "The file format '" + path + "' is not supported";
     }
 }

@@ -1,7 +1,5 @@
 package utilities.parsers;
 
-import storages.AbstractDataStorage;
-
 import java.lang.reflect.Type;
 
 public interface Parser {

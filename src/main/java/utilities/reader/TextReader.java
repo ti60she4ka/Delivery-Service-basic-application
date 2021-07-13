@@ -7,6 +7,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class TextReader {
+
+    private TextReader(){
+
+    }
+
     public static String readFromFile(String filePath) throws IOException {
         Path path = Paths.get(filePath);
 

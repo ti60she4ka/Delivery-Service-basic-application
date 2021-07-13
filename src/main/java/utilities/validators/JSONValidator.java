@@ -1,30 +1,24 @@
 package utilities.validators;
 
 import exceptions.FileIsNotValidException;
-import exceptions.IllegalFileFormatException;
 import utilities.reader.TextReader;
 
 import java.io.IOException;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class JSONValidator implements Validator {
     @Override
-    public boolean validate(String path) throws FileIsNotValidException, IllegalFileFormatException, IOException {
-        if (path == null || !path.endsWith(".json")) {
-            throw new IllegalFileFormatException(path, "json");
-        }
-
+    public void validate(String path) throws IOException {
         String text = TextReader.readFromFile(path);
 
-        if(isBracketsValid(text)){
-            return true;
-        }else{
+        if (!isBracketsValid(text)) {
             throw new FileIsNotValidException(path);
         }
     }
 
     private boolean isBracketsValid(String text) {
-        Stack<Character> brackets = new Stack<>();
+        Deque<Character> brackets = new ArrayDeque<>();
         String startBrackets = "{[";
         String endBrackets = "}]";
         for (int i = 0; i < text.length(); i++) {
@@ -36,7 +30,7 @@ public class JSONValidator implements Validator {
             }
 
             if (endBrackets.indexOf(symbol) >= 0) {
-                if (brackets.size() == 0) {
+                if (brackets.isEmpty()) {
                     return false;
                 }
 
@@ -48,6 +42,6 @@ public class JSONValidator implements Validator {
             }
         }
 
-        return brackets.size() == 0;
+        return brackets.isEmpty();
     }
 }
