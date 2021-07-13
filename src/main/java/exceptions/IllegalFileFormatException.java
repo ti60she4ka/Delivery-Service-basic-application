@@ -3,7 +3,7 @@ package exceptions;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class FilePathIsNotValidException extends Exception {
+public class IllegalFileFormatException extends RuntimeException {
     String path;
     String fileType;
 

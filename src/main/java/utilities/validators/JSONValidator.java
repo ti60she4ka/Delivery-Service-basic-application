@@ -1,19 +1,17 @@
 package utilities.validators;
 
 import exceptions.FileIsNotValidException;
-import exceptions.FilePathIsNotValidException;
+import exceptions.IllegalFileFormatException;
 import utilities.reader.TextReader;
 
 import java.io.IOException;
-import java.util.ArrayDeque;
-import java.util.Queue;
 import java.util.Stack;
 
 public class JSONValidator implements Validator {
     @Override
-    public boolean validate(String path) throws FileIsNotValidException, FilePathIsNotValidException, IOException {
+    public boolean validate(String path) throws FileIsNotValidException, IllegalFileFormatException, IOException {
         if (path == null || !path.endsWith(".json")) {
-            throw new FilePathIsNotValidException(path, "json");
+            throw new IllegalFileFormatException(path, "json");
         }
 
         String text = TextReader.readFromFile(path);

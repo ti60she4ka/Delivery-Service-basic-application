@@ -1,10 +1,8 @@
 package utilities.file;
 
 import exceptions.FileIsNotValidException;
-import exceptions.FilePathIsNotValidException;
+import exceptions.IllegalFileFormatException;
 import lombok.Setter;
-import model.entities.BaseEntity;
-import storages.AbstractDataStorage;
 import utilities.parsers.Parser;
 import utilities.reader.TextReader;
 import utilities.validators.Validator;
@@ -23,17 +21,17 @@ public class FileManager {
 
     }
 
-    public static void serializeDataStorage(AbstractDataStorage<?> dataStorage, String path) throws IOException {
-        String data = parser.serializeDataStorage(dataStorage);
+    public static void serialize(Object objectToSerialize, String path, Type type) throws IOException {
+        String data = parser.serialize(objectToSerialize, type);
         TextWriter.writeToFile(data, path);
     }
 
-    public static AbstractDataStorage<?> deserializeDataStorage(String path, Type type) throws IOException {
+    public static Object deserialize(String path, Type type) throws IOException {
         try {
             validator.validate(path);
             String data = TextReader.readFromFile(path);
-            return parser.deserializeDataStorage(data, type);
-        } catch (FileIsNotValidException | FilePathIsNotValidException e) {
+            return parser.deserialize(data, type);
+        } catch (FileIsNotValidException | IllegalFileFormatException e) {
             System.out.println(e.getMessage());
         }
 

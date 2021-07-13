@@ -4,7 +4,6 @@ import storages.OrderDataStorage;
 import storages.ProductDataStorage;
 import storages.ShopDataStorage;
 import storages.UserDataStorage;
-import utilities.Json;
 import utilities.file.FileManager;
 
 import java.io.IOException;
@@ -19,16 +18,16 @@ public class DataInitializer implements Initializer {
     public void init() {
         try {
             UserDataStorage.setInstance((UserDataStorage)
-                    FileManager.deserializeDataStorage(USER_DATA_STORAGE_PATH, UserDataStorage.class));
+                    FileManager.deserialize(USER_DATA_STORAGE_PATH, UserDataStorage.class));
 
             ShopDataStorage.setInstance((ShopDataStorage)
-                    FileManager.deserializeDataStorage(SHOP_DATA_STORAGE_PATH, ShopDataStorage.class));
+                    FileManager.deserialize(SHOP_DATA_STORAGE_PATH, ShopDataStorage.class));
 
             ProductDataStorage.setInstance((ProductDataStorage)
-                    FileManager.deserializeDataStorage(PRODUCT_DATA_STORAGE_PATH, ProductDataStorage.class));
+                    FileManager.deserialize(PRODUCT_DATA_STORAGE_PATH, ProductDataStorage.class));
 
             OrderDataStorage.setInstance((OrderDataStorage)
-                    FileManager.deserializeDataStorage(ORDER_DATA_STORAGE_PATH, OrderDataStorage.class));
+                    FileManager.deserialize(ORDER_DATA_STORAGE_PATH, OrderDataStorage.class));
 
         } catch (IOException e) {
             e.printStackTrace();

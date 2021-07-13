@@ -3,7 +3,7 @@ package exceptions;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class FileIsNotValidException extends Exception {
+public class FileIsNotValidException extends RuntimeException {
     String path;
 
     @Override

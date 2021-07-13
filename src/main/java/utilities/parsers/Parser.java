@@ -5,7 +5,7 @@ import storages.AbstractDataStorage;
 import java.lang.reflect.Type;
 
 public interface Parser {
-    String serializeDataStorage(AbstractDataStorage<?> dataStorage);
+    String serialize(Object objectToSerialize, Type type);
 
-    AbstractDataStorage<?> deserializeDataStorage(String data, Type type);
+    Object deserialize(String data, Type type);
 }
