@@ -1,18 +1,18 @@
 package model.entities;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import model.enums.status.OrderStatus;
 
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@Builder
 public class Order extends BaseEntity {
     private User user;
     private Collection<OrderItem> orderItems;
@@ -33,9 +33,13 @@ public class Order extends BaseEntity {
                 "\nOrder items:" + orderItemsToString();
     }
 
-    private String orderItemsToString(){
+    private String orderItemsToString() {
+        if (orderItems == null || orderItems.isEmpty()) {
+            return "";
+        }
+
         StringBuilder stringBuilder = new StringBuilder();
-        for(OrderItem item : orderItems){
+        for (OrderItem item : orderItems) {
             stringBuilder.append("\n\t— ").append(item.toString());
         }
 

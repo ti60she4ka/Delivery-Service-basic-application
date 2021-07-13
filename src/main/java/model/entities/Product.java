@@ -14,7 +14,7 @@ import java.util.*;
 public class Product extends BaseEntity {
     private String name;
     private Collection<Category> categories;
-    private Collection<Attribute> attributes;
+    private Collection<AttributeValue<?>> attributeValues;
 
     @Override
     public String toString() {
@@ -25,6 +25,10 @@ public class Product extends BaseEntity {
     }
 
     private String categoriesToString() {
+        if (categories == null || categories.isEmpty()) {
+            return "";
+        }
+
         StringBuilder stringBuilder = new StringBuilder();
         for (Category category : categories) {
             stringBuilder.append("\n\t— ").append(category.toString());
@@ -33,10 +37,15 @@ public class Product extends BaseEntity {
         return stringBuilder.toString();
     }
 
-    private String attributesToString(){
+    private String attributesToString() {
+        if (attributeValues == null || attributeValues.isEmpty()) {
+            return "";
+        }
+
         StringBuilder stringBuilder = new StringBuilder();
-        for (Attribute attribute : attributes) {
-            stringBuilder.append("\n\t— ").append(attribute.getName()).append(": ").append(attribute.getValue());
+        for (AttributeValue<?> attributeValue : attributeValues) {
+            stringBuilder.append("\n\t— ").append(attributeValue.getAttribute().getName())
+                    .append(": ").append(attributeValue.getAttribute().getType().cast(attributeValue.getValue()));
         }
 
         return stringBuilder.toString();
