@@ -1,20 +1,19 @@
 package controllers;
 
 import api.services.UserService;
-import exceptions.UserNotFoundException;
 import exceptions.EntityCannotBeAddedException;
 import exceptions.EntityNotFoundException;
+import lombok.Setter;
 import model.entities.User;
-import services.UserServiceImpl;
 
-import java.util.List;
+import java.util.Collection;
 
 public class UserController {
     private static UserController instance;
-    private final UserService userService;
+    @Setter
+    private UserService userService;
 
     private UserController(){
-        userService = UserServiceImpl.getInstance();
     }
 
     public static UserController getInstance() {
@@ -29,7 +28,7 @@ public class UserController {
         userService.create(user);
     }
 
-    public List<User> getAll(){
+    public Collection<User> getAll(){
         return userService.getAll();
     }
 
@@ -39,9 +38,5 @@ public class UserController {
 
     public User getById(long id) throws EntityNotFoundException {
         return userService.getById(id);
-    }
-
-    public User get(User user) throws UserNotFoundException {
-        return userService.get(user);
     }
 }

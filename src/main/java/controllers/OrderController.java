@@ -2,17 +2,18 @@ package controllers;
 
 import api.services.OrderService;
 import exceptions.EntityCannotBeAddedException;
+import exceptions.EntityNotFoundException;
+import lombok.Setter;
 import model.entities.Order;
-import services.OrderServiceImpl;
 
-import java.util.List;
+import java.util.Collection;
 
 public class OrderController {
     private static OrderController instance;
-    private final OrderService orderService;
+    @Setter
+    private OrderService orderService;
 
     private OrderController(){
-        orderService = OrderServiceImpl.getInstance();
     }
 
     public static OrderController getInstance() {
@@ -27,7 +28,15 @@ public class OrderController {
         orderService.create(order);
     }
 
-    public List<Order> getAll(){
+    public Collection<Order> getAll(){
         return orderService.getAll();
+    }
+
+    public void deleteById(long id) throws EntityNotFoundException {
+        orderService.deleteById(id);
+    }
+
+    public Order getById(long id) throws EntityNotFoundException {
+        return orderService.getById(id);
     }
 }

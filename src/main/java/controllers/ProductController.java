@@ -3,17 +3,17 @@ package controllers;
 import api.services.ProductService;
 import exceptions.EntityCannotBeAddedException;
 import exceptions.EntityNotFoundException;
+import lombok.Setter;
 import model.entities.Product;
-import services.ProductServiceImpl;
 
-import java.util.List;
+import java.util.Collection;
 
 public class ProductController {
     private static ProductController instance;
-    private final ProductService productService;
+    @Setter
+    private ProductService productService;
 
     private ProductController(){
-        productService = ProductServiceImpl.getInstance();
     }
 
     public static ProductController getInstance() {
@@ -28,7 +28,7 @@ public class ProductController {
         productService.create(product);
     }
 
-    public List<Product> getAll(){
+    public Collection<Product> getAll(){
         return productService.getAll();
     }
 

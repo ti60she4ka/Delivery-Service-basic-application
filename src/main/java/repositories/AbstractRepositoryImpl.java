@@ -3,18 +3,16 @@ package repositories;
 import api.repositories.AbstractRepository;
 import exceptions.EntityCannotBeAddedException;
 import exceptions.EntityNotFoundException;
+import lombok.NoArgsConstructor;
 import model.entities.BaseEntity;
 import storages.AbstractDataStorage;
 
-import java.util.List;
+import java.util.Collection;
 
+@NoArgsConstructor
 public abstract class AbstractRepositoryImpl<T extends BaseEntity> implements AbstractRepository<T> {
     protected AbstractDataStorage<T> abstractDataStorage;
     protected String entityType;
-
-    protected AbstractRepositoryImpl(AbstractDataStorage<T> dataStorage){
-        abstractDataStorage = dataStorage;
-    }
 
     @Override
     public void create(T entity) throws EntityCannotBeAddedException {
@@ -23,7 +21,7 @@ public abstract class AbstractRepositoryImpl<T extends BaseEntity> implements Ab
     }
 
     @Override
-    public List<T> getAll() {
+    public Collection<T> getAll() {
         return abstractDataStorage.getEntities();
     }
 

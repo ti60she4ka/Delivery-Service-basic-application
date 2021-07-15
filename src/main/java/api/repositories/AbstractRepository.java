@@ -4,12 +4,12 @@ import exceptions.EntityCannotBeAddedException;
 import exceptions.EntityNotFoundException;
 import model.entities.BaseEntity;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface AbstractRepository<T extends BaseEntity> {
     void create(T entity) throws EntityCannotBeAddedException;
 
-    List<T> getAll();
+    Collection<T> getAll();
 
     void deleteById(long id) throws EntityNotFoundException;
 

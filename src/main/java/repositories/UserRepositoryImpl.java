@@ -9,12 +9,9 @@ import storages.UserDataStorage;
 
 public class UserRepositoryImpl extends AbstractRepositoryImpl<User> implements UserRepository {
     private static UserRepositoryImpl instance;
-    private final UserDataStorage userDataStorage;
+    private UserDataStorage userDataStorage;
 
     private UserRepositoryImpl(){
-        super(UserDataStorage.getInstance());
-        userDataStorage = (UserDataStorage) abstractDataStorage;
-        entityType = "User";
     }
 
     public static UserRepositoryImpl getInstance(){
@@ -23,6 +20,12 @@ public class UserRepositoryImpl extends AbstractRepositoryImpl<User> implements 
         }
 
         return instance;
+    }
+
+    public void setUserDataStorage(UserDataStorage userDataStorage) {
+        this.userDataStorage = userDataStorage;
+        abstractDataStorage = userDataStorage;
+        entityType = "User";
     }
 
     @Override

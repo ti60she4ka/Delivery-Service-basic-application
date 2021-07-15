@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @Builder
-public class Article {
+public class Article extends BaseEntity {
     private Product product;
     private Shop shop;
     private double price;

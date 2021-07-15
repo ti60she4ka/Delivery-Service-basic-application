@@ -3,15 +3,12 @@ package services;
 import api.repositories.ProductRepository;
 import api.services.ProductService;
 import model.entities.Product;
-import repositories.ProductRepositoryImpl;
 
 public class ProductServiceImpl extends AbstractServiceImpl<Product> implements ProductService {
     private static ProductServiceImpl instance;
-    private final ProductRepository clientRepository;
+    private ProductRepository productRepository;
 
     private ProductServiceImpl(){
-        super(ProductRepositoryImpl.getInstance());
-        clientRepository = (ProductRepository) abstractRepository;
     }
 
     public static ProductServiceImpl getInstance(){
@@ -20,5 +17,10 @@ public class ProductServiceImpl extends AbstractServiceImpl<Product> implements 
         }
 
         return instance;
+    }
+
+    public void setProductRepository(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+        abstractRepository = productRepository;
     }
 }

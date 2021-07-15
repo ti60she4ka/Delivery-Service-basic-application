@@ -6,12 +6,9 @@ import storages.OrderDataStorage;
 
 public class OrderRepositoryImpl extends AbstractRepositoryImpl<Order> implements OrderRepository {
     private static OrderRepositoryImpl instance;
-    private final OrderDataStorage orderDataStorage;
+    private OrderDataStorage orderDataStorage;
 
     private OrderRepositoryImpl(){
-        super(OrderDataStorage.getInstance());
-        orderDataStorage = (OrderDataStorage) abstractDataStorage;
-        entityType = "Order";
     }
 
     public static OrderRepositoryImpl getInstance(){
@@ -20,5 +17,11 @@ public class OrderRepositoryImpl extends AbstractRepositoryImpl<Order> implement
         }
 
         return instance;
+    }
+
+    public void setOrderDataStorage(OrderDataStorage orderDataStorage) {
+        this.orderDataStorage = orderDataStorage;
+        abstractDataStorage = orderDataStorage;
+        entityType = "Order";
     }
 }

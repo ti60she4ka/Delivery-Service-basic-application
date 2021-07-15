@@ -8,12 +8,9 @@ import storages.ProductDataStorage;
 
 public class ProductRepositoryImpl extends AbstractRepositoryImpl<Product> implements ProductRepository {
     private static ProductRepositoryImpl instance;
-    private final ProductDataStorage productDataStorage;
+    private ProductDataStorage productDataStorage;
 
     private ProductRepositoryImpl(){
-        super(ProductDataStorage.getInstance());
-        productDataStorage = (ProductDataStorage) abstractDataStorage;
-        entityType = "Product";
     }
 
     public static ProductRepositoryImpl getInstance(){
@@ -22,6 +19,12 @@ public class ProductRepositoryImpl extends AbstractRepositoryImpl<Product> imple
         }
 
         return instance;
+    }
+
+    public void setProductDataStorage(ProductDataStorage productDataStorage) {
+        this.productDataStorage = productDataStorage;
+        abstractDataStorage = productDataStorage;
+        entityType = "Product";
     }
 
     @Override
