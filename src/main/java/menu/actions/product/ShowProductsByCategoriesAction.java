@@ -1,50 +1,49 @@
 package menu.actions.product;
 
-import controllers.ShopController;
+import controllers.ArticleController;
 import menu.actions.Action;
-import model.entities.ProductStorage;
-import model.enums.Category;
+import model.entities.Article;
+import model.entities.Category;
 import utilities.ConsoleUtility;
 
-import java.util.EnumSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShowProductsByCategoriesAction implements Action {
     @Override
     public void doAction(int index) {
-        Category[] allCategories = Category.values();
-        EnumSet<Category> categories = EnumSet.noneOf(Category.class);
+        List<Category> allCategories = new ArrayList<>();
+        List<Category> categories = new ArrayList<>();
 
         while (true){
             printCategories(allCategories);
-            System.out.println((allCategories.length + 1) + ". Finish the selection");
+            System.out.println((allCategories.size() + 1) + ". Finish the selection");
             System.out.print("Select a category: ");
             int categoryIndex = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
 
-            if(categoryIndex == allCategories.length + 1){
+            if(categoryIndex == allCategories.size() + 1){
                 break;
             }
 
-            categories.add(allCategories[categoryIndex - 1]);
+            categories.add(allCategories.get(categoryIndex - 1));
             System.out.println();
         }
 
-        List<ProductStorage> productStorages = ShopController.getInstance()
-                .getAllProductStoragesByCategoriesContains(categories);
+        List<Article> productStorages = ArticleController.getInstance().getAll();
 
         printProductStorages(productStorages);
     }
 
-    private void printCategories(Category[] categories) {
-        for (int i = 0; i < categories.length; i++) {
-            System.out.println((i + 1) + ". " + categories[i].getName());
+    private void printCategories(List<Category> categories) {
+        for (int i = 0; i < categories.size(); i++) {
+            System.out.println((i + 1) + ". " + categories.get(i).getName());
         }
     }
 
-    private void printProductStorages(List<ProductStorage> productStorages){
+    private void printProductStorages(List<Article> productStorages){
         System.out.println();
-        for (ProductStorage productStorage : productStorages) {
-            System.out.println(productStorage + " in " + productStorage.getProduct().getNameOfShop());
+        for (Article productStorage : productStorages) {
+            System.out.println(productStorage);
         }
         System.out.println();
     }

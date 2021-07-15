@@ -6,7 +6,6 @@ import exceptions.EntityNotFoundException;
 import menu.actions.Action;
 import model.entities.User;
 import utilities.ConsoleUtility;
-import utilities.Json;
 
 import java.util.List;
 
@@ -28,8 +27,6 @@ public class EditUserAction implements Action {
         User user = UserController.getInstance().getById(id);
 
         editUser(user);
-
-        Json.serializeUserDataStorage();
     }
 
     private void printListOfUsers(List<User> users) {

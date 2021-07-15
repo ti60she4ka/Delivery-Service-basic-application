@@ -5,7 +5,6 @@ import exceptions.EntityCannotBeAddedException;
 import menu.actions.Action;
 import model.entities.User;
 import utilities.ConsoleUtility;
-import utilities.Json;
 
 public class CreateNewUserAction implements Action {
     @Override
@@ -14,8 +13,6 @@ public class CreateNewUserAction implements Action {
 
         UserController.getInstance().create(user);
         System.out.println("\nNew user added successfully!\n");
-
-        Json.serializeUserDataStorage();
     }
 
     private User getNewUser() {

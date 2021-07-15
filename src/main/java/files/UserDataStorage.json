@@ -1,11 +1,20 @@
 {
-  "entityIdSequence": 1,
+  "entityIdSequence": 2,
   "entities": [
     {
+      "username": "pavel.avtaev",
       "firstName": "Pavel",
       "lastName": "Avtaev",
       "email": "pavel.avtaev02@mail.ru",
+      "phoneNumber": "77777777777",
+      "address": "address",
       "id": 0
+    },
+    {
+      "firstName": "Pavel",
+      "lastName": "Avtaev",
+      "email": "pavel",
+      "id": 1
     }
   ]
 }

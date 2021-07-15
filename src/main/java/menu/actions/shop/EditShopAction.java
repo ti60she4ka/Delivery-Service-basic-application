@@ -3,10 +3,8 @@ package menu.actions.shop;
 import controllers.ShopController;
 import exceptions.EntityNotFoundException;
 import menu.actions.Action;
-import model.entities.ProductStorage;
 import model.entities.Shop;
 import utilities.ConsoleUtility;
-import utilities.Json;
 
 import java.util.List;
 
@@ -28,8 +26,6 @@ public class EditShopAction implements Action {
         Shop shop = ShopController.getInstance().getById(id);
 
         editShop(shop);
-
-        Json.serializeShopDataStorage();
     }
 
     private void printListOfShops(List<Shop> shops) {
@@ -50,7 +46,6 @@ public class EditShopAction implements Action {
             case 1:
                 System.out.print("Enter a new name: ");
                 shop.setName(ConsoleUtility.getScanner().nextLine());
-                updateProductsInShop(shop);
                 break;
             case 2:
                 System.out.print("Enter a new city: ");
@@ -60,11 +55,5 @@ public class EditShopAction implements Action {
                 System.out.println("There is no such item in the menu.");
         }
         System.out.println();
-    }
-
-    private void updateProductsInShop(Shop shop){
-        for (ProductStorage item : shop.getProductStorages()){
-            item.getProduct().setNameOfShop(shop.getName());
-        }
     }
 }

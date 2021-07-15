@@ -5,7 +5,6 @@ import exceptions.EntityNotFoundException;
 import menu.actions.Action;
 import model.entities.User;
 import utilities.ConsoleUtility;
-import utilities.Json;
 
 import java.util.List;
 
@@ -26,8 +25,6 @@ public class DeleteUserAction implements Action {
         UserController.getInstance().deleteById(id);
 
         System.out.println("\nClient with the specified ID was successfully deleted.\n");
-
-        Json.serializeUserDataStorage();
     }
 
     private void printListOfUsers(List<User> users) {

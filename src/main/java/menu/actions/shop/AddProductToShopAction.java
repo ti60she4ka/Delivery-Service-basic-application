@@ -4,10 +4,8 @@ import controllers.ProductController;
 import controllers.ShopController;
 import menu.actions.Action;
 import model.entities.Product;
-import model.entities.ProductStorage;
 import model.entities.Shop;
 import utilities.ConsoleUtility;
-import utilities.Json;
 
 import java.util.List;
 
@@ -39,21 +37,12 @@ public class AddProductToShopAction implements Action {
         System.out.print("Enter the product which you want to add to the shop: ");
 
         entityIndex = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
-        Product product = new Product(products.get(entityIndex - 1));
-
-        System.out.print("\nPrice — ");
-        double price = Double.parseDouble(ConsoleUtility.getScanner().nextLine());
-        product.setPrice(price);
+        Product product = Product.builder().build();
 
         System.out.print("Quantity — ");
         int quantity = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
 
-        product.setNameOfShop(shop.getName());
-
-        shop.getProductStorages().add(new ProductStorage(product, quantity));
         System.out.println("\nThe product was successfully added to the shop.\n");
-
-        Json.serializeShopDataStorage();
     }
 
     private void printShopNames(List<Shop> shops) {

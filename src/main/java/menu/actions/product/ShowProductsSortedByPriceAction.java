@@ -1,9 +1,9 @@
 package menu.actions.product;
 
-import controllers.ShopController;
+import controllers.ArticleController;
 import menu.actions.Action;
-import model.entities.ProductStorage;
-import model.enums.SortType;
+import model.entities.Article;
+import model.enums.sort.SortType;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class ShowProductsSortedByPriceAction implements Action {
 
     @Override
     public void doAction(int index) throws Exception {
-        List<ProductStorage> productStorages = ShopController.getInstance().getAllProductStoragesOrderByPrice(sortType);
+        List<Article> productStorages = ArticleController.getInstance().getAll();
 
         if(productStorages.size() == 0){
             System.out.println("The product list is empty.\n");
@@ -25,9 +25,9 @@ public class ShowProductsSortedByPriceAction implements Action {
         printProductStorages(productStorages);
     }
 
-    private void printProductStorages(List<ProductStorage> productStorages){
-        for (ProductStorage productStorage : productStorages) {
-            System.out.println(productStorage + " in " + productStorage.getProduct().getNameOfShop());
+    private void printProductStorages(List<Article> productStorages){
+        for (Article productStorage : productStorages) {
+            System.out.println(productStorage + " in " + productStorage.getProduct().getName());
         }
         System.out.println();
     }

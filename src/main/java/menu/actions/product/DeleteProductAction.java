@@ -1,12 +1,10 @@
 package menu.actions.product;
 
 import controllers.ProductController;
-import controllers.ShopController;
 import exceptions.EntityNotFoundException;
 import menu.actions.Action;
 import model.entities.Product;
 import utilities.ConsoleUtility;
-import utilities.Json;
 
 import java.util.List;
 
@@ -26,14 +24,10 @@ public class DeleteProductAction implements Action {
         long id = Long.parseLong(ConsoleUtility.getScanner().nextLine());
 
         Product product = ProductController.getInstance().getById(id);
-        ShopController.getInstance().deleteProductFromShops(product);
 
         ProductController.getInstance().deleteById(id);
 
         System.out.println("\nProduct with the specified ID was successfully deleted.\n");
-
-        Json.serializeProductDataStorage();
-        Json.serializeShopDataStorage();
     }
 
     private void printListOfProducts(List<Product> products) {

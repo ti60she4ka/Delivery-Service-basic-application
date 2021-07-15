@@ -5,7 +5,6 @@ import exceptions.EntityNotFoundException;
 import menu.actions.Action;
 import model.entities.Shop;
 import utilities.ConsoleUtility;
-import utilities.Json;
 
 import java.util.List;
 
@@ -27,8 +26,6 @@ public class DeleteShopAction implements Action {
         ShopController.getInstance().deleteById(id);
 
         System.out.println("\nShop with the specified ID was successfully deleted.\n");
-
-        Json.serializeShopDataStorage();
     }
 
     private void printListOfShops(List<Shop> shops) {

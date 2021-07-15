@@ -3,12 +3,12 @@ package menu.actions.product;
 import controllers.ProductController;
 import exceptions.EntityCannotBeAddedException;
 import menu.actions.Action;
+import model.entities.Category;
 import model.entities.Product;
-import model.enums.Category;
 import utilities.ConsoleUtility;
-import utilities.Json;
 
-import java.util.EnumSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CreateNewProductAction implements Action {
     @Override
@@ -17,38 +17,36 @@ public class CreateNewProductAction implements Action {
 
         ProductController.getInstance().create(product);
         System.out.println("\nNew product added successfully!\n");
-
-        Json.serializeProductDataStorage();
     }
 
     private Product getNewProduct() {
-        EnumSet<Category> categories = EnumSet.noneOf(Category.class);
-        Category[] allTheCategories = Category.values();
+        List<Category> categories = new ArrayList<>();
+        List<Category> allCategories = new ArrayList<>();
 
         System.out.print("Enter the product information:\nName — ");
         String name = ConsoleUtility.getScanner().nextLine();
 
         while (true) {
             System.out.println();
-            printCategories(allTheCategories);
+            printCategories(allCategories);
 
             System.out.print("Select the category which you want to add to the product: ");
             int choice = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
 
-            if(choice == allTheCategories.length + 1){
+            if(choice == allCategories.size() + 1){
                 break;
             }
 
-            categories.add(allTheCategories[choice - 1]);
+            categories.add(allCategories.get(choice - 1));
         }
 
-        return new Product(name, categories);
+        return Product.builder().name(name).categories(categories).build();
     }
 
-    private void printCategories(Category[] categories) {
-        for (int i = 0; i < categories.length; i++) {
-            System.out.println((i + 1) + ". " + categories[i].getName());
+    private void printCategories(List<Category> categories) {
+        for (int i = 0; i < categories.size(); i++) {
+            System.out.println((i + 1) + ". " + categories.get(i).getName());
         }
-        System.out.println((categories.length + 1) + ". Finish selection");
+        System.out.println((categories.size() + 1) + ". Finish selection");
     }
 }

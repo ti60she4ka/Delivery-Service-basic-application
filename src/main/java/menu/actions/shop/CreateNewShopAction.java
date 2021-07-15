@@ -5,7 +5,6 @@ import exceptions.EntityCannotBeAddedException;
 import menu.actions.Action;
 import model.entities.Shop;
 import utilities.ConsoleUtility;
-import utilities.Json;
 
 public class CreateNewShopAction implements Action {
     @Override
@@ -14,8 +13,6 @@ public class CreateNewShopAction implements Action {
 
         ShopController.getInstance().create(shop);
         System.out.println("\nNew shop added successfully!\n");
-
-        Json.serializeShopDataStorage();
     }
 
     private Shop getNewShop() {
@@ -29,6 +26,6 @@ public class CreateNewShopAction implements Action {
         System.out.print("City — ");
         city = ConsoleUtility.getScanner().nextLine();
 
-        return new Shop(name, city);
+        return Shop.builder().name(name).city(city).build();
     }
 }

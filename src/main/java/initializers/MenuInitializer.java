@@ -14,7 +14,7 @@ import menu.actions.order.CreateNewOrderAction;
 import menu.actions.order.ShowAllOrdersAction;
 import menu.actions.product.*;
 import menu.actions.shop.*;
-import model.enums.SortType;
+import model.enums.sort.SortType;
 
 import java.util.ArrayList;
 

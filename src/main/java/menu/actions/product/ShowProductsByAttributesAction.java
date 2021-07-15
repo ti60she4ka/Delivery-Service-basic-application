@@ -1,9 +1,10 @@
 package menu.actions.product;
 
+import controllers.ArticleController;
 import controllers.ShopController;
 import menu.actions.Action;
+import model.entities.Article;
 import model.entities.Product;
-import model.entities.ProductStorage;
 import model.entities.Shop;
 import utilities.ConsoleUtility;
 
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 public class ShowProductsByAttributesAction implements Action {
     @Override
     public void doAction(int index) throws Exception {
-        List<ProductStorage> productStorages = ShopController.getInstance().getAllProductStorages();
+        List<Article> productStorages = ArticleController.getInstance().getAll();
         boolean finish = false;
 
         while (!finish) {
@@ -61,7 +62,7 @@ public class ShowProductsByAttributesAction implements Action {
 
     private boolean isProductPresentInOneOfShops(Product product, List<Shop> shops){
         for (Shop shop : shops){
-            if(shop.getName().equals(product.getNameOfShop())){
+            if(shop.getName().equals(product.getName())){
                 return true;
             }
         }
@@ -69,14 +70,14 @@ public class ShowProductsByAttributesAction implements Action {
         return false;
     }
 
-    private void printProductStorages(List<ProductStorage> productStorages){
+    private void printProductStorages(List<Article> productStorages){
         System.out.println();
-        for (ProductStorage productStorage : productStorages) {
-            System.out.println(productStorage + " in " + productStorage.getProduct().getNameOfShop());
+        for (Article productStorage : productStorages) {
+            System.out.println(productStorage + " in " + productStorage.getProduct().getName());
         }
     }
 
-    private void filterByShops(List<ProductStorage> productStorages){
+    private void filterByShops(List<Article> productStorages){
         List<Shop> allShops = ShopController.getInstance().getAll();
         List<Shop> shopsForSearch = new ArrayList<>();
         while (true) {
@@ -98,7 +99,7 @@ public class ShowProductsByAttributesAction implements Action {
         productStorages.removeIf(item -> !isProductPresentInOneOfShops(item.getProduct(), finalShopsForSearch));
     }
 
-    private void filterByPrice(List<ProductStorage> productStorages){
+    private void filterByPrice(List<Article> productStorages){
         double priceFrom;
         double priceTo;
 
@@ -108,11 +109,11 @@ public class ShowProductsByAttributesAction implements Action {
         System.out.print("Price to — ");
         priceTo = Double.parseDouble(ConsoleUtility.getScanner().nextLine());
 
-        productStorages.removeIf(item -> item.getProduct().getPrice() < priceFrom
-                || item.getProduct().getPrice() > priceTo);
+        productStorages.removeIf(item -> item.getPrice() < priceFrom
+                || item.getPrice() > priceTo);
     }
 
-    private void filterByQuantity(List<ProductStorage> productStorages){
+    private void filterByQuantity(List<Article> productStorages){
         int quantityFrom;
         int quantityTo;
 
@@ -122,7 +123,7 @@ public class ShowProductsByAttributesAction implements Action {
         System.out.print("Quantity to ");
         quantityTo = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
 
-        productStorages.removeIf(item -> item.getQuantity() < quantityFrom
-                || item.getQuantity() > quantityTo);
+        productStorages.removeIf(item -> item.getAmount() < quantityFrom
+                || item.getAmount() > quantityTo);
     }
 }
