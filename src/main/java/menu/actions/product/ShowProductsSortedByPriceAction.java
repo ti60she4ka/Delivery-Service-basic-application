@@ -16,7 +16,7 @@ public class ShowProductsSortedByPriceAction implements Action {
 
     @Override
     public void doAction(int index) throws Exception {
-        List<Article> productStorages = ArticleController.getInstance().getAll();
+        List<Article> productStorages = (List<Article>) ArticleController.getInstance().getAll();
 
         if(productStorages.size() == 0){
             System.out.println("The product list is empty.\n");

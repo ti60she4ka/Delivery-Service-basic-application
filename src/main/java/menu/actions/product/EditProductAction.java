@@ -14,7 +14,7 @@ import java.util.List;
 public class EditProductAction implements Action {
     @Override
     public void doAction(int index) throws EntityNotFoundException, ProductCannotBeAddedException {
-        List<Product> products = ProductController.getInstance().getAll();
+        List<Product> products = (List<Product>) ProductController.getInstance().getAll();
 
         if (products.size() == 0) {
             System.out.println("The product list is empty.\n");

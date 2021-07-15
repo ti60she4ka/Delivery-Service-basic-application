@@ -1,12 +1,12 @@
-package utilities.file;
+package filemanager;
 
 import exceptions.FileFormatNotSupportedException;
 import exceptions.FileIsNotValidException;
 import model.enums.file.FileType;
-import utilities.handlers.FileHandler;
-import utilities.handlers.JSONFileHandler;
-import utilities.reader.TextReader;
-import utilities.writer.TextWriter;
+import handlers.FileHandler;
+import handlers.JSONFileHandler;
+import reader.TextReader;
+import writer.TextWriter;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -46,7 +46,7 @@ public class FileManager {
     private static FileHandler createFileHandler(String path){
         switch (getFileExtension(path)) {
             case ".json":
-                if(fileHandler.getFileType() != FileType.JSON){
+                if(fileHandler == null || fileHandler.getFileType() != FileType.JSON){
                     return new JSONFileHandler();
                 }
                 return fileHandler;

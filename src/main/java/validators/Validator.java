@@ -1,4 +1,4 @@
-package utilities.validators;
+package validators;
 
 import java.io.IOException;
 

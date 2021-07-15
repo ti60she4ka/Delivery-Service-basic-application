@@ -9,7 +9,7 @@ import java.util.List;
 public class ShowAllProductsAction implements Action {
     @Override
     public void doAction(int index) {
-        List<Product> products = ProductController.getInstance().getAll();
+        List<Product> products = (List<Product>) ProductController.getInstance().getAll();
 
         if (products.size() != 0) {
             for (Product product : products) {

@@ -1,7 +1,7 @@
-package utilities.validators;
+package validators;
 
 import exceptions.FileIsNotValidException;
-import utilities.reader.TextReader;
+import reader.TextReader;
 
 import java.io.IOException;
 import java.util.ArrayDeque;

@@ -1,4 +1,4 @@
-package utilities.console;
+package utilities;
 
 import lombok.Getter;
 

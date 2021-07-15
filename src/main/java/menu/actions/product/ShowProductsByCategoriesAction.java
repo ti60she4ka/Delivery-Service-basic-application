@@ -29,7 +29,7 @@ public class ShowProductsByCategoriesAction implements Action {
             System.out.println();
         }
 
-        List<Article> productStorages = ArticleController.getInstance().getAll();
+        List<Article> productStorages = (List<Article>) ArticleController.getInstance().getAll();
 
         printProductStorages(productStorages);
     }

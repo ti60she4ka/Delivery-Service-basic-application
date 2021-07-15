@@ -1,10 +1,10 @@
-package utilities.handlers;
+package handlers;
 
 import lombok.Getter;
 import lombok.Setter;
 import model.enums.file.FileType;
-import utilities.parsers.Parser;
-import utilities.validators.Validator;
+import parsers.Parser;
+import validators.Validator;
 
 @Getter
 @Setter

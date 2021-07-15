@@ -1,4 +1,4 @@
-package utilities.parsers;
+package parsers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

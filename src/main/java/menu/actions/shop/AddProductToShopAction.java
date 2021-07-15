@@ -12,7 +12,7 @@ import java.util.List;
 public class AddProductToShopAction implements Action {
     @Override
     public void doAction(int index) {
-        List<Shop> shops = ShopController.getInstance().getAll();
+        List<Shop> shops = (List<Shop>) ShopController.getInstance().getAll();
 
         if(shops.size() == 0){
             System.out.println("The shop list is empty.\n");
@@ -25,7 +25,7 @@ public class AddProductToShopAction implements Action {
         int entityIndex = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
         Shop shop = shops.get(entityIndex - 1);
 
-        List<Product> products = ProductController.getInstance().getAll();
+        List<Product> products = (List<Product>) ProductController.getInstance().getAll();
 
         if(products.size() == 0){
             System.out.println("The product list is empty.\n");

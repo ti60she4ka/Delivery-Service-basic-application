@@ -9,7 +9,7 @@ import java.util.List;
 public class ShowAllShopsAction implements Action {
     @Override
     public void doAction(int index) {
-        List<Shop> shops = ShopController.getInstance().getAll();
+        List<Shop> shops = (List<Shop>) ShopController.getInstance().getAll();
 
         if (shops.size() != 0) {
             for (Shop shop : shops) {

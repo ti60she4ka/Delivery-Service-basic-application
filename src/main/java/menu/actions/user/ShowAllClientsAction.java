@@ -9,7 +9,7 @@ import java.util.List;
 public class ShowAllClientsAction implements Action {
     @Override
     public void doAction(int index) {
-        List<User> users = UserController.getInstance().getAll();
+        List<User> users = (List<User>) UserController.getInstance().getAll();
 
         if (users.size() != 0) {
             for (User user : users) {

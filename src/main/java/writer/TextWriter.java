@@ -1,4 +1,4 @@
-package utilities.writer;
+package writer;
 
 import java.io.IOException;
 import java.nio.file.Files;

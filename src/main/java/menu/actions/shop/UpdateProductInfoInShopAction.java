@@ -10,7 +10,7 @@ import java.util.List;
 public class UpdateProductInfoInShopAction implements Action {
     @Override
     public void doAction(int index) throws Exception {
-        List<Shop> shops = ShopController.getInstance().getAll();
+        List<Shop> shops = (List<Shop>) ShopController.getInstance().getAll();
 
         if(shops.size() == 0){
             System.out.println("The shop list is empty.\n");

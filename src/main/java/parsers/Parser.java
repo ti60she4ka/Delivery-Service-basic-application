@@ -1,4 +1,4 @@
-package utilities.parsers;
+package parsers;
 
 import java.lang.reflect.Type;
 

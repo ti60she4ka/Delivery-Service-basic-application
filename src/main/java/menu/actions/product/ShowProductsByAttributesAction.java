@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class ShowProductsByAttributesAction implements Action {
     @Override
     public void doAction(int index) throws Exception {
-        List<Article> productStorages = ArticleController.getInstance().getAll();
+        List<Article> productStorages = (List<Article>) ArticleController.getInstance().getAll();
         boolean finish = false;
 
         while (!finish) {
@@ -78,7 +78,7 @@ public class ShowProductsByAttributesAction implements Action {
     }
 
     private void filterByShops(List<Article> productStorages){
-        List<Shop> allShops = ShopController.getInstance().getAll();
+        List<Shop> allShops = (List<Shop>) ShopController.getInstance().getAll();
         List<Shop> shopsForSearch = new ArrayList<>();
         while (true) {
             printShops(allShops);

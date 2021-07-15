@@ -11,7 +11,7 @@ import java.util.List;
 public class DeleteUserAction implements Action {
     @Override
     public void doAction(int index) throws EntityNotFoundException {
-        List<User> users = UserController.getInstance().getAll();
+        List<User> users = (List<User>) UserController.getInstance().getAll();
 
         if (users.size() == 0) {
             System.out.println("The user list is empty.\n");
