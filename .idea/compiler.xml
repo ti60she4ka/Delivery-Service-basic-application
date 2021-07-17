@@ -7,7 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="DeliveryService" />
+        <module name="server" />
+        <module name="client-console" />
+        <module name="starter" />
+        <module name="web" />
       </profile>
     </annotationProcessing>
   </component>
