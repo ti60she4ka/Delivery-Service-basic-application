@@ -7,16 +7,15 @@ import java.nio.file.Paths;
 
 public class TextWriter {
 
-    private TextWriter(){
+  private TextWriter() {
+  }
 
-    }
+  public static void writeToFile(String data, String filePath) throws IOException {
+    Path path = Paths.get(filePath);
 
-    public static void writeToFile(String data, String filePath) throws IOException {
-        Path path = Paths.get(filePath);
+    Files.deleteIfExists(path);
+    Files.createFile(path);
 
-        Files.deleteIfExists(path);
-        Files.createFile(path);
-
-        Files.writeString(path, data);
-    }
+    Files.writeString(path, data);
+  }
 }

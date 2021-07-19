@@ -5,9 +5,10 @@ import parsers.JSONParser;
 import validators.JSONValidator;
 
 public class JSONFileHandler extends FileHandler {
-    public JSONFileHandler(){
-        setParser(new JSONParser());
-        setValidator(new JSONValidator());
-        setFileType(FileType.JSON);
-    }
+
+  public JSONFileHandler() {
+    setParser(new JSONParser());
+    setValidator(new JSONValidator());
+    setFileType(FileType.JSON);
+  }
 }

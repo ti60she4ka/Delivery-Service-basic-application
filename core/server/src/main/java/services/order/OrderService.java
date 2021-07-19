@@ -1,7 +1,8 @@
 package services.order;
 
-import services.AbstractService;
 import model.entities.Order;
+import services.AbstractService;
 
 public interface OrderService extends AbstractService<Order> {
+
 }

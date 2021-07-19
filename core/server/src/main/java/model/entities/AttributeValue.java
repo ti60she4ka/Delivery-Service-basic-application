@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class AttributeValue<T> {
-    private Attribute<T> attribute;
-    private Object value;
+
+  private Attribute<T> attribute;
+  private Object value;
 }

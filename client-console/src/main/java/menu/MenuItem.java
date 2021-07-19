@@ -1,15 +1,16 @@
 package menu;
 
+import actions.Action;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import actions.Action;
 
 @Getter
 @Setter
 @AllArgsConstructor
 public class MenuItem {
-    private String text;
-    private Menu submenu;
-    private Action action;
+
+  private String text;
+  private Menu submenu;
+  private Action action;
 }

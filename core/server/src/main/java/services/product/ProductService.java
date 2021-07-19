@@ -1,7 +1,8 @@
 package services.product;
 
-import services.AbstractService;
 import model.entities.Product;
+import services.AbstractService;
 
 public interface ProductService extends AbstractService<Product> {
+
 }

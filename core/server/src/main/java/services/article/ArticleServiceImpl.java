@@ -1,26 +1,27 @@
 package services.article;
 
+import model.entities.Article;
 import repositories.article.ArticleRepository;
 import services.AbstractServiceImpl;
-import model.entities.Article;
 
 public class ArticleServiceImpl extends AbstractServiceImpl<Article> implements ArticleService {
-    private static ArticleServiceImpl instance;
-    private ArticleRepository articleRepository;
 
-    private ArticleServiceImpl(){
+  private static ArticleServiceImpl instance;
+  private ArticleRepository articleRepository;
+
+  private ArticleServiceImpl() {
+  }
+
+  public static ArticleServiceImpl getInstance() {
+    if (instance == null) {
+      instance = new ArticleServiceImpl();
     }
 
-    public static ArticleServiceImpl getInstance(){
-        if(instance == null){
-            instance = new ArticleServiceImpl();
-        }
+    return instance;
+  }
 
-        return instance;
-    }
-
-    public void setArticleRepository(ArticleRepository articleRepository) {
-        this.articleRepository = articleRepository;
-        abstractRepository = articleRepository;
-    }
+  public void setArticleRepository(ArticleRepository articleRepository) {
+    this.articleRepository = articleRepository;
+    abstractRepository = articleRepository;
+  }
 }

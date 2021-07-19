@@ -1,27 +1,29 @@
 package repositories.article;
 
-import repositories.AbstractRepositoryImpl;
 import model.entities.Article;
+import repositories.AbstractRepositoryImpl;
 import storages.ArticleDataStorage;
 
-public class ArticleRepositoryImpl extends AbstractRepositoryImpl<Article> implements ArticleRepository {
-    private static ArticleRepositoryImpl instance;
-    private ArticleDataStorage articleDataStorage;
+public class ArticleRepositoryImpl extends AbstractRepositoryImpl<Article>
+    implements ArticleRepository {
 
-    private ArticleRepositoryImpl(){
+  private static ArticleRepositoryImpl instance;
+  private ArticleDataStorage articleDataStorage;
+
+  private ArticleRepositoryImpl() {
+  }
+
+  public static ArticleRepositoryImpl getInstance() {
+    if (instance == null) {
+      instance = new ArticleRepositoryImpl();
     }
 
-    public static ArticleRepositoryImpl getInstance() {
-        if (instance == null) {
-            instance = new ArticleRepositoryImpl();
-        }
+    return instance;
+  }
 
-        return instance;
-    }
-
-    public void setArticleDataStorage(ArticleDataStorage articleDataStorage) {
-        this.articleDataStorage = articleDataStorage;
-        abstractDataStorage = articleDataStorage;
-        entityType = "Article";
-    }
+  public void setArticleDataStorage(ArticleDataStorage articleDataStorage) {
+    this.articleDataStorage = articleDataStorage;
+    abstractDataStorage = articleDataStorage;
+    entityType = "Article";
+  }
 }

@@ -4,16 +4,18 @@ import lombok.Setter;
 import model.entities.Shop;
 
 public class ShopDataStorage extends AbstractDataStorage<Shop> {
-    @Setter
-    private static ShopDataStorage instance;
 
-    private ShopDataStorage(){}
+  @Setter
+  private static ShopDataStorage instance;
 
-    public static ShopDataStorage getInstance(){
-        if(instance == null){
-            instance = new ShopDataStorage();
-        }
+  private ShopDataStorage() {
+  }
 
-        return instance;
+  public static ShopDataStorage getInstance() {
+    if (instance == null) {
+      instance = new ShopDataStorage();
     }
+
+    return instance;
+  }
 }

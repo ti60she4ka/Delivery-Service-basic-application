@@ -1,5 +1,6 @@
 package initializers;
 
 public interface Initializer {
-    void init();
+
+  void init();
 }

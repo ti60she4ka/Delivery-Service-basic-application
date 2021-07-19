@@ -1,50 +1,50 @@
 package actions.product;
 
-import controllers.ArticleController;
 import actions.Action;
+import controllers.ArticleController;
+import java.util.ArrayList;
+import java.util.List;
 import model.entities.Article;
 import model.entities.Category;
 import utilities.ConsoleUtility;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ShowProductsByCategoriesAction implements Action {
-    @Override
-    public void doAction(int index) {
-        List<Category> allCategories = new ArrayList<>();
-        List<Category> categories = new ArrayList<>();
 
-        while (true){
-            printCategories(allCategories);
-            System.out.println((allCategories.size() + 1) + ". Finish the selection");
-            System.out.print("Select a category: ");
-            int categoryIndex = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
+  @Override
+  public void doAction(int index) {
+    List<Category> allCategories = new ArrayList<>();
+    List<Category> categories = new ArrayList<>();
 
-            if(categoryIndex == allCategories.size() + 1){
-                break;
-            }
+    while (true) {
+      printCategories(allCategories);
+      System.out.println((allCategories.size() + 1) + ". Finish the selection");
+      System.out.print("Select a category: ");
+      int categoryIndex = Integer.parseInt(ConsoleUtility.getScanner().nextLine());
 
-            categories.add(allCategories.get(categoryIndex - 1));
-            System.out.println();
-        }
+      if (categoryIndex == allCategories.size() + 1) {
+        break;
+      }
 
-        List<Article> productStorages = (List<Article>) ArticleController.getInstance().getAll();
-
-        printProductStorages(productStorages);
+      categories.add(allCategories.get(categoryIndex - 1));
+      System.out.println();
     }
 
-    private void printCategories(List<Category> categories) {
-        for (int i = 0; i < categories.size(); i++) {
-            System.out.println((i + 1) + ". " + categories.get(i).getName());
-        }
-    }
+    List<Article> productStorages = (List<Article>) ArticleController.getInstance().getAll();
 
-    private void printProductStorages(List<Article> productStorages){
-        System.out.println();
-        for (Article productStorage : productStorages) {
-            System.out.println(productStorage);
-        }
-        System.out.println();
+    printProductStorages(productStorages);
+  }
+
+  private void printCategories(List<Category> categories) {
+    for (int i = 0; i < categories.size(); i++) {
+      System.out.println((i + 1) + ". " + categories.get(i).getName());
     }
+  }
+
+  private void printProductStorages(List<Article> productStorages) {
+    System.out.println();
+    for (Article productStorage : productStorages) {
+      System.out.println(productStorage);
+    }
+    System.out.println();
+  }
 }

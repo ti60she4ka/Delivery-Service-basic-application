@@ -1,7 +1,8 @@
 package services.category;
 
-import services.AbstractService;
 import model.entities.Category;
+import services.AbstractService;
 
 public interface CategoryService extends AbstractService<Category> {
+
 }

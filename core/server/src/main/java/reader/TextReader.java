@@ -8,17 +8,16 @@ import java.nio.file.Paths;
 
 public class TextReader {
 
-    private TextReader(){
+  private TextReader() {
+  }
 
+  public static String readFromFile(String filePath) throws IOException {
+    Path path = Paths.get(filePath);
+
+    if (Files.notExists(path)) {
+      throw new FileNotFoundException("File with path = " + filePath + " not found!");
     }
 
-    public static String readFromFile(String filePath) throws IOException {
-        Path path = Paths.get(filePath);
-
-        if(Files.notExists(path)){
-            throw new FileNotFoundException("File with path = " + filePath + " not found!");
-        }
-
-        return Files.readString(path);
-    }
+    return Files.readString(path);
+  }
 }

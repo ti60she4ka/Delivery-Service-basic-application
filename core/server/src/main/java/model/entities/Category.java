@@ -10,11 +10,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class Category extends BaseEntity {
-    private String name;
-    private Category parentCategory;
 
-    @Override
-    public String toString() {
-        return name;
-    }
+  private String name;
+  private Category parentCategory;
+
+  @Override
+  public String toString() {
+    return name;
+  }
 }

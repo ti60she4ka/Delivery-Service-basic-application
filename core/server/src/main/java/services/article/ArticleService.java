@@ -1,7 +1,8 @@
 package services.article;
 
-import services.AbstractService;
 import model.entities.Article;
+import services.AbstractService;
 
 public interface ArticleService extends AbstractService<Article> {
+
 }

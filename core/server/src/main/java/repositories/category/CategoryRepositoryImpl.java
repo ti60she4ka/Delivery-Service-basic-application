@@ -1,27 +1,29 @@
 package repositories.category;
 
-import repositories.AbstractRepositoryImpl;
 import model.entities.Category;
+import repositories.AbstractRepositoryImpl;
 import storages.CategoryDataStorage;
 
-public class CategoryRepositoryImpl extends AbstractRepositoryImpl<Category> implements CategoryRepository {
-    private static CategoryRepositoryImpl instance;
-    private CategoryDataStorage categoryDataStorage;
+public class CategoryRepositoryImpl extends AbstractRepositoryImpl<Category>
+    implements CategoryRepository {
 
-    private CategoryRepositoryImpl() {
+  private static CategoryRepositoryImpl instance;
+  private CategoryDataStorage categoryDataStorage;
+
+  private CategoryRepositoryImpl() {
+  }
+
+  public static CategoryRepositoryImpl getInstance() {
+    if (instance == null) {
+      instance = new CategoryRepositoryImpl();
     }
 
-    public static CategoryRepositoryImpl getInstance() {
-        if (instance == null) {
-            instance = new CategoryRepositoryImpl();
-        }
+    return instance;
+  }
 
-        return instance;
-    }
-
-    public void setCategoryDataStorage(CategoryDataStorage categoryDataStorage) {
-        this.categoryDataStorage = categoryDataStorage;
-        abstractDataStorage = categoryDataStorage;
-        entityType = "Category";
-    }
+  public void setCategoryDataStorage(CategoryDataStorage categoryDataStorage) {
+    this.categoryDataStorage = categoryDataStorage;
+    abstractDataStorage = categoryDataStorage;
+    entityType = "Category";
+  }
 }

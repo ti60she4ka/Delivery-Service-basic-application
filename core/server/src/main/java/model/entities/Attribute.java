@@ -10,7 +10,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class Attribute<T> {
-    private String name;
-    private String description;
-    private Class<T> type;
+
+  private String name;
+  private String description;
+  private Class<T> type;
 }

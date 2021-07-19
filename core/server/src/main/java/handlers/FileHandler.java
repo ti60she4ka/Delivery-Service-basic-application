@@ -9,7 +9,8 @@ import validators.Validator;
 @Getter
 @Setter
 public abstract class FileHandler {
-    private Parser parser;
-    private Validator validator;
-    private FileType fileType;
+
+  private Parser parser;
+  private Validator validator;
+  private FileType fileType;
 }

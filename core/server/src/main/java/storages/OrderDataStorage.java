@@ -3,17 +3,19 @@ package storages;
 import lombok.Setter;
 import model.entities.Order;
 
-public class OrderDataStorage extends AbstractDataStorage<Order>{
-    @Setter
-    private static OrderDataStorage instance;
+public class OrderDataStorage extends AbstractDataStorage<Order> {
 
-    private OrderDataStorage(){}
+  @Setter
+  private static OrderDataStorage instance;
 
-    public static OrderDataStorage getInstance(){
-        if(instance == null){
-            instance = new OrderDataStorage();
-        }
+  private OrderDataStorage() {
+  }
 
-        return instance;
+  public static OrderDataStorage getInstance() {
+    if (instance == null) {
+      instance = new OrderDataStorage();
     }
+
+    return instance;
+  }
 }

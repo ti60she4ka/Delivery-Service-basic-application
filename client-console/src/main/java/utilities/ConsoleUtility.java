@@ -1,12 +1,13 @@
 package utilities;
 
+import java.util.Scanner;
 import lombok.Getter;
 
-import java.util.Scanner;
-
 public class ConsoleUtility {
-    @Getter
-    private static final Scanner scanner = new Scanner(System.in);
 
-    private ConsoleUtility(){}
+  @Getter
+  private static final Scanner scanner = new Scanner(System.in);
+
+  private ConsoleUtility() {
+  }
 }
