@@ -10,11 +10,9 @@
         <module name="server" />
         <module name="client-console" />
         <module name="starter" />
+        <module name="application" />
         <module name="web" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="starter" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>

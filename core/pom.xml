@@ -11,6 +11,7 @@
 
   <artifactId>core</artifactId>
   <packaging>pom</packaging>
+
   <modules>
     <module>server</module>
     <module>starter</module>

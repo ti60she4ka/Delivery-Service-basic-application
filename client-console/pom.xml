@@ -23,8 +23,8 @@
     </dependency>
     <dependency>
       <groupId>eu.exposit</groupId>
-      <artifactId>server</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <artifactId>starter</artifactId>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
 
