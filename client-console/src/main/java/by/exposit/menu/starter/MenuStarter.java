@@ -9,7 +9,7 @@ public class MenuStarter {
       for (int i = 0; i < MenuContext.getMenu().getMenuItems().size(); i++) {
         System.out.println((i + 1) + ". " + MenuContext.getMenu().getMenuItems().get(i).getText());
       }
-      System.out.print("Select item from the by.exposit.menu: ");
+      System.out.print("Select item from the menu: ");
       MenuContext.getMenu().executeMenuItem();
     }
   }

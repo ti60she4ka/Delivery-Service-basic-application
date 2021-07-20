@@ -21,7 +21,7 @@ public class Menu {
     } catch (NumberFormatException exception) {
       System.out.println("\nInvalid data entered.\n");
     } catch (IndexOutOfBoundsException exception) {
-      System.out.println("\nThere is no such item in the by.exposit.menu.\n");
+      System.out.println("\nThere is no such item in the menu.\n");
     } catch (Exception exception) {
       System.out.println('\n' + exception.getMessage());
     }

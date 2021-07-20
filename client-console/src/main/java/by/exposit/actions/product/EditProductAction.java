@@ -62,7 +62,7 @@ public class EditProductAction implements Action {
         product.setCategories(getNewCategories());
         break;
       default:
-        System.out.println("There is no such item in the by.exposit.menu.");
+        System.out.println("There is no such item in the menu.");
     }
   }
 
