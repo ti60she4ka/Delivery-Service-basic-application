@@ -9,7 +9,9 @@ import by.exposit.reader.TextReader;
 import by.exposit.writer.TextWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class FileManager {
 
   private FileHandler fileHandler;
@@ -21,19 +23,25 @@ public class FileManager {
       String data = fileHandler.getParser().serialize(objectToSerialize, type);
       TextWriter.writeToFile(data, path);
     } catch (FileFormatNotSupportedException e) {
-      System.out.println(e.getMessage());
+      log.error("File with path = '{}' is not supported", path);
     }
   }
 
   public Object deserialize(String path, Type type) {
     try {
       fileHandler = createFileHandler(path);
+    } catch (FileFormatNotSupportedException e) {
+      log.error("File with path = '{}' is not supported", path);
+    }
 
+    try {
       fileHandler.getValidator().validate(path);
       String data = TextReader.readFromFile(path);
       return fileHandler.getParser().deserialize(data, type);
-    } catch (FileIsNotValidException | FileFormatNotSupportedException | IOException e) {
-      System.out.println(e.getMessage());
+    } catch (FileIsNotValidException e) {
+      log.error("File with path = '{}' is not valid", path);
+    } catch (IOException e) {
+      log.error("File with path = '{}' not found", path);
     }
 
     return null;
