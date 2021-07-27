@@ -5,13 +5,15 @@ import by.exposit.core.exceptions.EntityCannotBeAddedException;
 import by.exposit.core.exceptions.EntityNotFoundException;
 import java.util.Collection;
 
-public interface AbstractService<T extends BaseEntity> {
+public interface AbstractService<T extends BaseEntity, E> {
 
-  void create(T entity) throws EntityCannotBeAddedException;
+  E create(E entity);
 
-  Collection<T> getAll();
+  Collection<E> getAll();
 
-  void deleteById(Long id) throws EntityNotFoundException;
+  void deleteById(Long id);
 
-  T getById(Long id) throws EntityNotFoundException;
+  void update(E entity);
+
+  E getById(Long id);
 }

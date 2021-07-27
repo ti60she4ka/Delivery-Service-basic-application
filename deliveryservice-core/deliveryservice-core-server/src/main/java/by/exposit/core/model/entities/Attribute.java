@@ -9,9 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @Builder
-public class Attribute<T> {
+public class Attribute {
 
   private String name;
   private String description;
-  private Class<T> type;
+  private Class<?> type;
 }

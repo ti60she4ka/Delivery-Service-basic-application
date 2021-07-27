@@ -28,13 +28,13 @@ public class UserRepositoryImpl extends AbstractRepositoryImpl<User> implements 
   }
 
   @Override
-  public void create(User entity) throws EntityCannotBeAddedException {
+  public User create(User entity) throws EntityCannotBeAddedException {
     if (userDataStorage.getEntities().stream()
         .anyMatch(item -> item.getEmail().equalsIgnoreCase(entity.getEmail()))) {
 
       throw new UserCannotBeAddedException(entity.getEmail());
     }
 
-    super.create(entity);
+    return super.create(entity);
   }
 }

@@ -16,15 +16,4 @@ public class ProductRepositoryImpl extends AbstractRepositoryImpl<Product>
     this.productDataStorage = productDataStorage;
     entityType = "Product";
   }
-
-  @Override
-  public void create(Product entity) throws EntityCannotBeAddedException {
-    if (productDataStorage.getEntities().stream()
-        .anyMatch(item -> item.getName().equalsIgnoreCase(entity.getName()))) {
-
-      throw new ProductCannotBeAddedException(entity.getName());
-    }
-
-    super.create(entity);
-  }
 }

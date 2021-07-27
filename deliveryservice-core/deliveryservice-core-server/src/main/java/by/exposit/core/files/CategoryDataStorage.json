@@ -1,1 +1,29 @@
-{}
+{
+  "entityIdSequence": 4,
+  "entities": [
+    {
+      "name": "2123",
+      "id": 0
+    },
+    {
+      "name": "2123",
+      "id": 1
+    },
+    {
+      "name": "2123",
+      "parentCategory": {
+        "name": "2123",
+        "id": 1
+      },
+      "id": 2
+    },
+    {
+      "name": "2123",
+      "parentCategory": {
+        "name": "2123",
+        "id": 0
+      },
+      "id": 3
+    }
+  ]
+}

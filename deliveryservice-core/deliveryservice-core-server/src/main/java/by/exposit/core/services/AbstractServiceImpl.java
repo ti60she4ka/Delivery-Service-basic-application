@@ -1,36 +1,45 @@
 package by.exposit.core.services;
 
+import by.exposit.core.mappers.BaseMapper;
 import by.exposit.core.model.entities.BaseEntity;
 import by.exposit.core.repositories.AbstractRepository;
 import by.exposit.core.exceptions.EntityCannotBeAddedException;
 import by.exposit.core.exceptions.EntityNotFoundException;
 import java.util.Collection;
 
-public abstract class AbstractServiceImpl<T extends BaseEntity> implements AbstractService<T> {
+public abstract class AbstractServiceImpl<T extends BaseEntity, E> implements AbstractService<T, E> {
 
-  protected AbstractRepository<T> abstractRepository;
+  protected final AbstractRepository<T> abstractRepository;
 
-  protected AbstractServiceImpl(AbstractRepository<T> abstractRepository) {
+  protected final BaseMapper<T, E> mapper;
+
+  protected AbstractServiceImpl(AbstractRepository<T> abstractRepository, BaseMapper<T, E> mapper) {
     this.abstractRepository = abstractRepository;
+    this.mapper = mapper;
   }
 
   @Override
-  public void create(T entity) throws EntityCannotBeAddedException {
-    abstractRepository.create(entity);
+  public E create(E entityDto) {
+    return mapper.toDto(abstractRepository.create(mapper.toEntity(entityDto)));
   }
 
   @Override
-  public Collection<T> getAll() {
-    return abstractRepository.getAll();
+  public Collection<E> getAll() {
+    return mapper.toDtoCollection(abstractRepository.getAll());
   }
 
   @Override
-  public void deleteById(Long id) throws EntityNotFoundException {
+  public void deleteById(Long id) {
     abstractRepository.deleteById(id);
   }
 
   @Override
-  public T getById(Long id) throws EntityNotFoundException {
-    return abstractRepository.getById(id);
+  public E getById(Long id) {
+    return mapper.toDto(abstractRepository.getById(id));
+  }
+
+  @Override
+  public void update(E entityDto) {
+    abstractRepository.update(mapper.toEntity(entityDto));
   }
 }

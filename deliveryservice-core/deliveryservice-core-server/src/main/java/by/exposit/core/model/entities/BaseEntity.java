@@ -3,12 +3,17 @@ package by.exposit.core.model.entities;
 import java.util.Objects;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
+@SuperBuilder
 public abstract class BaseEntity {
 
   protected Long id;
+
+  protected BaseEntity() {
+  }
 
   @Override
   public boolean equals(Object o) {

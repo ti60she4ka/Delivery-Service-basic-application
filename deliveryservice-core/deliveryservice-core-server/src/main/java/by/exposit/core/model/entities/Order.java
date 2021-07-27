@@ -6,12 +6,14 @@ import java.util.Collection;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@Builder
+@NoArgsConstructor
+@SuperBuilder
 public class Order extends BaseEntity {
 
   private User user;
@@ -21,28 +23,4 @@ public class Order extends BaseEntity {
   private LocalDate creationDate;
   private LocalDate updateDate;
   private LocalDate completionDate;
-
-  @Override
-  public String toString() {
-    return "Id = " + id +
-        "\nClient: " + user.getFirstName() + " " + user.getLastName() + ", " + user.getEmail() +
-        "\nTotal price = " + totalPrice +
-        "\nStatus: " + status +
-        "\nCreation date: " + creationDate +
-        "\nCompletion date: " + completionDate +
-        "\nOrder items:" + orderItemsToString();
-  }
-
-  private String orderItemsToString() {
-    if (orderItems == null || orderItems.isEmpty()) {
-      return "";
-    }
-
-    StringBuilder stringBuilder = new StringBuilder();
-    for (OrderItem item : orderItems) {
-      stringBuilder.append("\n\t— ").append(item.toString());
-    }
-
-    return stringBuilder.toString();
-  }
 }
