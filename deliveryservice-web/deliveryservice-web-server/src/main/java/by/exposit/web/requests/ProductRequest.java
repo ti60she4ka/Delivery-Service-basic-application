@@ -1,6 +1,7 @@
 package by.exposit.web.requests;
 
 import java.util.Collection;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Getter;
@@ -14,7 +15,7 @@ public class ProductRequest {
   @Size(min = 2, message = "Product name should have at least 2 characters")
   private String name;
 
-  private Collection<Long> categoryIdCollection;
+  private Collection<@NotNull(message = "Category ID should not be null") Long> categoryIdCollection;
 
-  private Collection<AttributeValueRequest> attributeValues;
+  private Collection<@Valid AttributeValueRequest> attributeValues;
 }

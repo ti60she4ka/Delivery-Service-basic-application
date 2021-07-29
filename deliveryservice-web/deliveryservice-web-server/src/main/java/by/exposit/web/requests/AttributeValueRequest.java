@@ -9,9 +9,9 @@ import lombok.Setter;
 @Setter
 public class AttributeValueRequest {
 
-  @NotNull
+  @NotNull(message = "Attribute should not be null")
   private @Valid AttributeRequest attribute;
 
-  @NotNull
+  @NotNull(message = "Value should not be null")
   private Object value;
 }

@@ -14,6 +14,5 @@ public class CategoryRequest {
   @Size(min = 2, message = "Category name should have at least 2 characters")
   private String name;
 
-  @PositiveOrZero(message = "parentId should be a positive number or zero")
   private Long parentId;
 }
