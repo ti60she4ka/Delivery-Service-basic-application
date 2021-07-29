@@ -14,4 +14,24 @@ public class CategoryServiceImpl extends AbstractServiceImpl<Category, CategoryD
     super(categoryRepository, mapper);
     this.categoryRepository = categoryRepository;
   }
+
+  @Override
+  public CategoryDto create(CategoryDto entityDto) {
+    return mapper.toDto(categoryRepository.create(mapToCategory(entityDto)));
+  }
+
+  @Override
+  public void update(CategoryDto entityDto) {
+    categoryRepository.update(mapToCategory(entityDto));
+  }
+
+  private Category mapToCategory(CategoryDto categoryDto){
+    Category category = mapper.toEntity(categoryDto);
+
+    if(categoryDto.getParentId() != null){
+      category.setParentCategory(categoryRepository.getById(categoryDto.getParentId()));
+    }
+
+    return category;
+  }
 }

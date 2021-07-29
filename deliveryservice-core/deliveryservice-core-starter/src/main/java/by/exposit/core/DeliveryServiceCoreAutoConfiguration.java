@@ -157,37 +157,37 @@ public class DeliveryServiceCoreAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  public ArticleService articleService(ArticleRepository articleRepository, ArticleMapper mapper) {
-    return new ArticleServiceImpl(articleRepository, mapper);
+  public ArticleService articleService(ArticleRepository articleRepository) {
+    return new ArticleServiceImpl(articleRepository, ArticleMapper.INSTANCE);
   }
 
   @Bean
   @ConditionalOnMissingBean
-  public CategoryService categoryService(CategoryRepository categoryRepository, CategoryMapper mapper) {
-    return new CategoryServiceImpl(categoryRepository, mapper);
+  public CategoryService categoryService(CategoryRepository categoryRepository) {
+    return new CategoryServiceImpl(categoryRepository, CategoryMapper.INSTANCE);
   }
 
   @Bean
   @ConditionalOnMissingBean
-  public OrderService orderService(OrderRepository orderRepository, OrderMapper mapper) {
-    return new OrderServiceImpl(orderRepository, mapper);
+  public OrderService orderService(OrderRepository orderRepository) {
+    return new OrderServiceImpl(orderRepository, OrderMapper.INSTANCE);
   }
 
   @Bean
   @ConditionalOnMissingBean
-  public ProductService productService(ProductRepository productRepository, ProductMapper mapper) {
-    return new ProductServiceImpl(productRepository, mapper);
+  public ProductService productService(ProductRepository productRepository, CategoryRepository categoryRepository) {
+    return new ProductServiceImpl(productRepository, categoryRepository, ProductMapper.INSTANCE);
   }
 
   @Bean
   @ConditionalOnMissingBean
-  public ShopService shopService(ShopRepository shopRepository, ShopMapper mapper) {
-    return new ShopServiceImpl(shopRepository, mapper);
+  public ShopService shopService(ShopRepository shopRepository) {
+    return new ShopServiceImpl(shopRepository, ShopMapper.INSTANCE);
   }
 
   @Bean
   @ConditionalOnMissingBean
-  public UserService userService(UserRepository userRepository, UserMapper mapper) {
-    return new UserServiceImpl(userRepository, mapper);
+  public UserService userService(UserRepository userRepository) {
+    return new UserServiceImpl(userRepository, UserMapper.INSTANCE);
   }
 }

@@ -5,9 +5,12 @@ import by.exposit.core.mappers.BaseMapper;
 import by.exposit.core.model.entities.Order;
 import java.util.Collection;
 import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public interface OrderMapper extends BaseMapper<Order, OrderDto> {
+
+  OrderMapper INSTANCE = Mappers.getMapper(OrderMapper.class);
 
   @Override
   OrderDto toDto(Order order);

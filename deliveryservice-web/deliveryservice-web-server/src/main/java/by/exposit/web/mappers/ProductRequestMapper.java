@@ -13,26 +13,26 @@ import org.mapstruct.Named;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Mapper(componentModel = "spring")
-public abstract class ProductRequestMapper {
-
-  @Autowired
-  protected CategoryService categoryService;
+public interface ProductRequestMapper {
 
   @Mapping(target = "categories", source = "categoryIdCollection", qualifiedByName = "idCollectionToCategories")
-  public abstract ProductDto toDto(ProductRequest productRequest);
+  ProductDto toDto(ProductRequest productRequest);
 
   @Mapping(target = "categories", source = "productRequest.categoryIdCollection", qualifiedByName = "idCollectionToCategories")
-  public abstract ProductDto toDtoWithId(ProductRequest productRequest, Long id);
+  ProductDto toDtoWithId(ProductRequest productRequest, Long id);
 
   @Named("idCollectionToCategories")
-  public Collection<CategoryDto> idCollectionToCategories(Collection<Long> idCollection) {
-    if (idCollection == null) {
+  default Collection<CategoryDto> idCollectionToCategories(Collection<Long> idCollection){
+    if(idCollection == null){
       return new ArrayList<>();
     }
 
-    List<CategoryDto> categories = new ArrayList<>(idCollection.size());
-    for (Long id : idCollection) {
-      categories.add(categoryService.getById(id));
+    List<CategoryDto> categories = new ArrayList<>();
+
+    for(Long id : idCollection){
+      CategoryDto categoryDto = new CategoryDto();
+      categoryDto.setId(id);
+      categories.add(categoryDto);
     }
 
     return categories;

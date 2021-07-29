@@ -16,25 +16,4 @@ public class UserRepositoryImpl extends AbstractRepositoryImpl<User> implements 
     this.userDataStorage = userDataStorage;
     entityType = "User";
   }
-
-  @Override
-  public User get(User user) throws UserNotFoundException {
-    return userDataStorage.getEntities().stream()
-        .filter(item -> item.getFirstName().equalsIgnoreCase(user.getFirstName())
-            && item.getLastName().equalsIgnoreCase(user.getLastName())
-            && item.getEmail().equalsIgnoreCase(user.getEmail()))
-        .findFirst()
-        .orElseThrow(UserNotFoundException::new);
-  }
-
-  @Override
-  public User create(User entity) throws EntityCannotBeAddedException {
-    if (userDataStorage.getEntities().stream()
-        .anyMatch(item -> item.getEmail().equalsIgnoreCase(entity.getEmail()))) {
-
-      throw new UserCannotBeAddedException(entity.getEmail());
-    }
-
-    return super.create(entity);
-  }
 }

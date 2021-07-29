@@ -5,9 +5,12 @@ import by.exposit.core.mappers.BaseMapper;
 import by.exposit.core.model.entities.Shop;
 import java.util.Collection;
 import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public interface ShopMapper extends BaseMapper<Shop, ShopDto> {
+
+  ShopMapper INSTANCE = Mappers.getMapper(ShopMapper.class);
 
   @Override
   ShopDto toDto(Shop shop);

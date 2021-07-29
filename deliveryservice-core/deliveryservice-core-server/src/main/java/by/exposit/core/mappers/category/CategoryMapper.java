@@ -8,34 +8,24 @@ import java.util.Collection;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Mapper(componentModel = "spring")
-public abstract class CategoryMapper implements BaseMapper<Category, CategoryDto> {
+@Mapper
+public interface CategoryMapper extends BaseMapper<Category, CategoryDto> {
 
-  @Autowired
-  protected CategoryRepository categoryRepository;
+  CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
 
   @Override
   @Mapping(target = "parentId", source = "parentCategory.id")
-  public abstract CategoryDto toDto(Category category);
+  CategoryDto toDto(Category category);
 
   @Override
-  @Mapping(target = "parentCategory", source = "parentId", qualifiedByName = "parentIdToParentCategory")
-  public abstract Category toEntity(CategoryDto categoryDto);
+  Category toEntity(CategoryDto categoryDto);
 
   @Override
-  public abstract Collection<CategoryDto> toDtoCollection(Collection<Category> categoryCollection);
+  Collection<CategoryDto> toDtoCollection(Collection<Category> categoryCollection);
 
   @Override
-  public abstract Collection<Category> toEntityCollection(Collection<CategoryDto> categoryDtoCollection);
-
-  @Named("parentIdToParentCategory")
-  public Category parentIdToParentCategory(Long parentId) {
-    if (parentId == null) {
-      return null;
-    }
-
-    return categoryRepository.getById(parentId);
-  }
+  Collection<Category> toEntityCollection(Collection<CategoryDto> categoryDtoCollection);
 }
