@@ -22,7 +22,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
       WebRequest request) {
 
     return handleExceptionInternal(ex, buildErrorResponseBody("Not found", ex.getMessage()),
-        new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+        new HttpHeaders(), HttpStatus.NOT_FOUND, request);
   }
 
   @ExceptionHandler(RepeatingEntityException.class)
