@@ -3,8 +3,6 @@ package by.exposit.core.model.entities;
 import by.exposit.core.model.enums.status.OrderStatus;
 import java.time.LocalDate;
 import java.util.Collection;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -1,7 +1,7 @@
 package by.exposit.core.validators;
 
-import by.exposit.core.reader.TextReader;
 import by.exposit.core.exceptions.FileIsNotValidException;
+import by.exposit.core.reader.TextReader;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
