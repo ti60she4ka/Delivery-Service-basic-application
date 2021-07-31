@@ -14,4 +14,5 @@ public class Attribute {
   private String name;
   private String description;
   private Class<?> type;
+  private String value;
 }

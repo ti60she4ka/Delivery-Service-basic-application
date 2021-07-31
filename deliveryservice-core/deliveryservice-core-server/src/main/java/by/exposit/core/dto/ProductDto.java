@@ -1,6 +1,6 @@
 package by.exposit.core.dto;
 
-import by.exposit.core.model.entities.AttributeValue;
+import by.exposit.core.model.entities.Attribute;
 import java.util.Collection;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,5 +15,5 @@ public class ProductDto {
 
   private Collection<CategoryDto> categories;
 
-  private Collection<AttributeValue> attributeValues;
+  private Collection<Attribute> attributes;
 }

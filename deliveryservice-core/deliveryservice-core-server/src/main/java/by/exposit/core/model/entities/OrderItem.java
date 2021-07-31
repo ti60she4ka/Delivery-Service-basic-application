@@ -12,6 +12,6 @@ import lombok.Setter;
 public class OrderItem {
 
   private Article article;
-  private int quantity;
-  private int price;
+  private Integer quantity;
+  private Double price;
 }

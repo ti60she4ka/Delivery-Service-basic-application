@@ -19,4 +19,7 @@ public class AttributeRequest {
 
   @NotNull(message = "Attribute type should not be null")
   private Class<?> type;
+
+  @NotNull(message = "Value should not be null")
+  private String value;
 }

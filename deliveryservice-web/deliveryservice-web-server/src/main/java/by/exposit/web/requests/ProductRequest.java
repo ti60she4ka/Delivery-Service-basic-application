@@ -17,5 +17,5 @@ public class ProductRequest {
 
   private Collection<@NotNull(message = "Category ID should not be null") Long> categoryIdCollection;
 
-  private Collection<@Valid AttributeValueRequest> attributeValues;
+  private Collection<@Valid AttributeRequest> attributes;
 }
