@@ -156,52 +156,86 @@
     </createTable>
   </changeSet>
 
-  <changeSet author="Pavel Avtaev" id="10">
-    <addForeignKeyConstraint baseColumnNames="shop_id" baseTableName="article" constraintName="fk3g26g88013bhah8u039mvg8yk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shop" validate="true"/>
-  </changeSet>
-
-  <changeSet author="Pavel Avtaev" id="11">
-    <addForeignKeyConstraint baseColumnNames="article_id" baseTableName="order_item" constraintName="fk4ta9f9h1we6r54q587ts86gw4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="article" validate="true"/>
-  </changeSet>
-
-  <changeSet author="Pavel Avtaev" id="12">
-    <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="article" constraintName="fkbxy24ht14wxvuhu2fo3w4de3b" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product" validate="true"/>
-  </changeSet>
-
-  <changeSet author="Pavel Avtaev" id="13">
-    <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="attribute" constraintName="fkodmc4a3tlyg001pq3owlhwsgv" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product" validate="true"/>
-  </changeSet>
-
-  <changeSet author="Pavel Avtaev" id="14">
-    <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="category" constraintName="fk2y94svpmqttx80mshyny85wqr" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="category" validate="true"/>
-  </changeSet>
-
-  <changeSet author="Pavel Avtaev" id="15">
-    <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="product_category" constraintName="fkkud35ls1d40wpjb5htpp14q4e" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="category" validate="true"/>
-  </changeSet>
-
   <changeSet author="Pavel Avtaev" id="16">
-    <addUniqueConstraint columnNames="name" constraintName="uk_46ccwnsi9409t36lurvtyljak" tableName="category"/>
+    <addUniqueConstraint
+      columnNames="name"
+      constraintName="category_name_ukey"
+      tableName="category"/>
+
+    <addUniqueConstraint
+      columnNames="name"
+      constraintName="product_name_ukey"
+      tableName="product"/>
+
+    <addUniqueConstraint
+      columnNames="username"
+      constraintName="users_username_ukey"
+      tableName="users"/>
   </changeSet>
 
-  <changeSet author="Pavel Avtaev" id="17">
-    <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_item" constraintName="fkt4dc2r9nbvbujrljv3e23iibt" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="orders" validate="true"/>
-  </changeSet>
+  <changeSet author="Pavel Avtaev" id="10">
+    <addForeignKeyConstraint
+      baseColumnNames="shop_id"
+      baseTableName="article"
+      constraintName="article_shop_id_fkey"
+      referencedColumnNames="id"
+      referencedTableName="shop"/>
 
-  <changeSet author="Pavel Avtaev" id="18">
-    <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="orders" constraintName="fk32ql8ubntj5uh44ph9659tiih" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
-  </changeSet>
+    <addForeignKeyConstraint
+      baseColumnNames="article_id"
+      baseTableName="order_item"
+      constraintName="order_item_article_id_fkey"
+      referencedColumnNames="id"
+      referencedTableName="article"/>
 
-  <changeSet author="Pavel Avtaev" id="19">
-    <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="product_category" constraintName="fk2k3smhbruedlcrvu6clued06x" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product" validate="true"/>
-  </changeSet>
+    <addForeignKeyConstraint
+      baseColumnNames="product_id"
+      baseTableName="article"
+      constraintName="article_product_id_fkey"
+      referencedColumnNames="id"
+      referencedTableName="product"/>
 
-  <changeSet author="Pavel Avtaev" id="20">
-    <addUniqueConstraint columnNames="name" constraintName="uk_jmivyxk9rmgysrmsqw15lqr5b" tableName="product"/>
-  </changeSet>
+    <addForeignKeyConstraint
+      baseColumnNames="product_id"
+      baseTableName="attribute"
+      constraintName="attribute_product_id_fkey"
+      referencedColumnNames="id"
+      referencedTableName="product"/>
 
-  <changeSet author="Pavel Avtaev" id="21">
-    <addUniqueConstraint columnNames="username" constraintName="uk_r43af9ap4edm43mmtq01oddj6" tableName="users"/>
+    <addForeignKeyConstraint
+      baseColumnNames="parent_id"
+      baseTableName="category"
+      constraintName="category_parent_id_fkey"
+      referencedColumnNames="id"
+      referencedTableName="category"/>
+
+    <addForeignKeyConstraint
+      baseColumnNames="category_id"
+      baseTableName="product_category"
+      constraintName="product_category_category_id_fkey"
+      referencedColumnNames="id"
+      referencedTableName="category"/>
+
+    <addForeignKeyConstraint
+      baseColumnNames="order_id"
+      baseTableName="order_item"
+      constraintName="order_item_order_id_fkey"
+      referencedColumnNames="id"
+      referencedTableName="orders"/>
+
+    <addForeignKeyConstraint
+      baseColumnNames="user_id"
+      baseTableName="orders"
+      constraintName="orders_user_id_fkey"
+      referencedColumnNames="id"
+      referencedTableName="users"/>
+
+    <addForeignKeyConstraint
+      baseColumnNames="product_id"
+      baseTableName="product_category"
+      constraintName="product_category_product_id_fkey"
+      referencedColumnNames="id"
+      referencedTableName="product"/>
   </changeSet>
 
 </databaseChangeLog>
