@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <changeSet author="Pavel Avtaev" id="1">
+    <createTable tableName="article">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="article_pkey"/>
+      </column>
+      <column name="amount" type="INTEGER">
+        <constraints nullable="false"/>
+      </column>
+      <column name="price" type="FLOAT8">
+        <constraints nullable="false"/>
+      </column>
+      <column name="product_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="shop_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="2">
+    <createTable tableName="attribute">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="attribute_pkey"/>
+      </column>
+      <column name="description" type="VARCHAR(255)"/>
+      <column name="name" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="type" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="value" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="product_id" type="BIGINT"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="3">
+    <createTable tableName="category">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="category_pkey"/>
+      </column>
+      <column name="name" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="parent_id" type="BIGINT"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="4">
+    <createTable tableName="order_item">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="order_item_pkey"/>
+      </column>
+      <column name="price" type="FLOAT8">
+        <constraints nullable="false"/>
+      </column>
+      <column name="quantity" type="INTEGER">
+        <constraints nullable="false"/>
+      </column>
+      <column name="article_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="order_id" type="BIGINT"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="5">
+    <createTable tableName="orders">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="orders_pkey"/>
+      </column>
+      <column name="competion_date" type="date"/>
+      <column name="creation_date" type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="status" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="update_date" type="date"/>
+      <column name="user_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="6">
+    <createTable tableName="product">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="product_pkey"/>
+      </column>
+      <column name="name" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="7">
+    <createTable tableName="shop">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="shop_pkey"/>
+      </column>
+      <column name="address" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="city" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="name" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="8">
+    <createTable tableName="users">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="users_pkey"/>
+      </column>
+      <column name="address" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="email" type="VARCHAR(255)"/>
+      <column name="first_name" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_name" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="phone_number" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="username" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="9">
+    <createTable tableName="product_category">
+      <column name="product_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="category_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="10">
+    <addForeignKeyConstraint baseColumnNames="shop_id" baseTableName="article" constraintName="fk3g26g88013bhah8u039mvg8yk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shop" validate="true"/>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="11">
+    <addForeignKeyConstraint baseColumnNames="article_id" baseTableName="order_item" constraintName="fk4ta9f9h1we6r54q587ts86gw4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="article" validate="true"/>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="12">
+    <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="article" constraintName="fkbxy24ht14wxvuhu2fo3w4de3b" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product" validate="true"/>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="13">
+    <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="attribute" constraintName="fkodmc4a3tlyg001pq3owlhwsgv" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product" validate="true"/>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="14">
+    <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="category" constraintName="fk2y94svpmqttx80mshyny85wqr" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="category" validate="true"/>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="15">
+    <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="product_category" constraintName="fkkud35ls1d40wpjb5htpp14q4e" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="category" validate="true"/>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="16">
+    <addUniqueConstraint columnNames="name" constraintName="uk_46ccwnsi9409t36lurvtyljak" tableName="category"/>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="17">
+    <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_item" constraintName="fkt4dc2r9nbvbujrljv3e23iibt" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="orders" validate="true"/>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="18">
+    <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="orders" constraintName="fk32ql8ubntj5uh44ph9659tiih" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="19">
+    <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="product_category" constraintName="fk2k3smhbruedlcrvu6clued06x" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product" validate="true"/>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="20">
+    <addUniqueConstraint columnNames="name" constraintName="uk_jmivyxk9rmgysrmsqw15lqr5b" tableName="product"/>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="21">
+    <addUniqueConstraint columnNames="username" constraintName="uk_r43af9ap4edm43mmtq01oddj6" tableName="users"/>
+  </changeSet>
+
+</databaseChangeLog>
