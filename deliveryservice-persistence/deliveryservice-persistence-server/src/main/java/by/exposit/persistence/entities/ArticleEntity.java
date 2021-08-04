@@ -25,6 +25,6 @@ public class ArticleEntity extends BasePersistenceEntity {
   @Column(name = "price", nullable = false)
   private Double price;
 
-  @Column(name = "amount", nullable = false)
-  private Integer amount;
+  @Column(name = "quantity", nullable = false)
+  private Integer quantity;
 }

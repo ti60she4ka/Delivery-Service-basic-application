@@ -11,6 +11,8 @@ public abstract class AbstractServiceImpl<T extends BaseEntity, E> implements Ab
 
   protected final BaseMapper<T, E> mapper;
 
+  protected String entityType;
+
   protected AbstractServiceImpl(AbstractRepository<T> abstractRepository, BaseMapper<T, E> mapper) {
     this.abstractRepository = abstractRepository;
     this.mapper = mapper;

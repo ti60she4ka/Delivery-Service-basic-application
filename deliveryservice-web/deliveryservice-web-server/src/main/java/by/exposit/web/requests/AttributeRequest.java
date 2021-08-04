@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class AttributeRequest {
 
-  @NotNull(message = "Attribute name should should not be null")
+  @NotNull(message = "Attribute name should not be null")
   @Size(min = 2, max = 30, message = "Attribute name should be between 2 and 30 characters")
   private String name;
 

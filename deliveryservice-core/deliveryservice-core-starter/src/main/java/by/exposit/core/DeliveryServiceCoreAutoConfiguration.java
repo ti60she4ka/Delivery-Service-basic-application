@@ -7,18 +7,6 @@ import by.exposit.core.mappers.order.OrderMapper;
 import by.exposit.core.mappers.product.ProductMapper;
 import by.exposit.core.mappers.shop.ShopMapper;
 import by.exposit.core.mappers.user.UserMapper;
-import by.exposit.core.repositories.article.ArticleRepository;
-import by.exposit.core.repositories.article.ArticleRepositoryImpl;
-import by.exposit.core.repositories.category.CategoryRepository;
-import by.exposit.core.repositories.category.CategoryRepositoryImpl;
-import by.exposit.core.repositories.order.OrderRepository;
-import by.exposit.core.repositories.order.OrderRepositoryImpl;
-import by.exposit.core.repositories.product.ProductRepository;
-import by.exposit.core.repositories.product.ProductRepositoryImpl;
-import by.exposit.core.repositories.shop.ShopRepository;
-import by.exposit.core.repositories.shop.ShopRepositoryImpl;
-import by.exposit.core.repositories.user.UserRepository;
-import by.exposit.core.repositories.user.UserRepositoryImpl;
 import by.exposit.core.services.article.ArticleService;
 import by.exposit.core.services.article.ArticleServiceImpl;
 import by.exposit.core.services.category.CategoryService;
@@ -37,6 +25,12 @@ import by.exposit.core.storages.OrderDataStorage;
 import by.exposit.core.storages.ProductDataStorage;
 import by.exposit.core.storages.ShopDataStorage;
 import by.exposit.core.storages.UserDataStorage;
+import by.exposit.core.repositories.ArticleRepository;
+import by.exposit.core.repositories.CategoryRepository;
+import by.exposit.core.repositories.OrderRepository;
+import by.exposit.core.repositories.ProductRepository;
+import by.exposit.core.repositories.ShopRepository;
+import by.exposit.core.repositories.UserRepository;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -121,73 +115,41 @@ public class DeliveryServiceCoreAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  public ArticleRepository articleRepository(ArticleDataStorage articleDataStorage) {
-    return new ArticleRepositoryImpl(articleDataStorage);
-  }
+  public ArticleService articleService(ArticleRepository articleRepository,
+      ShopRepository shopRepository, ProductRepository productRepository) {
 
-  @Bean
-  @ConditionalOnMissingBean
-  public CategoryRepository categoryRepository(CategoryDataStorage categoryDataStorage) {
-    return new CategoryRepositoryImpl(categoryDataStorage);
-  }
-
-  @Bean
-  @ConditionalOnMissingBean
-  public OrderRepository orderRepository(OrderDataStorage orderDataStorage) {
-    return new OrderRepositoryImpl(orderDataStorage);
-  }
-
-  @Bean
-  @ConditionalOnMissingBean
-  public ProductRepository productRepository(ProductDataStorage productDataStorage) {
-    return new ProductRepositoryImpl(productDataStorage);
-  }
-
-  @Bean
-  @ConditionalOnMissingBean
-  public ShopRepository shopRepository(ShopDataStorage shopDataStorage) {
-    return new ShopRepositoryImpl(shopDataStorage);
-  }
-
-  @Bean
-  @ConditionalOnMissingBean
-  public UserRepository userRepository(UserDataStorage userDataStorage) {
-    return new UserRepositoryImpl(userDataStorage);
-  }
-
-  @Bean
-  @ConditionalOnMissingBean
-  public ArticleService articleService(ArticleRepository articleRepository) {
-    return new ArticleServiceImpl(articleRepository, ArticleMapper.INSTANCE);
+    return new ArticleServiceImpl(articleRepository, shopRepository,
+        productRepository, ArticleMapper.INSTANCE);
   }
 
   @Bean
   @ConditionalOnMissingBean
   public CategoryService categoryService(CategoryRepository categoryRepository) {
-    return new CategoryServiceImpl(categoryRepository, CategoryMapper.INSTANCE);
+    return new CategoryServiceImpl(categoryRepository, CategoryMapper.INSTANCE, ProductMapper.INSTANCE);
   }
 
   @Bean
   @ConditionalOnMissingBean
-  public OrderService orderService(OrderRepository orderRepository) {
-    return new OrderServiceImpl(orderRepository, OrderMapper.INSTANCE);
+  public OrderService orderService(OrderRepository orderRepository, UserRepository userRepository,
+      ArticleRepository articleRepository) {
+    return new OrderServiceImpl(orderRepository, userRepository, articleRepository, OrderMapper.INSTANCE);
   }
 
   @Bean
   @ConditionalOnMissingBean
   public ProductService productService(ProductRepository productRepository, CategoryRepository categoryRepository) {
-    return new ProductServiceImpl(productRepository, categoryRepository, ProductMapper.INSTANCE);
+    return new ProductServiceImpl(productRepository, categoryRepository, ProductMapper.INSTANCE, ArticleMapper.INSTANCE);
   }
 
   @Bean
   @ConditionalOnMissingBean
   public ShopService shopService(ShopRepository shopRepository) {
-    return new ShopServiceImpl(shopRepository, ShopMapper.INSTANCE);
+    return new ShopServiceImpl(shopRepository, ShopMapper.INSTANCE, ArticleMapper.INSTANCE);
   }
 
   @Bean
   @ConditionalOnMissingBean
   public UserService userService(UserRepository userRepository) {
-    return new UserServiceImpl(userRepository, UserMapper.INSTANCE);
+    return new UserServiceImpl(userRepository, UserMapper.INSTANCE, OrderMapper.INSTANCE);
   }
 }

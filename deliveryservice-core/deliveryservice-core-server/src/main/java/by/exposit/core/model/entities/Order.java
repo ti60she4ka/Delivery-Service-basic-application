@@ -17,6 +17,7 @@ public class Order extends BaseEntity {
   private User user;
   private Collection<OrderItem> orderItems;
   private OrderStatus status;
+  private Double totalCost;
   private LocalDate creationDate;
   private LocalDate updateDate;
   private LocalDate completionDate;

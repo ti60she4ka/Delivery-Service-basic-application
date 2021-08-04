@@ -1,6 +1,7 @@
 package by.exposit.persistence.entities;
 
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -28,6 +29,9 @@ public class ProductEntity extends BasePersistenceEntity {
   )
   private Collection<CategoryEntity> categories;
 
-  @OneToMany(mappedBy = "product")
+  @OneToMany(mappedBy = "product", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
   private Collection<AttributeEntity> attributes;
+
+  @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+  private Collection<ArticleEntity> articles;
 }

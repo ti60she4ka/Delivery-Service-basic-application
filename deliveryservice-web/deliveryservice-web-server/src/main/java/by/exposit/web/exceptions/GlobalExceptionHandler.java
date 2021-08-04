@@ -1,8 +1,7 @@
 package by.exposit.web.exceptions;
 
-import by.exposit.core.exceptions.EntityCannotBeAddedException;
+import by.exposit.core.exceptions.EntityAlreadyExistsException;
 import by.exposit.core.exceptions.EntityNotFoundException;
-import by.exposit.core.exceptions.RepeatingEntityException;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.http.HttpHeaders;
@@ -25,20 +24,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         new HttpHeaders(), HttpStatus.NOT_FOUND, request);
   }
 
-  @ExceptionHandler(RepeatingEntityException.class)
-  protected ResponseEntity<Object> handleRepeatingEntity(RepeatingEntityException ex,
-      WebRequest request) {
-
-    return handleExceptionInternal(ex,
-        buildErrorResponseBody("Entity has duplicate", ex.getMessage()),
-        new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
-  }
-
-  @ExceptionHandler(EntityCannotBeAddedException.class)
+  @ExceptionHandler(EntityAlreadyExistsException.class)
   protected ResponseEntity<Object> handleEntityCannotBeAdded(
-      EntityCannotBeAddedException ex, WebRequest request) {
+      EntityAlreadyExistsException ex, WebRequest request) {
 
-    return handleExceptionInternal(ex, buildErrorResponseBody("Cannot be added", ex.getMessage()),
+    return handleExceptionInternal(ex, buildErrorResponseBody("Cannot be added or updated", ex.getMessage()),
         new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
   }
 

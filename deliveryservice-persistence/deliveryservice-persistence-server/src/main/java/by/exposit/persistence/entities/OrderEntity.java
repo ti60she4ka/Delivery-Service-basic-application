@@ -3,10 +3,12 @@ package by.exposit.persistence.entities;
 import by.exposit.core.model.enums.status.OrderStatus;
 import java.time.LocalDate;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -24,12 +26,15 @@ public class OrderEntity extends BasePersistenceEntity {
   @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
   private UserEntity user;
 
-  @OneToMany(mappedBy = "order")
+  @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
   private Collection<OrderItemEntity> orderItems;
 
   @Enumerated(EnumType.STRING)
   @Column(name = "status", nullable = false)
   private OrderStatus status;
+
+  @Column(name = "total_cost", nullable = false)
+  private Double totalCost;
 
   @Column(name = "creation_date", nullable = false)
   private LocalDate creationDate;
@@ -37,6 +42,6 @@ public class OrderEntity extends BasePersistenceEntity {
   @Column(name = "update_date")
   private LocalDate updateDate;
 
-  @Column(name = "competion_date")
+  @Column(name = "completion_date")
   private LocalDate completionDate;
 }

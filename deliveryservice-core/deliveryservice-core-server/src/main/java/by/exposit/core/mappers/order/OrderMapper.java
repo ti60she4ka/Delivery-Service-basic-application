@@ -5,6 +5,7 @@ import by.exposit.core.mappers.BaseMapper;
 import by.exposit.core.model.entities.Order;
 import java.util.Collection;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
@@ -16,6 +17,8 @@ public interface OrderMapper extends BaseMapper<Order, OrderDto> {
   OrderDto toDto(Order order);
 
   @Override
+  @Mapping(target = "user", ignore = true)
+  @Mapping(target = "orderItems", ignore = true)
   Order toEntity(OrderDto orderDto);
 
   @Override

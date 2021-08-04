@@ -7,4 +7,13 @@ import lombok.Setter;
 @Setter
 public class ArticleDto {
 
+  private Long id;
+
+  private ProductDto product;
+
+  private ShopDto shop;
+
+  private Double price;
+
+  private Integer quantity;
 }

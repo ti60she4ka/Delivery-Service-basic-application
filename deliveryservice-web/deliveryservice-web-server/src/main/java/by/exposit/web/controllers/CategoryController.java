@@ -1,6 +1,7 @@
 package by.exposit.web.controllers;
 
 import by.exposit.core.dto.CategoryDto;
+import by.exposit.core.dto.ProductDto;
 import by.exposit.core.services.category.CategoryService;
 import by.exposit.web.mappers.CategoryRequestMapper;
 import by.exposit.web.requests.CategoryRequest;
@@ -66,5 +67,13 @@ public class CategoryController {
   public ResponseEntity<Map<String, String>> deleteById(@PathVariable Long id) {
     categoryService.deleteById(id);
     return ResponseBody.successOperation();
+  }
+
+  @GetMapping("/{id}/products")
+  public ResponseEntity<Collection<ProductDto>> getProductsByCategoryId(@PathVariable Long id){
+    return new ResponseEntity<>(
+        categoryService.getProductsByCategoryId(id),
+        HttpStatus.OK
+    );
   }
 }

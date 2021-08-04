@@ -7,4 +7,11 @@ import lombok.Setter;
 @Setter
 public class ShopDto {
 
+  private Long id;
+
+  private String name;
+
+  private String city;
+
+  private String address;
 }

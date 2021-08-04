@@ -1,6 +1,7 @@
 package by.exposit.persistence.entities;
 
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,6 +34,6 @@ public class UserEntity extends BasePersistenceEntity {
   @Column(name = "address", nullable = false)
   private String address;
 
-  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
   private Collection<OrderEntity> orders;
 }

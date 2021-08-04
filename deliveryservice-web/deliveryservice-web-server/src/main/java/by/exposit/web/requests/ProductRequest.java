@@ -12,7 +12,7 @@ import lombok.Setter;
 public class ProductRequest {
 
   @NotNull(message = "Product name should not be null")
-  @Size(min = 2, message = "Product name should have at least 2 characters")
+  @Size(min = 2, max = 30, message = "Product name should be between 2 and 30 characters")
   private String name;
 
   private Collection<@NotNull(message = "Category ID should not be null") Long> categoryIdCollection;

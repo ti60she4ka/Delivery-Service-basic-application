@@ -5,6 +5,7 @@ import by.exposit.core.mappers.BaseMapper;
 import by.exposit.core.model.entities.Article;
 import java.util.Collection;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
@@ -16,6 +17,8 @@ public interface ArticleMapper extends BaseMapper<Article, ArticleDto> {
   ArticleDto toDto(Article article);
 
   @Override
+  @Mapping(target = "shop", ignore = true)
+  @Mapping(target = "product", ignore = true)
   Article toEntity(ArticleDto articleDto);
 
   @Override

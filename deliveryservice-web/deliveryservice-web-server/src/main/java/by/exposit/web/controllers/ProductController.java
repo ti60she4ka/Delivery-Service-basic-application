@@ -1,5 +1,6 @@
 package by.exposit.web.controllers;
 
+import by.exposit.core.dto.ArticleDto;
 import by.exposit.core.dto.ProductDto;
 import by.exposit.core.services.product.ProductService;
 import by.exposit.web.mappers.ProductRequestMapper;
@@ -66,5 +67,13 @@ public class ProductController {
   public ResponseEntity<Map<String, String>> deleteById(@PathVariable Long id){
     productService.deleteById(id);
     return ResponseBody.successOperation();
+  }
+
+  @GetMapping("/{id}/articles")
+  public ResponseEntity<Collection<ArticleDto>> getArticlesByProductId(@PathVariable Long id){
+    return new ResponseEntity<>(
+        productService.getArticlesByProductId(id),
+        HttpStatus.OK
+    );
   }
 }
