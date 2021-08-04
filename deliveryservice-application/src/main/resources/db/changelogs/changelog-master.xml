@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <property name="double" dbms="postgresql" value="FLOAT8"/>
+  <property name="double" dbms="mssql" value="float(53)"/>
+
+  <include  file="tables/category-changelog.xml" relativeToChangelogFile="true"/>
+  <include  file="tables/product-changelog.xml" relativeToChangelogFile="true"/>
+  <include  file="tables/attribute-changelog.xml" relativeToChangelogFile="true"/>
+  <include  file="tables/product_category-changelog.xml" relativeToChangelogFile="true"/>
+  <include  file="tables/shop-changelog.xml" relativeToChangelogFile="true"/>
+  <include  file="tables/users-changelog.xml" relativeToChangelogFile="true"/>
+  <include  file="tables/orders-changelog.xml" relativeToChangelogFile="true"/>
+  <include  file="tables/article-changelog.xml" relativeToChangelogFile="true"/>
+  <include  file="tables/order_item-changelog.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <changeSet author="Pavel Avtaev" id="04-08-2021-18-07">
+    <createTable tableName="article">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="article_pkey"/>
+      </column>
+      <column name="quantity" type="INTEGER">
+        <constraints nullable="false"/>
+      </column>
+      <column name="price" type="${double}">
+        <constraints nullable="false"/>
+      </column>
+      <column name="product_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="shop_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <addForeignKeyConstraint
+      baseColumnNames="shop_id"
+      baseTableName="article"
+      constraintName="article_shop_id_fkey"
+      referencedColumnNames="id"
+      referencedTableName="shop"/>
+
+    <addForeignKeyConstraint
+      baseColumnNames="product_id"
+      baseTableName="article"
+      constraintName="article_product_id_fkey"
+      referencedColumnNames="id"
+      referencedTableName="product"/>
+  </changeSet>
+
+</databaseChangeLog>

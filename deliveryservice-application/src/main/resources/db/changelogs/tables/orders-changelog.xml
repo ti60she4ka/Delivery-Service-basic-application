@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <changeSet author="Pavel Avtaev" id="04-08-2021-18-27">
+    <createTable tableName="orders">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="orders_pkey"/>
+      </column>
+      <column name="completion_date" type="date"/>
+      <column name="creation_date" type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="status" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="total_cost" type="${double}">
+        <constraints nullable="false"/>
+      </column>
+      <column name="update_date" type="date"/>
+      <column name="user_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <addForeignKeyConstraint
+      baseColumnNames="user_id"
+      baseTableName="orders"
+      constraintName="orders_user_id_fkey"
+      referencedColumnNames="id"
+      referencedTableName="users"/>
+  </changeSet>
+
+</databaseChangeLog>
