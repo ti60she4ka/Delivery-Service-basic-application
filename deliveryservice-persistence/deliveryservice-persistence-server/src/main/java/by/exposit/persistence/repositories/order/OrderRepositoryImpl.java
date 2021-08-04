@@ -1,7 +1,5 @@
 package by.exposit.persistence.repositories.order;
 
-import by.exposit.core.exceptions.EntityAlreadyExistsException;
-import by.exposit.core.exceptions.EntityNotFoundException;
 import by.exposit.core.model.entities.Order;
 import by.exposit.core.repositories.OrderRepository;
 import by.exposit.persistence.entities.OrderEntity;
@@ -46,7 +44,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 
   @Override
   public void update(Order order) {
-    orderItemRepository.deleteAllByOrOrderId(order.getId());
+    orderItemRepository.deleteAllByOrderId(order.getId());
     OrderEntity orderEntity = orderMapper.toPersistenceEntity(order);
 
     for(OrderItemEntity orderItemEntity : orderEntity.getOrderItems()){

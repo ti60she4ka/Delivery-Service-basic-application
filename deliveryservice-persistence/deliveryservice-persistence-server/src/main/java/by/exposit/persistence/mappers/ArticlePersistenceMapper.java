@@ -1,9 +1,7 @@
 package by.exposit.persistence.mappers;
 
 import by.exposit.core.model.entities.Article;
-import by.exposit.core.model.entities.User;
 import by.exposit.persistence.entities.ArticleEntity;
-import by.exposit.persistence.entities.UserEntity;
 import java.util.Collection;
 import org.mapstruct.Mapper;
 

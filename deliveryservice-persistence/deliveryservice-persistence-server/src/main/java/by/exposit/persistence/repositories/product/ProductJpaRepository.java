@@ -8,6 +8,4 @@ public interface ProductJpaRepository extends JpaRepository<ProductEntity, Long>
   boolean existsByName(String name);
 
   boolean existsByNameAndIdIsNot(String name, Long id);
-
-  boolean existsById(Long id);
 }

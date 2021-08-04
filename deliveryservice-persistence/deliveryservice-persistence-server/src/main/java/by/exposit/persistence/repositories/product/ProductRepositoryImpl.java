@@ -1,7 +1,5 @@
 package by.exposit.persistence.repositories.product;
 
-import by.exposit.core.exceptions.EntityAlreadyExistsException;
-import by.exposit.core.exceptions.EntityNotFoundException;
 import by.exposit.core.model.entities.Article;
 import by.exposit.core.model.entities.Product;
 import by.exposit.core.repositories.ProductRepository;

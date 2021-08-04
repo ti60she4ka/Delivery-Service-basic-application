@@ -1,8 +1,5 @@
 package by.exposit.persistence.repositories.shop;
 
-import by.exposit.core.dto.ArticleDto;
-import by.exposit.core.exceptions.EntityAlreadyExistsException;
-import by.exposit.core.exceptions.EntityNotFoundException;
 import by.exposit.core.model.entities.Article;
 import by.exposit.core.model.entities.Shop;
 import by.exposit.core.repositories.ShopRepository;

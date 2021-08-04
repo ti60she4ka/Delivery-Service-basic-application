@@ -6,7 +6,6 @@ import by.exposit.core.dto.ShopDto;
 import by.exposit.web.requests.ArticleRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 import org.mapstruct.Named;
 
 @Mapper(componentModel = "spring")

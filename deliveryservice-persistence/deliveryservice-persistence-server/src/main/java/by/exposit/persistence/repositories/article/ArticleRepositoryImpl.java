@@ -1,8 +1,5 @@
 package by.exposit.persistence.repositories.article;
 
-import by.exposit.core.dto.ArticleDto;
-import by.exposit.core.exceptions.EntityAlreadyExistsException;
-import by.exposit.core.exceptions.EntityNotFoundException;
 import by.exposit.core.model.entities.Article;
 import by.exposit.core.repositories.ArticleRepository;
 import by.exposit.persistence.mappers.ArticlePersistenceMapper;

@@ -1,8 +1,6 @@
 package by.exposit.persistence.mappers;
 
-import by.exposit.core.model.entities.Category;
 import by.exposit.core.model.entities.Product;
-import by.exposit.persistence.entities.CategoryEntity;
 import by.exposit.persistence.entities.ProductEntity;
 import java.util.Collection;
 import org.mapstruct.Mapper;

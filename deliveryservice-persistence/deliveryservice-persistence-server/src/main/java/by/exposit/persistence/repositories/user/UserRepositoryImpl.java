@@ -1,7 +1,5 @@
 package by.exposit.persistence.repositories.user;
 
-import by.exposit.core.exceptions.EntityAlreadyExistsException;
-import by.exposit.core.exceptions.EntityNotFoundException;
 import by.exposit.core.model.entities.Order;
 import by.exposit.core.model.entities.User;
 import by.exposit.core.repositories.UserRepository;

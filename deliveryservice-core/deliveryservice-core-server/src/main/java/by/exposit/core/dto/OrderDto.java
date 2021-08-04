@@ -1,7 +1,5 @@
 package by.exposit.core.dto;
 
-import by.exposit.core.model.entities.OrderItem;
-import by.exposit.core.model.entities.User;
 import by.exposit.core.model.enums.status.OrderStatus;
 import java.time.LocalDate;
 import java.util.Collection;

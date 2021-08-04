@@ -1,6 +1,5 @@
 package by.exposit.persistence.repositories.category;
 
-import by.exposit.core.exceptions.EntityNotFoundException;
 import by.exposit.core.model.entities.Category;
 import by.exposit.core.model.entities.Product;
 import by.exposit.core.repositories.CategoryRepository;
