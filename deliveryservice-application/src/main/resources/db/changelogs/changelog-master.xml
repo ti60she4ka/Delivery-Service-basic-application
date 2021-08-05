@@ -8,14 +8,16 @@
   <property name="double" dbms="postgresql" value="FLOAT8"/>
   <property name="double" dbms="mssql" value="float(53)"/>
 
-  <include  file="tables/category-changelog.xml" relativeToChangelogFile="true"/>
-  <include  file="tables/product-changelog.xml" relativeToChangelogFile="true"/>
-  <include  file="tables/attribute-changelog.xml" relativeToChangelogFile="true"/>
-  <include  file="tables/product_category-changelog.xml" relativeToChangelogFile="true"/>
-  <include  file="tables/shop-changelog.xml" relativeToChangelogFile="true"/>
-  <include  file="tables/users-changelog.xml" relativeToChangelogFile="true"/>
-  <include  file="tables/orders-changelog.xml" relativeToChangelogFile="true"/>
-  <include  file="tables/article-changelog.xml" relativeToChangelogFile="true"/>
-  <include  file="tables/order_item-changelog.xml" relativeToChangelogFile="true"/>
+  <include file="tables/category-changelog.xml" relativeToChangelogFile="true"/>
+  <include file="tables/product-changelog.xml" relativeToChangelogFile="true"/>
+  <include file="tables/attribute-changelog.xml" relativeToChangelogFile="true"/>
+  <include file="tables/product_category-changelog.xml" relativeToChangelogFile="true"/>
+  <include file="tables/shop-changelog.xml" relativeToChangelogFile="true"/>
+  <include file="tables/users-changelog.xml" relativeToChangelogFile="true"/>
+  <include file="tables/orders-changelog.xml" relativeToChangelogFile="true"/>
+  <include file="tables/article-changelog.xml" relativeToChangelogFile="true"/>
+  <include file="tables/order_item-changelog.xml" relativeToChangelogFile="true"/>
+
+  <include file="configuration/initialize_category-changelog.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
