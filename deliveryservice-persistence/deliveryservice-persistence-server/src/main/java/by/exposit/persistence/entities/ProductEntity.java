@@ -34,4 +34,14 @@ public class ProductEntity extends BasePersistenceEntity {
 
   @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
   private Collection<ArticleEntity> articles;
+
+  @Override
+  public String toString() {
+    return "ProductEntity (" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        ", categories=" + categories +
+        ", attributes=" + attributes +
+        ')';
+  }
 }

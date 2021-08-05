@@ -38,7 +38,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackages = {"by.exposit.core"})
-public class DeliveryServiceCoreAutoConfiguration {
+public class CoreAutoConfiguration {
 
   private static final String ARTICLE_DATA_STORAGE_PATH = "deliveryservice-core/deliveryservice-core-server/src/main/java/by/exposit/core/files/ArticleDataStorage.json";
   private static final String CATEGORY_DATA_STORAGE_PATH = "deliveryservice-core/deliveryservice-core-server/src/main/java/by/exposit/core/files/CategoryDataStorage.json";

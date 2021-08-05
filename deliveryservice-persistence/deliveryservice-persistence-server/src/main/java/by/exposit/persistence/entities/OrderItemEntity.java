@@ -28,4 +28,14 @@ public class OrderItemEntity extends BasePersistenceEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "order_id", referencedColumnName = "id")
   private OrderEntity order;
+
+  @Override
+  public String toString() {
+    return "OrderItemEntity (" +
+        "id=" + id +
+        ", article=" + article +
+        ", quantity=" + quantity +
+        ", price=" + price +
+        ')';
+  }
 }

@@ -1,6 +1,6 @@
 package by.exposit.persistence;
 
-import by.exposit.core.DeliveryServiceCoreAutoConfiguration;
+import by.exposit.core.CoreAutoConfiguration;
 import by.exposit.core.repositories.ArticleRepository;
 import by.exposit.core.repositories.CategoryRepository;
 import by.exposit.core.repositories.OrderRepository;
@@ -41,8 +41,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(basePackages = "by.exposit.persistence")
 @EntityScan(basePackages = "by.exposit.persistence")
 @EnableJpaRepositories(basePackages = "by.exposit.persistence")
-@AutoConfigureBefore({DeliveryServiceCoreAutoConfiguration.class})
-public class DeliveryServicePersistenceAutoConfiguration {
+@AutoConfigureBefore({CoreAutoConfiguration.class})
+public class PersistenceAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean

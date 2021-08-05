@@ -43,4 +43,18 @@ public class OrderEntity extends BasePersistenceEntity {
 
   @Column(name = "completion_date")
   private LocalDate completionDate;
+
+  @Override
+  public String toString() {
+    return "OrderEntity (" +
+        "id=" + id +
+        ", user=" + user +
+        ", orderItems=" + orderItems +
+        ", status=" + status +
+        ", totalCost=" + totalCost +
+        ", creationDate=" + creationDate +
+        ", updateDate=" + updateDate +
+        ", completionDate=" + completionDate +
+        ')';
+  }
 }

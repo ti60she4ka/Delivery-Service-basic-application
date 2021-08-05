@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -26,4 +27,13 @@ public class CategoryEntity extends BasePersistenceEntity {
 
   @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
   private Collection<ProductEntity> products;
+
+  @Override
+  public String toString() {
+    return "CategoryEntity (" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        ", parentCategory=" + parentCategory +
+        ')';
+  }
 }

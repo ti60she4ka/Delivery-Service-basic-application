@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -30,4 +31,15 @@ public class AttributeEntity extends BasePersistenceEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "product_id", referencedColumnName = "id")
   private ProductEntity product;
+
+  @Override
+  public String toString() {
+    return "AttributeEntity (" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        ", description='" + description + '\'' +
+        ", type=" + type +
+        ", value='" + value + '\'' +
+        ')';
+  }
 }

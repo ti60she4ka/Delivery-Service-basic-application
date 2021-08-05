@@ -36,4 +36,17 @@ public class UserEntity extends BasePersistenceEntity {
 
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
   private Collection<OrderEntity> orders;
+
+  @Override
+  public String toString() {
+    return "UserEntity (" +
+        "id=" + id +
+        ", username='" + username + '\'' +
+        ", firstName='" + firstName + '\'' +
+        ", lastName='" + lastName + '\'' +
+        ", email='" + email + '\'' +
+        ", phoneNumber='" + phoneNumber + '\'' +
+        ", address='" + address + '\'' +
+        ')';
+  }
 }

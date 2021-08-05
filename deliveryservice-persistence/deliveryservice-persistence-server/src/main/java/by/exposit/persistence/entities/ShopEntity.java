@@ -27,4 +27,14 @@ public class ShopEntity extends BasePersistenceEntity {
 
   @OneToMany(mappedBy = "shop", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
   private Collection<ArticleEntity> articles;
+
+  @Override
+  public String toString() {
+    return "ShopEntity (" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        ", city='" + city + '\'' +
+        ", address='" + address + '\'' +
+        ')';
+  }
 }

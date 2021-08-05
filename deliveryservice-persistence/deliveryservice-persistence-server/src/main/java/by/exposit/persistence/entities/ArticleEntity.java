@@ -7,6 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -27,4 +28,15 @@ public class ArticleEntity extends BasePersistenceEntity {
 
   @Column(name = "quantity", nullable = false)
   private Integer quantity;
+
+  @Override
+  public String toString() {
+    return "ArticleEntity (" +
+        "id=" + id +
+        ", price=" + price +
+        ", quantity=" + quantity +
+        ", product=" + product +
+        ", shop=" + shop +
+        ')';
+  }
 }

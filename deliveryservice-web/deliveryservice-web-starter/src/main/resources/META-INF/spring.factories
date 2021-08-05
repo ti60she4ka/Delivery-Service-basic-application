@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration = by.exposit.web.DeliveryServiceWebAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration = by.exposit.web.WebAutoConfiguration
