@@ -11,13 +11,12 @@ spring:
     change-log: classpath:db/changelogs/changelog-master.xml
 
   datasource:
-    url: jdbc:sqlserver://localhost:1433;database=deliveryservice
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    username: pavel.avtaev
+    url: jdbc:postgresql://localhost:5432/postgres
+    driver-class-name: org.postgresql.Driver
+    username: postgres
     password: password
 
   jpa:
     generate-ddl: false
-    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     show-sql: true
     open-in-view: false
