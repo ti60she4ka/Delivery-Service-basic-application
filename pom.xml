@@ -206,7 +206,7 @@
           <artifactId>liquibase-maven-plugin</artifactId>
           <version>${liquibase.version}</version>
           <configuration>
-            <propertyFile>src/main/resources/application.properties</propertyFile>
+            <propertyFile>src/main/resources/application.yaml</propertyFile>
             <propertyFileWillOverride>true</propertyFileWillOverride>
           </configuration>
         </plugin>

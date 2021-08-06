@@ -1,0 +1,23 @@
+git-commit-id:
+  build-version: ${git.build.version}
+  build-time: ${git.build.time}
+  git-branch: ${git.branch}
+  git-commit-id: ${git.commit.id}
+  git-commit-message: ${git.commit.message.full}
+
+spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelogs/changelog-master.xml
+
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;database=deliveryservice
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: pavel.avtaev
+    password: password
+
+  jpa:
+    generate-ddl: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    show-sql: true
+    open-in-view: false
