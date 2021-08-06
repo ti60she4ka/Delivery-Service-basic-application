@@ -29,6 +29,7 @@ public class ProductRepositoryImpl implements ProductRepository {
   }
 
   @Override
+  @Transactional
   public Product create(Product product) {
     ProductEntity productEntity = productMapper.toPersistenceEntity(product);
 
@@ -40,11 +41,13 @@ public class ProductRepositoryImpl implements ProductRepository {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Collection<Product> getAll() {
     return productMapper.toEntityCollection(productRepository.findAll());
   }
 
   @Override
+  @Transactional
   public void deleteById(Long id) {
     productRepository.deleteById(id);
   }
@@ -63,26 +66,31 @@ public class ProductRepositoryImpl implements ProductRepository {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Product getById(Long id) {
     return productMapper.toEntity(productRepository.getById(id));
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Collection<Article> getArticlesByProductId(Long id) {
     return articleMapper.toEntityCollection(productRepository.getById(id).getArticles());
   }
 
   @Override
+  @Transactional(readOnly = true)
   public boolean existsByName(String name) {
     return productRepository.existsByName(name);
   }
 
   @Override
+  @Transactional(readOnly = true)
   public boolean existsByNameAndIdIsNot(String name, Long id) {
     return productRepository.existsByNameAndIdIsNot(name, id);
   }
 
   @Override
+  @Transactional(readOnly = true)
   public boolean existsById(Long id) {
     return productRepository.existsById(id);
   }

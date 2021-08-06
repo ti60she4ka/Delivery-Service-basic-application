@@ -7,6 +7,7 @@ import by.exposit.persistence.entities.OrderItemEntity;
 import by.exposit.persistence.mappers.OrderPersistenceMapper;
 import by.exposit.persistence.repositories.order.orderitem.OrderItemJpaRepository;
 import java.util.Collection;
+import org.springframework.transaction.annotation.Transactional;
 
 public class OrderRepositoryImpl implements OrderRepository {
 
@@ -22,6 +23,7 @@ public class OrderRepositoryImpl implements OrderRepository {
   }
 
   @Override
+  @Transactional
   public Order create(Order order) {
     OrderEntity orderEntity = orderMapper.toPersistenceEntity(order);
 
@@ -33,16 +35,19 @@ public class OrderRepositoryImpl implements OrderRepository {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Collection<Order> getAll() {
     return orderMapper.toEntityCollection(orderRepository.findAll());
   }
 
   @Override
+  @Transactional
   public void deleteById(Long id) {
     orderRepository.deleteById(id);
   }
 
   @Override
+  @Transactional
   public void update(Order order) {
     orderItemRepository.deleteAllByOrderId(order.getId());
     OrderEntity orderEntity = orderMapper.toPersistenceEntity(order);
@@ -55,11 +60,13 @@ public class OrderRepositoryImpl implements OrderRepository {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Order getById(Long id) {
     return orderMapper.toEntity(orderRepository.getById(id));
   }
 
   @Override
+  @Transactional(readOnly = true)
   public boolean existsById(Long id) {
     return orderRepository.existsById(id);
   }
