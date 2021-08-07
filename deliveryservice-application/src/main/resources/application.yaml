@@ -11,9 +11,9 @@ spring:
     change-log: classpath:db/changelogs/changelog-master.xml
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    driver-class-name: org.postgresql.Driver
-    username: postgres
+    url: jdbc:sqlserver://localhost:1433;database=deliveryservice
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: pavel.avtaev
     password: password
 
   jpa:

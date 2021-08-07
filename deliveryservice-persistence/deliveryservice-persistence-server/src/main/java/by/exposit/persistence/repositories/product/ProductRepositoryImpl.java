@@ -31,13 +31,7 @@ public class ProductRepositoryImpl implements ProductRepository {
   @Override
   @Transactional
   public Product create(Product product) {
-    ProductEntity productEntity = productMapper.toPersistenceEntity(product);
-
-    for(AttributeEntity attribute : productEntity.getAttributes()){
-      attribute.setProduct(productEntity);
-    }
-
-    return productMapper.toEntity(productRepository.save(productEntity));
+    return productMapper.toEntity(productRepository.save(productMapper.toPersistenceEntity(product)));
   }
 
   @Override
@@ -56,13 +50,8 @@ public class ProductRepositoryImpl implements ProductRepository {
   @Transactional
   public void update(Product product) {
     attributeRepository.deleteAllByProductId(product.getId());
-    ProductEntity productEntity = productMapper.toPersistenceEntity(product);
 
-    for(AttributeEntity attribute : productEntity.getAttributes()){
-      attribute.setProduct(productEntity);
-    }
-
-    productRepository.save(productEntity);
+    productRepository.save(productMapper.toPersistenceEntity(product));
   }
 
   @Override

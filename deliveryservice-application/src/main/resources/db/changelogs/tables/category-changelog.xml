@@ -20,13 +20,36 @@
       columnNames="name"
       constraintName="category_name_ukey"
       tableName="category"/>
+  </changeSet>
 
+  <changeSet author="Pavel Avtaev" id="06-08-2021-21-38" dbms="postgresql">
+    <addForeignKeyConstraint
+      baseColumnNames="parent_id"
+      baseTableName="category"
+      constraintName="category_parent_id_fkey"
+      referencedColumnNames="id"
+      referencedTableName="category"
+      onDelete="SET NULL"/>
+  </changeSet>
+
+  <changeSet author="Pavel Avtaev" id="06-08-2021-21-39" dbms="mssql">
     <addForeignKeyConstraint
       baseColumnNames="parent_id"
       baseTableName="category"
       constraintName="category_parent_id_fkey"
       referencedColumnNames="id"
       referencedTableName="category"/>
+
+    <sql>
+      CREATE OR ALTER TRIGGER TRG_SET_NULL_PARENT_ID
+      ON CATEGORY INSTEAD OF DELETE
+      AS BEGIN
+
+      UPDATE CATEGORY SET PARENT_ID=NULL WHERE PARENT_ID IN (SELECT ID FROM DELETED)
+      DELETE FROM CATEGORY WHERE ID IN (SELECT ID FROM DELETED)
+
+      END
+    </sql>
   </changeSet>
 
 </databaseChangeLog>

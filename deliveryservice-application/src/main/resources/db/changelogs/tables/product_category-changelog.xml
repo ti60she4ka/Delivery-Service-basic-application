@@ -20,7 +20,8 @@
       baseTableName="product_category"
       constraintName="product_category_category_id_fkey"
       referencedColumnNames="id"
-      referencedTableName="category"/>
+      referencedTableName="category"
+      onDelete="CASCADE"/>
 
     <addForeignKeyConstraint
       baseColumnNames="product_id"

@@ -36,12 +36,6 @@ public class CategoryRepositoryImpl implements CategoryRepository {
   @Override
   @Transactional
   public void deleteById(Long id) {
-    categoryRepository.findAllByParentCategoryId(id)
-        .forEach(category -> category.setParentCategory(null));
-
-    categoryRepository.getById(id).getProducts()
-        .forEach(product -> product.getCategories().removeIf(category -> category.getId().equals(id)));
-
     categoryRepository.deleteById(id);
   }
 

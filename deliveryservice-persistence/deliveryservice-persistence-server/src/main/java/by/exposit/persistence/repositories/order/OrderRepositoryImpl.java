@@ -25,13 +25,7 @@ public class OrderRepositoryImpl implements OrderRepository {
   @Override
   @Transactional
   public Order create(Order order) {
-    OrderEntity orderEntity = orderMapper.toPersistenceEntity(order);
-
-    for(OrderItemEntity orderItemEntity : orderEntity.getOrderItems()){
-      orderItemEntity.setOrder(orderEntity);
-    }
-
-    return orderMapper.toEntity(orderRepository.save(orderEntity));
+    return orderMapper.toEntity(orderRepository.save(orderMapper.toPersistenceEntity(order)));
   }
 
   @Override
@@ -50,11 +44,6 @@ public class OrderRepositoryImpl implements OrderRepository {
   @Transactional
   public void update(Order order) {
     orderItemRepository.deleteAllByOrderId(order.getId());
-    OrderEntity orderEntity = orderMapper.toPersistenceEntity(order);
-
-    for(OrderItemEntity orderItemEntity : orderEntity.getOrderItems()){
-      orderItemEntity.setOrder(orderEntity);
-    }
 
     orderRepository.save(orderMapper.toPersistenceEntity(order));
   }

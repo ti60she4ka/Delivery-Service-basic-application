@@ -27,7 +27,8 @@
       baseTableName="order_item"
       constraintName="order_item_article_id_fkey"
       referencedColumnNames="id"
-      referencedTableName="article"/>
+      referencedTableName="article"
+      onDelete="CASCADE"/>
 
     <addForeignKeyConstraint
       baseColumnNames="order_id"
