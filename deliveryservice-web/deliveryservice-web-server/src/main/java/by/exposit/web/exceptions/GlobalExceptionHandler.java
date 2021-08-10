@@ -4,6 +4,7 @@ import by.exposit.core.exceptions.EntityAlreadyExistsException;
 import by.exposit.core.exceptions.EntityNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(EntityNotFoundException.class)
@@ -39,6 +41,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     return handleExceptionInternal(ex, buildErrorResponseBody("Validation error",
         ex.getBindingResult().getFieldError().getDefaultMessage()),
         new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+  }
+
+  @ExceptionHandler(Exception.class)
+  protected ResponseEntity<Object> handleUnsupportedExceptions(Exception ex, WebRequest request){
+    log.info("Server error -> {}: {}", ex.getClass(), ex.getMessage());
+    return handleExceptionInternal(ex, buildErrorResponseBody("Server error", "Server exception"),
+        new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
   }
 
   private Map<String, String> buildErrorResponseBody(String errorTitle, String message) {

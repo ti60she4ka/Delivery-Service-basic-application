@@ -14,6 +14,7 @@
     <module>deliveryservice-web</module>
     <module>deliveryservice-application</module>
     <module>deliveryservice-persistence</module>
+    <module>deliveryservice-multithreading</module>
   </modules>
 
   <properties>
@@ -86,6 +87,12 @@
 
       <dependency>
         <groupId>by.exposit</groupId>
+        <artifactId>deliveryservice-multithreading-server</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>by.exposit</groupId>
         <artifactId>deliveryservice-core-starter</artifactId>
         <version>${project.version}</version>
       </dependency>
@@ -99,6 +106,12 @@
       <dependency>
         <groupId>by.exposit</groupId>
         <artifactId>deliveryservice-persistence-starter</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>by.exposit</groupId>
+        <artifactId>deliveryservice-multithreading-starter</artifactId>
         <version>${project.version}</version>
       </dependency>
 

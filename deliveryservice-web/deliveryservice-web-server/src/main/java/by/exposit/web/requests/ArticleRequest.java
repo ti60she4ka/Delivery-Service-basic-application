@@ -22,4 +22,14 @@ public class ArticleRequest {
   @NotNull(message = "Quantity should not be null")
   @Positive(message = "Quantity should be a positive number")
   private Integer quantity;
+
+  @Override
+  public String toString() {
+    return "ArticleRequest (" +
+        "productId=" + productId +
+        ", shopId=" + shopId +
+        ", price=" + price +
+        ", quantity=" + quantity +
+        ')';
+  }
 }

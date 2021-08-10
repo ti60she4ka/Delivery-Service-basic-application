@@ -8,7 +8,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 @ComponentScan(basePackages = "by.exposit.web")
-@ConfigurationPropertiesScan(basePackages = "by.exposit.web")
+@ConfigurationPropertiesScan(basePackages = "by.exposit.web.properties")
 public class WebAutoConfiguration {
 
 }
