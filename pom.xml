@@ -152,6 +152,7 @@
       <id>prod</id>
       <properties>
         <logger-level>info</logger-level>
+        <profile-id>prod</profile-id>
       </properties>
     </profile>
 
@@ -162,6 +163,7 @@
       </activation>
       <properties>
         <logger-level>debug</logger-level>
+        <profile-id>dev</profile-id>
       </properties>
     </profile>
   </profiles>
