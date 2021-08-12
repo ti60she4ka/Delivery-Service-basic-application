@@ -2,6 +2,7 @@ package by.exposit.web.controllers;
 
 import by.exposit.core.dto.ArticleDto;
 import by.exposit.core.dto.ProductDto;
+import by.exposit.core.filter.specifications.ProductSpecificationFilter;
 import by.exposit.core.services.product.ProductService;
 import by.exposit.web.mappers.ProductRequestMapper;
 import by.exposit.web.requests.ProductRequest;
@@ -48,9 +49,9 @@ public class ProductController {
   }
 
   @GetMapping()
-  public ResponseEntity<Collection<ProductDto>> getAll(){
+  public ResponseEntity<Collection<ProductDto>> getAll(ProductSpecificationFilter filter){
     return new ResponseEntity<>(
-        productService.getAll(),
+        productService.getAll(filter),
         HttpStatus.OK
     );
   }

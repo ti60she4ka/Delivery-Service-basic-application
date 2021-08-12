@@ -5,6 +5,7 @@ import by.exposit.core.dto.CategoryDto;
 import by.exposit.core.dto.ProductDto;
 import by.exposit.core.exceptions.EntityNotFoundException;
 import by.exposit.core.exceptions.ProductAlreadyExistsException;
+import by.exposit.core.filter.specifications.ProductSpecificationFilter;
 import by.exposit.core.mappers.BaseMapper;
 import by.exposit.core.mappers.article.ArticleMapper;
 import by.exposit.core.model.entities.Category;
@@ -76,6 +77,11 @@ public class ProductServiceImpl extends AbstractServiceImpl<Product, ProductDto>
     } else {
       throw new EntityNotFoundException(entityType, id);
     }
+  }
+
+  @Override
+  public Collection<ProductDto> getAll(ProductSpecificationFilter filter) {
+    return mapper.toDtoCollection(productRepository.getAll(filter));
   }
 
   private Product mapToProduct(ProductDto productDto) {

@@ -1,5 +1,6 @@
 package by.exposit.core;
 
+import by.exposit.core.aspects.BenchmarkAspect;
 import by.exposit.core.filemanager.FileManager;
 import by.exposit.core.mappers.article.ArticleMapper;
 import by.exposit.core.mappers.category.CategoryMapper;
@@ -31,6 +32,7 @@ import by.exposit.core.storages.OrderDataStorage;
 import by.exposit.core.storages.ProductDataStorage;
 import by.exposit.core.storages.ShopDataStorage;
 import by.exposit.core.storages.UserDataStorage;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -151,5 +153,11 @@ public class CoreAutoConfiguration {
   @ConditionalOnMissingBean
   public UserService userService(UserRepository userRepository) {
     return new UserServiceImpl(userRepository, UserMapper.INSTANCE, OrderMapper.INSTANCE);
+  }
+
+  @Bean
+  @ConditionalOnMissingBean
+  public BenchmarkAspect benchmarkAspect(@Value("${maven-profile}") String profile){
+    return new BenchmarkAspect(profile);
   }
 }

@@ -1,13 +1,13 @@
 package by.exposit.persistence.repositories.product;
 
+import by.exposit.core.filter.specifications.ProductSpecificationFilter;
 import by.exposit.core.model.entities.Article;
 import by.exposit.core.model.entities.Product;
 import by.exposit.core.repositories.ProductRepository;
-import by.exposit.persistence.entities.AttributeEntity;
-import by.exposit.persistence.entities.ProductEntity;
 import by.exposit.persistence.mappers.ArticlePersistenceMapper;
 import by.exposit.persistence.mappers.ProductPersistenceMapper;
 import by.exposit.persistence.repositories.product.attribute.AttributeJpaRepository;
+import by.exposit.persistence.specifications.ProductSpecification;
 import java.util.Collection;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +38,12 @@ public class ProductRepositoryImpl implements ProductRepository {
   @Transactional(readOnly = true)
   public Collection<Product> getAll() {
     return productMapper.toEntityCollection(productRepository.findAll());
+  }
+
+  @Override
+  @Transactional(readOnly = true)
+  public Collection<Product> getAll(ProductSpecificationFilter filter) {
+    return productMapper.toEntityCollection(productRepository.findAll(ProductSpecification.filter(filter)));
   }
 
   @Override
