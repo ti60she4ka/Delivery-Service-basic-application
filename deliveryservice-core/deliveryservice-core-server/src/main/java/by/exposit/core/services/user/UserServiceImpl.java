@@ -6,6 +6,7 @@ import by.exposit.core.exceptions.EntityNotFoundException;
 import by.exposit.core.exceptions.UserAlreadyExistsException;
 import by.exposit.core.mappers.BaseMapper;
 import by.exposit.core.mappers.order.OrderMapper;
+import by.exposit.core.mappers.user.UserMapper;
 import by.exposit.core.model.entities.User;
 import by.exposit.core.repositories.UserRepository;
 import by.exposit.core.services.AbstractServiceImpl;
@@ -14,12 +15,14 @@ import java.util.Collection;
 public class UserServiceImpl extends AbstractServiceImpl<User, UserDto> implements UserService {
 
   private final UserRepository userRepository;
+  private final UserMapper userMapper;
   private final OrderMapper orderMapper;
 
   public UserServiceImpl(UserRepository userRepository, BaseMapper<User, UserDto> userMapper,
       OrderMapper orderMapper) {
     super(userRepository, userMapper);
     this.userRepository = userRepository;
+    this.userMapper = (UserMapper) userMapper;
     this.orderMapper = orderMapper;
     entityType = "User";
   }
@@ -28,6 +31,15 @@ public class UserServiceImpl extends AbstractServiceImpl<User, UserDto> implemen
   public UserDto create(UserDto userDto) {
     if (!userRepository.existsByUsername(userDto.getUsername())) {
       return super.create(userDto);
+    } else {
+      throw new UserAlreadyExistsException(userDto.getUsername());
+    }
+  }
+
+  @Override
+  public UserDto create(UserDto userDto, String password, String role) {
+    if (!userRepository.existsByUsername(userDto.getUsername())) {
+      return mapper.toDto(userRepository.create(userMapper.toUserWithPasswordAndRole(userDto, password, role)));
     } else {
       throw new UserAlreadyExistsException(userDto.getUsername());
     }

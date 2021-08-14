@@ -9,4 +9,6 @@ import java.util.Collection;
 public interface UserService extends AbstractService<User, UserDto> {
 
   Collection<OrderDto> getOrdersByUserId(Long id);
+
+  UserDto create(UserDto userDto, String password, String role);
 }

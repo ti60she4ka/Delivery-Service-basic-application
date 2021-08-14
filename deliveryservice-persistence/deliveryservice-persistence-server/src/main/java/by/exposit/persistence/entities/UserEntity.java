@@ -1,9 +1,12 @@
 package by.exposit.persistence.entities;
 
+import by.exposit.core.model.enums.user.Role;
 import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -18,6 +21,13 @@ public class UserEntity extends BasePersistenceEntity {
 
   @Column(name = "username", nullable = false, unique = true)
   private String username;
+
+  @Column(name = "password", nullable = false)
+  private String password;
+
+  @Enumerated(EnumType.STRING)
+  @Column(name = "role", nullable = false)
+  private Role role;
 
   @Column(name = "first_name", nullable = false)
   private String firstName;

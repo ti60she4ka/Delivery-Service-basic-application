@@ -7,6 +7,9 @@ git-commit-id:
 
 maven-profile: ${profile-id}
 
+security:
+  enabled: false
+
 file-scan:
   enabled: false
   info:

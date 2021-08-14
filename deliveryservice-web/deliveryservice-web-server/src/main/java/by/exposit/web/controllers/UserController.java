@@ -34,7 +34,11 @@ public class UserController {
   @PostMapping()
   public ResponseEntity<UserDto> create(@RequestBody @Valid UserRequest userRequest) {
     return new ResponseEntity<>(
-        userService.create(mapper.toDto(userRequest)),
+        userService.create(
+            mapper.toDto(userRequest),
+            userRequest.getPassword(),
+            userRequest.getRole()
+        ),
         HttpStatus.OK
     );
   }

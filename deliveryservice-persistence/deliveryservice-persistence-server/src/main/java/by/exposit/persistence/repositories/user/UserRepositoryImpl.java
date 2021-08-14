@@ -6,6 +6,7 @@ import by.exposit.core.repositories.UserRepository;
 import by.exposit.persistence.mappers.OrderPersistenceMapper;
 import by.exposit.persistence.mappers.UserPersistenceMapper;
 import java.util.Collection;
+import java.util.Optional;
 import org.springframework.transaction.annotation.Transactional;
 
 public class UserRepositoryImpl implements UserRepository {
@@ -49,6 +50,16 @@ public class UserRepositoryImpl implements UserRepository {
   @Transactional(readOnly = true)
   public User getById(Long id) {
     return userMapper.toEntity(userRepository.getById(id));
+  }
+
+  @Override
+  public Optional<User> findUserByUsername(String username) {
+    if (userRepository.findUserEntityByUsername(username).isPresent()) {
+      return Optional.of(
+          userMapper.toEntity(userRepository.findUserEntityByUsername(username).get()));
+    } else {
+      return Optional.empty();
+    }
   }
 
   @Override
