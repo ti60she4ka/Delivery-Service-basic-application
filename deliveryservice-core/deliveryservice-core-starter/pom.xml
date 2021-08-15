@@ -14,13 +14,13 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
+      <groupId>by.exposit</groupId>
+      <artifactId>deliveryservice-core-server</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>by.exposit</groupId>
-      <artifactId>deliveryservice-core-server</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
     </dependency>
   </dependencies>
 

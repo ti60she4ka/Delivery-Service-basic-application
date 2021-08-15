@@ -13,6 +13,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>by.exposit</groupId>
+      <artifactId>deliveryservice-core-server</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
@@ -25,11 +30,6 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-validation</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>by.exposit</groupId>
-      <artifactId>deliveryservice-core-server</artifactId>
     </dependency>
 
     <dependency>
