@@ -7,12 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.envers.Audited;
 
 @Getter
 @Setter
 @Entity
+@Audited
 @Table(name = "shop")
 public class ShopEntity extends BasePersistenceEntity {
 
@@ -27,6 +30,10 @@ public class ShopEntity extends BasePersistenceEntity {
 
   @OneToMany(mappedBy = "shop", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
   private Collection<ArticleEntity> articles;
+
+  @Version
+  @Column(name = "version")
+  private Long version;
 
   @Override
   public String toString() {

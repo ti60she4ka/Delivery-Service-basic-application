@@ -45,7 +45,9 @@ public class OrderServiceImpl extends AbstractServiceImpl<Order, OrderDto> imple
 
   @Override
   public void update(OrderDto orderDto) {
-    orderRepository.update(mapToOrder(orderDto));
+    Order order = mapToOrder(orderDto);
+    order.setVersion(getVersionByOrderId(orderDto.getId()));
+    orderRepository.update(order);
   }
 
   @Override
@@ -95,5 +97,13 @@ public class OrderServiceImpl extends AbstractServiceImpl<Order, OrderDto> imple
     }
 
     return totalCost;
+  }
+
+  private Long getVersionByOrderId(Long id) {
+    if (orderRepository.existsById(id)) {
+      return orderRepository.getById(id).getVersion();
+    } else {
+      return 0L;
+    }
   }
 }

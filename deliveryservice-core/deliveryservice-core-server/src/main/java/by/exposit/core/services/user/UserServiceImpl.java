@@ -57,7 +57,9 @@ public class UserServiceImpl extends AbstractServiceImpl<User, UserDto> implemen
   @Override
   public void update(UserDto userDto) {
     if (!userRepository.existsByUsernameAndIdIsNot(userDto.getUsername(), userDto.getId())) {
-      super.update(userDto);
+      User user = mapper.toEntity(userDto);
+      user.setVersion(getVersionByUserId(userDto.getId()));
+      userRepository.update(user);
     } else {
       throw new UserAlreadyExistsException(userDto.getUsername());
     }
@@ -78,6 +80,14 @@ public class UserServiceImpl extends AbstractServiceImpl<User, UserDto> implemen
       return orderMapper.toDtoCollection(userRepository.getOrdersByUserId(id));
     } else {
       throw new EntityNotFoundException(entityType, id);
+    }
+  }
+
+  private Long getVersionByUserId(Long id) {
+    if (userRepository.existsById(id)) {
+      return userRepository.getById(id).getVersion();
+    } else {
+      return 0L;
     }
   }
 }

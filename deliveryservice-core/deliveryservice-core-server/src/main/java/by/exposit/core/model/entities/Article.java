@@ -15,4 +15,5 @@ public class Article extends BaseEntity {
   private Shop shop;
   private Double price;
   private Integer quantity;
+  private Long version;
 }

@@ -14,4 +14,5 @@ public class Shop extends BaseEntity {
   private String name;
   private String city;
   private String address;
+  private Long version;
 }

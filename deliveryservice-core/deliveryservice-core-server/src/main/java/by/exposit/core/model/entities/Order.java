@@ -21,4 +21,5 @@ public class Order extends BaseEntity {
   private LocalDate creationDate;
   private LocalDate updateDate;
   private LocalDate completionDate;
+  private Long version;
 }

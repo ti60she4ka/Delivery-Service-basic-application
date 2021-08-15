@@ -9,6 +9,7 @@
     <loadData tableName="category" file="db/initialization/initialCategories.csv">
       <column name="name" header="name"/>
       <column name="parent_id" defaultValue="null" header="parent_id"/>
+      <column name="version" defaultValue="0" header="version"/>
     </loadData>
   </changeSet>
 

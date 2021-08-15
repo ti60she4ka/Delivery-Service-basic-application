@@ -32,6 +32,7 @@
       <column name="username" type="VARCHAR(255)">
         <constraints nullable="false"/>
       </column>
+      <column name="version" type="BIGINT"/>
     </createTable>
 
     <addUniqueConstraint

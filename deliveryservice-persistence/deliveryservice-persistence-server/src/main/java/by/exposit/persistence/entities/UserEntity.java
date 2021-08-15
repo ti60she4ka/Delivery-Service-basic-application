@@ -10,12 +10,15 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.envers.Audited;
 
 @Getter
 @Setter
 @Entity
+@Audited
 @Table(name = "users")
 public class UserEntity extends BasePersistenceEntity {
 
@@ -46,6 +49,10 @@ public class UserEntity extends BasePersistenceEntity {
 
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
   private Collection<OrderEntity> orders;
+
+  @Version
+  @Column(name = "version")
+  private Long version;
 
   @Override
   public String toString() {

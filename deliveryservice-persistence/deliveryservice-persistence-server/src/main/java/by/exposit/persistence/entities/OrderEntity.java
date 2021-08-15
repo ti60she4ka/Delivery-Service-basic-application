@@ -12,12 +12,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.envers.Audited;
 
 @Getter
 @Setter
 @Entity
+@Audited
 @Table(name = "orders")
 public class OrderEntity extends BasePersistenceEntity {
 
@@ -43,6 +46,10 @@ public class OrderEntity extends BasePersistenceEntity {
 
   @Column(name = "completion_date")
   private LocalDate completionDate;
+
+  @Version
+  @Column(name = "version")
+  private Long version;
 
   @Override
   public String toString() {

@@ -15,4 +15,5 @@ public class Product extends BaseEntity {
   private String name;
   private Collection<Category> categories;
   private Collection<Attribute> attributes;
+  private Long version;
 }

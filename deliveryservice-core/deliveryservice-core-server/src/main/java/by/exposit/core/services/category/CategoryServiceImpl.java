@@ -46,7 +46,9 @@ public class CategoryServiceImpl extends AbstractServiceImpl<Category, CategoryD
   @Override
   public void update(CategoryDto categoryDto) {
     if (!categoryRepository.existsByNameAndIdIsNot(categoryDto.getName(), categoryDto.getId())) {
-      categoryRepository.update(mapToCategory(categoryDto));
+      Category category = mapToCategory(categoryDto);
+      category.setVersion(getVersionByCategoryId(categoryDto.getId()));
+      categoryRepository.update(category);
     } else {
       throw new CategoryAlreadyExistsException(categoryDto.getName());
     }
@@ -85,5 +87,13 @@ public class CategoryServiceImpl extends AbstractServiceImpl<Category, CategoryD
     }
 
     return category;
+  }
+
+  private Long getVersionByCategoryId(Long id) {
+    if (categoryRepository.existsById(id)) {
+      return categoryRepository.getById(id).getVersion();
+    } else {
+      return 0L;
+    }
   }
 }

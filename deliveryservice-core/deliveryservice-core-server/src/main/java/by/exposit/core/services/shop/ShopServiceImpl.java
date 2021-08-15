@@ -33,6 +33,13 @@ public class ShopServiceImpl extends AbstractServiceImpl<Shop, ShopDto> implemen
   }
 
   @Override
+  public void update(ShopDto shopDto) {
+    Shop shop = mapper.toEntity(shopDto);
+    shop.setVersion(getVersionByShopId(shopDto.getId()));
+    shopRepository.update(shop);
+  }
+
+  @Override
   public ShopDto getById(Long id) {
     if (shopRepository.existsById(id)) {
       return super.getById(id);
@@ -47,6 +54,14 @@ public class ShopServiceImpl extends AbstractServiceImpl<Shop, ShopDto> implemen
       return articleMapper.toDtoCollection(shopRepository.getArticlesByShopId(id));
     } else {
       throw new EntityNotFoundException(entityType, id);
+    }
+  }
+
+  private Long getVersionByShopId(Long id) {
+    if (shopRepository.existsById(id)) {
+      return shopRepository.getById(id).getVersion();
+    } else {
+      return 0L;
     }
   }
 }

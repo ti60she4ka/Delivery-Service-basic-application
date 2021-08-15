@@ -41,11 +41,9 @@ public class ArticleServiceImpl extends AbstractServiceImpl<Article, ArticleDto>
 
   @Override
   public void update(ArticleDto articleDto) {
-    if (articleRepository.existsById(articleDto.getId())) {
-      articleRepository.update(mapToArticle(articleDto));
-    } else {
-      throw new EntityNotFoundException(entityType, articleDto.getId());
-    }
+    Article article = mapToArticle(articleDto);
+    article.setVersion(getVersionByArticleId(articleDto.getId()));
+    articleRepository.update(article);
   }
 
   @Override
@@ -73,5 +71,13 @@ public class ArticleServiceImpl extends AbstractServiceImpl<Article, ArticleDto>
     }
 
     return article;
+  }
+
+  private Long getVersionByArticleId(Long id) {
+    if (articleRepository.existsById(id)) {
+      return articleRepository.getById(id).getVersion();
+    } else {
+      return 0L;
+    }
   }
 }

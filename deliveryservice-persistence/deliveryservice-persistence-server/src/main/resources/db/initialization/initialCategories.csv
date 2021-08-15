@@ -1,16 +1,16 @@
-name,parent_id
-Category 1,null
-Category 2,1
-Category 3,2
-Category 4,3
-Category 5,4
-Category 6,5
-Category 7,null
-Category 8,2
-Category 9,null
-Category 10,5
-Category 11,2
-Category 12,null
-Category 13,10
-Category 14,10
-Category 15,10
+name,parent_id,version
+Category 1,null,0
+Category 2,1,0
+Category 3,2,0
+Category 4,3,0
+Category 5,4,0
+Category 6,5,0
+Category 7,null,0
+Category 8,2,0
+Category 9,null,0
+Category 10,5,0
+Category 11,2,0
+Category 12,null,0
+Category 13,10,0
+Category 14,10,0
+Category 15,10,0

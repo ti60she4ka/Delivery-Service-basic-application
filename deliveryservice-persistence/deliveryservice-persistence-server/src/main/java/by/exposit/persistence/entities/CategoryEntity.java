@@ -8,13 +8,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
+import org.hibernate.envers.Audited;
 
 @Getter
 @Setter
 @Entity
+@Audited
 @Table(name = "category")
 public class CategoryEntity extends BasePersistenceEntity {
 
@@ -27,6 +29,10 @@ public class CategoryEntity extends BasePersistenceEntity {
 
   @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
   private Collection<ProductEntity> products;
+
+  @Version
+  @Column(name = "version")
+  private Long version;
 
   @Override
   public String toString() {

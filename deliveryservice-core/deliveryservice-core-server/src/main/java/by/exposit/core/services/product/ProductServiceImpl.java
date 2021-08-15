@@ -55,7 +55,9 @@ public class ProductServiceImpl extends AbstractServiceImpl<Product, ProductDto>
   @Override
   public void update(ProductDto productDto) {
     if (!productRepository.existsByNameAndIdIsNot(productDto.getName(), productDto.getId())) {
-      productRepository.update(mapToProduct(productDto));
+      Product product = mapToProduct(productDto);
+      product.setVersion(getVersionByProductId(productDto.getId()));
+      productRepository.update(product);
     } else {
       throw new ProductAlreadyExistsException(productDto.getName());
     }
@@ -100,5 +102,13 @@ public class ProductServiceImpl extends AbstractServiceImpl<Product, ProductDto>
     product.setCategories(categories);
 
     return product;
+  }
+
+  private Long getVersionByProductId(Long id) {
+    if (productRepository.existsById(id)) {
+      return productRepository.getById(id).getVersion();
+    } else {
+      return 0L;
+    }
   }
 }

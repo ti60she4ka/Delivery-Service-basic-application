@@ -18,6 +18,8 @@
   <include file="tables/article-changelog.xml" relativeToChangelogFile="true"/>
   <include file="tables/order_item-changelog.xml" relativeToChangelogFile="true"/>
 
+  <include file="hibernate-envers/envers-changelog.xml" relativeToChangelogFile="true"/>
+
   <include file="configuration/initialize_category-changelog.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

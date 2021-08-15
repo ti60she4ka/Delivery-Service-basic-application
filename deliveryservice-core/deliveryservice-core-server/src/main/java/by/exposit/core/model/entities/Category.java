@@ -13,4 +13,5 @@ public class Category extends BaseEntity {
 
   private String name;
   private Category parentCategory;
+  private Long version;
 }
