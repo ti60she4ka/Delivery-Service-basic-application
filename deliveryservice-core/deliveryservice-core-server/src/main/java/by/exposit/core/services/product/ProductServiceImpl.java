@@ -1,5 +1,8 @@
 package by.exposit.core.services.product;
 
+import by.exposit.core.annotations.product.ProductIdExists;
+import by.exposit.core.annotations.product.ProductNameNotOccupied;
+import by.exposit.core.aspects.validation.Validate;
 import by.exposit.core.dto.ArticleDto;
 import by.exposit.core.dto.CategoryDto;
 import by.exposit.core.dto.ProductDto;
@@ -31,54 +34,38 @@ public class ProductServiceImpl extends AbstractServiceImpl<Product, ProductDto>
     this.productRepository = productRepository;
     this.categoryRepository = categoryRepository;
     this.articleMapper = articleMapper;
-    entityType = "Product";
   }
 
   @Override
-  public ProductDto create(ProductDto productDto) {
-    if (!productRepository.existsByName(productDto.getName())) {
-      return mapper.toDto(productRepository.create(mapToProduct(productDto)));
-    } else {
-      throw new ProductAlreadyExistsException(productDto.getName());
-    }
+  @Validate
+  public ProductDto create(@ProductNameNotOccupied ProductDto productDto) {
+    return mapper.toDto(productRepository.create(mapToProduct(productDto)));
   }
 
   @Override
-  public void deleteById(Long id) {
-    if (productRepository.existsById(id)) {
-      super.deleteById(id);
-    } else {
-      throw new EntityNotFoundException(entityType, id);
-    }
+  @Validate
+  public void deleteById(@ProductIdExists Long id) {
+    super.deleteById(id);
   }
 
   @Override
-  public void update(ProductDto productDto) {
-    if (!productRepository.existsByNameAndIdIsNot(productDto.getName(), productDto.getId())) {
-      Product product = mapToProduct(productDto);
-      product.setVersion(getVersionByProductId(productDto.getId()));
-      productRepository.update(product);
-    } else {
-      throw new ProductAlreadyExistsException(productDto.getName());
-    }
+  @Validate
+  public void update(@ProductNameNotOccupied ProductDto productDto) {
+    Product product = mapToProduct(productDto);
+    product.setVersion(getVersionByProductId(productDto.getId()));
+    productRepository.update(product);
   }
 
   @Override
-  public ProductDto getById(Long id) {
-    if (productRepository.existsById(id)) {
-      return super.getById(id);
-    } else {
-      throw new EntityNotFoundException(entityType, id);
-    }
+  @Validate
+  public ProductDto getById(@ProductIdExists Long id) {
+    return super.getById(id);
   }
 
   @Override
-  public Collection<ArticleDto> getArticlesByProductId(Long id) {
-    if (productRepository.existsById(id)) {
-      return articleMapper.toDtoCollection(productRepository.getArticlesByProductId(id));
-    } else {
-      throw new EntityNotFoundException(entityType, id);
-    }
+  @Validate
+  public Collection<ArticleDto> getArticlesByProductId(@ProductIdExists Long id) {
+    return articleMapper.toDtoCollection(productRepository.getArticlesByProductId(id));
   }
 
   @Override

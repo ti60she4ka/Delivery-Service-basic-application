@@ -2,6 +2,7 @@ package by.exposit.web.exceptions;
 
 import by.exposit.core.exceptions.EntityAlreadyExistsException;
 import by.exposit.core.exceptions.EntityNotFoundException;
+import by.exposit.core.exceptions.ServerException;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +32,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
       EntityAlreadyExistsException ex, WebRequest request) {
 
     return handleExceptionInternal(ex, buildErrorResponseBody("Cannot be added or updated", ex.getMessage()),
-        new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+        new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
   }
 
   @Override
@@ -43,9 +44,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
   }
 
-  @ExceptionHandler(Exception.class)
+  @ExceptionHandler(ServerException.class)
   protected ResponseEntity<Object> handleUnsupportedExceptions(Exception ex, WebRequest request){
-    log.info("Server error -> {}: {}", ex.getClass(), ex.getMessage());
     return handleExceptionInternal(ex, buildErrorResponseBody("Server error", "Server exception"),
         new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
   }

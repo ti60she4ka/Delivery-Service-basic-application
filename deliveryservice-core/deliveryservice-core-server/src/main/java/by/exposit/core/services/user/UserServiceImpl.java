@@ -1,5 +1,8 @@
 package by.exposit.core.services.user;
 
+import by.exposit.core.annotations.user.UserIdExists;
+import by.exposit.core.annotations.user.UsernameNotOccupied;
+import by.exposit.core.aspects.validation.Validate;
 import by.exposit.core.dto.OrderDto;
 import by.exposit.core.dto.UserDto;
 import by.exposit.core.exceptions.EntityNotFoundException;
@@ -24,63 +27,44 @@ public class UserServiceImpl extends AbstractServiceImpl<User, UserDto> implemen
     this.userRepository = userRepository;
     this.userMapper = (UserMapper) userMapper;
     this.orderMapper = orderMapper;
-    entityType = "User";
   }
 
   @Override
-  public UserDto create(UserDto userDto) {
-    if (!userRepository.existsByUsername(userDto.getUsername())) {
-      return super.create(userDto);
-    } else {
-      throw new UserAlreadyExistsException(userDto.getUsername());
-    }
+  @Validate
+  public UserDto create(@UsernameNotOccupied UserDto userDto) {
+    return super.create(userDto);
   }
 
   @Override
-  public UserDto create(UserDto userDto, String password, String role) {
-    if (!userRepository.existsByUsername(userDto.getUsername())) {
-      return mapper.toDto(userRepository.create(userMapper.toUserWithPasswordAndRole(userDto, password, role)));
-    } else {
-      throw new UserAlreadyExistsException(userDto.getUsername());
-    }
+  @Validate
+  public UserDto create(@UsernameNotOccupied UserDto userDto, String password, String role) {
+    return mapper.toDto(userRepository.create(userMapper.toUserWithPasswordAndRole(userDto, password, role)));
   }
 
   @Override
-  public void deleteById(Long id) {
-    if (userRepository.existsById(id)) {
-      super.deleteById(id);
-    } else {
-      throw new EntityNotFoundException(entityType, id);
-    }
+  @Validate
+  public void deleteById(@UserIdExists Long id) {
+    super.deleteById(id);
   }
 
   @Override
-  public void update(UserDto userDto) {
-    if (!userRepository.existsByUsernameAndIdIsNot(userDto.getUsername(), userDto.getId())) {
-      User user = mapper.toEntity(userDto);
-      user.setVersion(getVersionByUserId(userDto.getId()));
-      userRepository.update(user);
-    } else {
-      throw new UserAlreadyExistsException(userDto.getUsername());
-    }
+  @Validate
+  public void update(@UsernameNotOccupied UserDto userDto) {
+    User user = mapper.toEntity(userDto);
+    user.setVersion(getVersionByUserId(userDto.getId()));
+    userRepository.update(user);
   }
 
   @Override
-  public UserDto getById(Long id) {
-    if (userRepository.existsById(id)) {
-      return super.getById(id);
-    } else {
-      throw new EntityNotFoundException(entityType, id);
-    }
+  @Validate
+  public UserDto getById(@UserIdExists Long id) {
+    return super.getById(id);
   }
 
   @Override
-  public Collection<OrderDto> getOrdersByUserId(Long id) {
-    if (userRepository.existsById(id)) {
-      return orderMapper.toDtoCollection(userRepository.getOrdersByUserId(id));
-    } else {
-      throw new EntityNotFoundException(entityType, id);
-    }
+  @Validate
+  public Collection<OrderDto> getOrdersByUserId(@UserIdExists Long id) {
+    return orderMapper.toDtoCollection(userRepository.getOrdersByUserId(id));
   }
 
   private Long getVersionByUserId(Long id) {

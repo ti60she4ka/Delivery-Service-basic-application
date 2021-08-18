@@ -1,5 +1,7 @@
 package by.exposit.core.services.shop;
 
+import by.exposit.core.annotations.shop.ShopIdExists;
+import by.exposit.core.aspects.validation.Validate;
 import by.exposit.core.dto.ArticleDto;
 import by.exposit.core.dto.ShopDto;
 import by.exposit.core.exceptions.EntityNotFoundException;
@@ -20,16 +22,12 @@ public class ShopServiceImpl extends AbstractServiceImpl<Shop, ShopDto> implemen
     super(shopRepository, shopMapper);
     this.shopRepository = shopRepository;
     this.articleMapper = articleMapper;
-    entityType = "Shop";
   }
 
   @Override
-  public void deleteById(Long id) {
-    if (shopRepository.existsById(id)) {
-      super.deleteById(id);
-    } else {
-      throw new EntityNotFoundException(entityType, id);
-    }
+  @Validate
+  public void deleteById(@ShopIdExists Long id) {
+    super.deleteById(id);
   }
 
   @Override
@@ -40,21 +38,15 @@ public class ShopServiceImpl extends AbstractServiceImpl<Shop, ShopDto> implemen
   }
 
   @Override
-  public ShopDto getById(Long id) {
-    if (shopRepository.existsById(id)) {
-      return super.getById(id);
-    } else {
-      throw new EntityNotFoundException(entityType, id);
-    }
+  @Validate
+  public ShopDto getById(@ShopIdExists Long id) {
+    return super.getById(id);
   }
 
   @Override
-  public Collection<ArticleDto> getArticlesByShopId(Long id) {
-    if (shopRepository.existsById(id)) {
-      return articleMapper.toDtoCollection(shopRepository.getArticlesByShopId(id));
-    } else {
-      throw new EntityNotFoundException(entityType, id);
-    }
+  @Validate
+  public Collection<ArticleDto> getArticlesByShopId(@ShopIdExists Long id) {
+    return articleMapper.toDtoCollection(shopRepository.getArticlesByShopId(id));
   }
 
   private Long getVersionByShopId(Long id) {

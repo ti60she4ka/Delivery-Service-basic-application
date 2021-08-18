@@ -1,5 +1,8 @@
 package by.exposit.core.services.category;
 
+import by.exposit.core.annotations.category.CategoryIdExists;
+import by.exposit.core.annotations.category.CategoryNameNotOccupied;
+import by.exposit.core.aspects.validation.Validate;
 import by.exposit.core.dto.CategoryDto;
 import by.exposit.core.dto.ProductDto;
 import by.exposit.core.exceptions.CategoryAlreadyExistsException;
@@ -22,54 +25,38 @@ public class CategoryServiceImpl extends AbstractServiceImpl<Category, CategoryD
     super(categoryRepository, categoryMapper);
     this.categoryRepository = categoryRepository;
     this.productMapper = productMapper;
-    entityType = "Category";
   }
 
   @Override
-  public CategoryDto create(CategoryDto categoryDto) {
-    if (!categoryRepository.existsByName(categoryDto.getName())) {
-      return mapper.toDto(categoryRepository.create(mapToCategory(categoryDto)));
-    } else {
-      throw new CategoryAlreadyExistsException(categoryDto.getName());
-    }
+  @Validate
+  public CategoryDto create(@CategoryNameNotOccupied CategoryDto categoryDto) {
+    return mapper.toDto(categoryRepository.create(mapToCategory(categoryDto)));
   }
 
   @Override
-  public void deleteById(Long id) {
-    if (categoryRepository.existsById(id)) {
-      super.deleteById(id);
-    } else {
-      throw new EntityNotFoundException(entityType, id);
-    }
+  @Validate
+  public void deleteById(@CategoryIdExists Long id) {
+    super.deleteById(id);
   }
 
   @Override
-  public void update(CategoryDto categoryDto) {
-    if (!categoryRepository.existsByNameAndIdIsNot(categoryDto.getName(), categoryDto.getId())) {
-      Category category = mapToCategory(categoryDto);
-      category.setVersion(getVersionByCategoryId(categoryDto.getId()));
-      categoryRepository.update(category);
-    } else {
-      throw new CategoryAlreadyExistsException(categoryDto.getName());
-    }
+  @Validate
+  public void update(@CategoryNameNotOccupied CategoryDto categoryDto) {
+    Category category = mapToCategory(categoryDto);
+    category.setVersion(getVersionByCategoryId(categoryDto.getId()));
+    categoryRepository.update(category);
   }
 
   @Override
-  public CategoryDto getById(Long id) {
-    if (categoryRepository.existsById(id)) {
-      return super.getById(id);
-    } else {
-      throw new EntityNotFoundException(entityType, id);
-    }
+  @Validate
+  public CategoryDto getById(@CategoryIdExists Long id) {
+    return super.getById(id);
   }
 
   @Override
-  public Collection<ProductDto> getProductsByCategoryId(Long id) {
-    if (categoryRepository.existsById(id)) {
-      return productMapper.toDtoCollection(categoryRepository.getProductsByCategoryId(id));
-    } else {
-      throw new EntityNotFoundException(entityType, id);
-    }
+  @Validate
+  public Collection<ProductDto> getProductsByCategoryId(@CategoryIdExists Long id) {
+    return productMapper.toDtoCollection(categoryRepository.getProductsByCategoryId(id));
   }
 
   private Category mapToCategory(CategoryDto categoryDto) {
@@ -83,7 +70,7 @@ public class CategoryServiceImpl extends AbstractServiceImpl<Category, CategoryD
     if (categoryRepository.existsById(parentId)) {
       category.setParentCategory(categoryRepository.getById(parentId));
     } else {
-      throw new EntityNotFoundException(entityType, parentId);
+      throw new EntityNotFoundException("Category", parentId);
     }
 
     return category;

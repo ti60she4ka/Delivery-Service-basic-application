@@ -1,5 +1,7 @@
 package by.exposit.core.services.order;
 
+import by.exposit.core.annotations.order.OrderIdExists;
+import by.exposit.core.aspects.validation.Validate;
 import by.exposit.core.dto.OrderDto;
 import by.exposit.core.dto.OrderItemDto;
 import by.exposit.core.exceptions.EntityNotFoundException;
@@ -26,7 +28,6 @@ public class OrderServiceImpl extends AbstractServiceImpl<Order, OrderDto> imple
     this.orderRepository = orderRepository;
     this.userRepository = userRepository;
     this.articleRepository = articleRepository;
-    entityType = "Order";
   }
 
   @Override
@@ -35,12 +36,9 @@ public class OrderServiceImpl extends AbstractServiceImpl<Order, OrderDto> imple
   }
 
   @Override
-  public void deleteById(Long id) {
-    if (orderRepository.existsById(id)) {
-      super.deleteById(id);
-    } else {
-      throw new EntityNotFoundException(entityType, id);
-    }
+  @Validate
+  public void deleteById(@OrderIdExists Long id) {
+    super.deleteById(id);
   }
 
   @Override
@@ -51,12 +49,9 @@ public class OrderServiceImpl extends AbstractServiceImpl<Order, OrderDto> imple
   }
 
   @Override
-  public OrderDto getById(Long id) {
-    if (orderRepository.existsById(id)) {
-      return super.getById(id);
-    } else {
-      throw new EntityNotFoundException(entityType, id);
-    }
+  @Validate
+  public OrderDto getById(@OrderIdExists Long id) {
+    return super.getById(id);
   }
 
   private Order mapToOrder(OrderDto orderDto) {

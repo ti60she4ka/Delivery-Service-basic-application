@@ -39,7 +39,7 @@ public class UserController {
             userRequest.getPassword(),
             userRequest.getRole()
         ),
-        HttpStatus.OK
+        HttpStatus.CREATED
     );
   }
 

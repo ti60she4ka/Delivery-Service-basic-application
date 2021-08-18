@@ -35,7 +35,7 @@ public class ShopController {
   public ResponseEntity<ShopDto> create(@RequestBody @Valid ShopRequest shopRequest) {
     return new ResponseEntity<>(
         shopService.create(mapper.toDto(shopRequest)),
-        HttpStatus.OK
+        HttpStatus.CREATED
     );
   }
 

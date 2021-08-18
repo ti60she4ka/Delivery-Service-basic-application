@@ -1,6 +1,12 @@
 package by.exposit.core;
 
-import by.exposit.core.aspects.BenchmarkAspect;
+import by.exposit.core.aspects.benchmark.BenchmarkAspect;
+import by.exposit.core.aspects.validation.ArticleServiceValidationAspect;
+import by.exposit.core.aspects.validation.CategoryServiceValidationAspect;
+import by.exposit.core.aspects.validation.OrderServiceValidationAspect;
+import by.exposit.core.aspects.validation.ProductServiceValidationAspect;
+import by.exposit.core.aspects.validation.ShopServiceValidationAspect;
+import by.exposit.core.aspects.validation.UserServiceValidationAspect;
 import by.exposit.core.filemanager.FileManager;
 import by.exposit.core.mappers.article.ArticleMapper;
 import by.exposit.core.mappers.category.CategoryMapper;
@@ -32,11 +38,11 @@ import by.exposit.core.storages.OrderDataStorage;
 import by.exposit.core.storages.ProductDataStorage;
 import by.exposit.core.storages.ShopDataStorage;
 import by.exposit.core.storages.UserDataStorage;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 
 @Configuration
 @ComponentScan(basePackages = {"by.exposit.core"})
@@ -157,7 +163,43 @@ public class CoreAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  public BenchmarkAspect benchmarkAspect(@Value("${maven-profile}") String profile){
-    return new BenchmarkAspect(profile);
+  public BenchmarkAspect benchmarkAspect(Environment environment){
+    return new BenchmarkAspect(environment);
+  }
+
+  @Bean
+  @ConditionalOnMissingBean
+  public ArticleServiceValidationAspect articleServiceValidationAspect(ArticleRepository articleRepository){
+    return new ArticleServiceValidationAspect(articleRepository);
+  }
+
+  @Bean
+  @ConditionalOnMissingBean
+  public CategoryServiceValidationAspect categoryServiceValidationAspect(CategoryRepository categoryRepository){
+    return new CategoryServiceValidationAspect(categoryRepository);
+  }
+
+  @Bean
+  @ConditionalOnMissingBean
+  public OrderServiceValidationAspect orderServiceValidationAspect(OrderRepository orderRepository){
+    return new OrderServiceValidationAspect(orderRepository);
+  }
+
+  @Bean
+  @ConditionalOnMissingBean
+  public ProductServiceValidationAspect productServiceValidationAspect(ProductRepository productRepository){
+    return new ProductServiceValidationAspect(productRepository);
+  }
+
+  @Bean
+  @ConditionalOnMissingBean
+  public ShopServiceValidationAspect shopServiceValidationAspect(ShopRepository shopRepository){
+    return new ShopServiceValidationAspect(shopRepository);
+  }
+
+  @Bean
+  @ConditionalOnMissingBean
+  public UserServiceValidationAspect userServiceValidationAspect(UserRepository userRepository){
+    return new UserServiceValidationAspect(userRepository);
   }
 }

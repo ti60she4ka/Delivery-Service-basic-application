@@ -34,7 +34,7 @@ public class ArticleController {
   public ResponseEntity<ArticleDto> create(@RequestBody @Valid ArticleRequest articleRequest){
     return new ResponseEntity<>(
         articleService.create(mapper.toDto(articleRequest)),
-        HttpStatus.OK
+        HttpStatus.CREATED
     );
   }
 

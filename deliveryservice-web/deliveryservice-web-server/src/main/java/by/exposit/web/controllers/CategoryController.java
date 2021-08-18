@@ -35,7 +35,7 @@ public class CategoryController {
   public ResponseEntity<CategoryDto> create(@RequestBody @Valid CategoryRequest categoryRequest) {
     return new ResponseEntity<>(
         categoryService.create(mapper.toDto(categoryRequest)),
-        HttpStatus.OK
+        HttpStatus.CREATED
     );
   }
 

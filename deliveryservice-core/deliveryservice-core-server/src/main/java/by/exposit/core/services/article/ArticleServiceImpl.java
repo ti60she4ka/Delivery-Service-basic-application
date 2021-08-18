@@ -1,5 +1,7 @@
 package by.exposit.core.services.article;
 
+import by.exposit.core.annotations.article.ArticleIdExists;
+import by.exposit.core.aspects.validation.Validate;
 import by.exposit.core.dto.ArticleDto;
 import by.exposit.core.exceptions.EntityNotFoundException;
 import by.exposit.core.mappers.BaseMapper;
@@ -22,7 +24,6 @@ public class ArticleServiceImpl extends AbstractServiceImpl<Article, ArticleDto>
     this.articleRepository = articleRepository;
     this.shopRepository = shopRepository;
     this.productRepository = productRepository;
-    entityType = "Article";
   }
 
   @Override
@@ -31,12 +32,9 @@ public class ArticleServiceImpl extends AbstractServiceImpl<Article, ArticleDto>
   }
 
   @Override
-  public void deleteById(Long id) {
-    if (articleRepository.existsById(id)) {
-      super.deleteById(id);
-    } else {
-      throw new EntityNotFoundException(entityType, id);
-    }
+  @Validate
+  public void deleteById(@ArticleIdExists Long id) {
+    super.deleteById(id);
   }
 
   @Override
@@ -47,12 +45,9 @@ public class ArticleServiceImpl extends AbstractServiceImpl<Article, ArticleDto>
   }
 
   @Override
-  public ArticleDto getById(Long id) {
-    if (articleRepository.existsById(id)) {
-      return super.getById(id);
-    } else {
-      throw new EntityNotFoundException(entityType, id);
-    }
+  @Validate
+  public ArticleDto getById(@ArticleIdExists Long id) {
+    return super.getById(id);
   }
 
   private Article mapToArticle(ArticleDto articleDto) {

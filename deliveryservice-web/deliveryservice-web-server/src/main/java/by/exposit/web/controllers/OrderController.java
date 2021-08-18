@@ -34,7 +34,7 @@ public class OrderController {
   public ResponseEntity<OrderDto> create(@RequestBody @Valid OrderRequest orderRequest) {
     return new ResponseEntity<>(
         orderService.create(mapper.toDto(orderRequest)),
-        HttpStatus.OK
+        HttpStatus.CREATED
     );
   }
 

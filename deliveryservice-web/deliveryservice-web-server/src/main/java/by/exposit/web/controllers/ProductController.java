@@ -36,7 +36,7 @@ public class ProductController {
   public ResponseEntity<ProductDto> create(@RequestBody @Valid ProductRequest productRequest){
     return new ResponseEntity<>(
         productService.create(mapper.toDto(productRequest)),
-        HttpStatus.OK
+        HttpStatus.CREATED
     );
   }
 
